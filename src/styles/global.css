@@ -5622,15 +5622,42 @@ pre {
 }
 
 /* ============================================================
-   Wide content stays inside its own scroller
+   Long tokens must not widen the page
    ------------------------------------------------------------
-   A code block inside a flex or grid container gets min-width:auto
-   by default, which means it grows to fit its longest line instead
-   of scrolling. That pushes the whole page sideways on a phone.
-   Setting min-width to zero lets the pre shrink so its own
-   overflow:auto can do its job.
+   Lab content is full of file paths, error names, and function
+   names that contain no spaces. Three separate things had to be
+   true before those stopped pushing whole pages sideways on a
+   phone. Verified against hap-lab-fetch on 2026-08-10: five
+   overflows across three pages at 320px and 375px, now zero.
    ============================================================ */
 
+/* 1. Inline text. A long path inside a <strong> or a <p> has no
+   break opportunity, so it runs straight past the edge of its
+   block. break-word gives it one, and only when it does not fit. */
+body {
+  overflow-wrap: break-word;
+}
+
+/* 2. Grid and flex items. An item's min-width defaults to auto,
+   which resolves to min-content, so the item refuses to shrink
+   below its longest token and its column grows to match. Note
+   that this has to name the CHILDREN of each card grid: setting
+   it on the container does nothing, because the container is not
+   the item that refuses to shrink. */
+.tips-container > *,
+.tip-card > *,
+.analysis-grid > *,
+.overview-grid > *,
+.hap-info-grid > *,
+.comparison-grid > *,
+.metrics-grid > *,
+.metric-cards-grid > *,
+.checklist-grid > *,
+.principles-grid > *,
+.preview-grid > *,
+.axes-grid > *,
+.device-grid > *,
+.hap-note-callout > *,
 .code-block-wrapper,
 .prompt-box,
 .content-section,
@@ -5638,36 +5665,30 @@ pre {
   min-width: 0;
 }
 
+/* 3. Code blocks. These already carry overflow: auto, but they
+   can only scroll once they are allowed to be narrower than
+   their content. */
 .code-block-wrapper pre,
 pre.astro-code {
   min-width: 0;
   max-width: 100%;
 }
 
-/* A long unbreakable token in inline code, such as an error name like
-   ERR_MODULE_NOT_FOUND, sets a card's minimum width and pushes the page
-   sideways on a narrow screen. Let those break rather than overflow.
-   Block code is exempt: it scrolls, where breaking a line would lie
-   about what to type. */
-:not(pre) > code {
+/* Card text uses `anywhere` rather than `break-word`, because only
+   `anywhere` reduces the min-content width that sized the column in
+   the first place. `break-word` wraps the text but leaves the column
+   just as wide. */
+.tip-card h3,
+.tip-card p,
+.analysis-point h3,
+.analysis-point p,
+.insight-card h3,
+.insight-card p,
+.hap-note-content h3,
+.hap-note-content p,
+.hap-info-grid h4,
+.hap-info-grid p {
   overflow-wrap: anywhere;
-}
-
-/* A grid or flex item is min-content wide by default, so one long token
-   in a card heading, such as an error name like ERR_MODULE_NOT_FOUND,
-   sets the whole column's minimum and pushes the page sideways on a
-   narrow screen. min-width:0 lets the column shrink; break-word then
-   splits the token only when it genuinely does not fit. */
-.analysis-point,
-.insight-card,
-.tip-card,
-.metric-card,
-.principle-card,
-.preview-card,
-.comparison-column,
-.feature-column {
-  min-width: 0;
-  overflow-wrap: break-word;
 }
 
 /* ============================================================

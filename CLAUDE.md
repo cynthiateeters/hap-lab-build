@@ -79,12 +79,13 @@ of `global.css`:
 
 - `.page-type-badge` and its three variants. All three pass 4.5:1 on their
   own backgrounds, measured 2026-08-10.
-- `min-width: 0` on code block wrappers and on card components. Grid and flex
-  items are min-content wide by default, so one long token in a card heading
-  used to push the whole page sideways on a phone. This is the fix, and it is
-  worth backporting.
-- `overflow-wrap` on inline code and card bodies. Block code is exempt,
-  because it scrolls, and breaking a line there would lie about what to type.
+- The "Long tokens must not widen the page" block. It stops file paths, error
+  names, and function names from pushing the page sideways on a phone. This
+  block is now identical to the one in `hap-template-lab-astro`, which is
+  where it belongs; keep them in sync. Its own comments explain why all three
+  of its parts are needed, and the most important one is that the
+  `min-width: 0` rule has to name the **children** of a card grid rather than
+  the grid itself.
 
 ## Images
 
