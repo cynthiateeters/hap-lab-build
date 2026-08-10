@@ -9,7 +9,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 import CodeBlock from '../components/CodeBlock.astro';
 
 const introContent = `
-    <p>Twenty minutes in a throwaway folder, running the commands and reading what changed after each one. Nothing here gets kept. The point is to watch the files appear and be able to say out loud what each one is.</p>
+    <p>Twenty minutes in a throwaway folder, running the commands and reading what changed after each one. Nothing here gets kept. The goal is to watch the files appear and be able to say out loud what each one is.</p>
 `;
 
 const step1 = `mkdir npm-practice
@@ -69,12 +69,12 @@ rm -rf npm-practice`;
 <PageLayout
   slug="/make-a-package-json/"
   title="Make a package.json and read it out loud"
-  subtitle="Twenty minutes, one throwaway folder, every file explained"
+  subtitle="Twenty minutes in a throwaway folder, with every file explained"
   description="A hands-on walk through npm init, installing a dev dependency, writing npm scripts, and chaining commands. Every file that appears is named and explained as it appears."
   avatarImage="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/canvas/hap/hap-scientist"
   avatarAlt="HAP wearing goggles and holding a bubbling test tube"
   introContent={introContent}
-  footerReminder="Reading the file after every command is the habit that makes the rest of this stop being guesswork."
+  footerReminder="Read package.json after every command that touches it, and the rest of this stops being guesswork."
 >
 
   <section class="content-section">
@@ -98,7 +98,7 @@ rm -rf npm-practice`;
 
       <p class="mt-1"><code>mkdir</code> makes the folder. <code>cd</code> moves the terminal into it. <code>pwd</code> prints where the terminal currently is, and it should end in <code>npm-practice</code>.</p>
 
-      <p class="mt-1">That last command matters more than it looks. Every npm command acts on the folder the terminal is standing in, and it never asks whether that was the folder you meant. A surprising share of confusing npm behaviour is a command that ran perfectly in the wrong place.</p>
+      <p class="mt-1">That last command matters more than it looks. Every npm command acts on the folder the terminal is standing in, and it never asks whether that was the folder you meant. A lot of confusing npm behaviour turns out to be a command that ran perfectly in the wrong place.</p>
     </div>
   </section>
 
@@ -120,7 +120,7 @@ rm -rf npm-practice`;
 
       <p class="mt-1">Read it out loud, field by field. <code>name</code> came from the folder name. <code>version</code> is a starting point nobody uses for a website. <code>scripts</code> holds one placeholder that does nothing useful. The <a href="/reference/package-json/">package.json reference page</a> goes through every field properly.</p>
 
-      <p class="mt-1">The important observation is what is absent. There is no list of dependencies yet, because nothing has been installed.</p>
+      <p class="mt-1">Notice what is missing. There is no list of dependencies yet, because nothing has been installed.</p>
     </div>
   </section>
 
@@ -185,7 +185,7 @@ rm -rf npm-practice`;
         <CodeBlock code={serveOutput} lang="text" />
       </div>
 
-      <p class="mt-1">The terminal stops and sits there. That is correct and it is new. Most commands run, print, and give you your prompt back. A server does not finish, because finishing would mean it stopped serving. It holds the terminal until you stop it.</p>
+      <p class="mt-1">The terminal stops and sits there, which is correct even though it is new. Most commands run, print something, and give you your prompt back. A server never finishes, because finishing would mean it stopped serving, so it holds the terminal until you stop it.</p>
 
       <p class="mt-1">Open <code>http://127.0.0.1:3000</code> in a browser. There is no HTML file in this folder, so you get a file listing. That listing is being generated and delivered by a program running on your own machine. Press <kbd>Ctrl</kbd> and <kbd>C</kbd> in the terminal to stop it, and the prompt comes back.</p>
 
@@ -209,7 +209,7 @@ rm -rf npm-practice`;
         <CodeBlock code={step7} lang="bash" />
       </div>
 
-      <p class="mt-1">Two characters in there are doing real work and neither is JavaScript.</p>
+      <p class="mt-1">Two characters in there are doing real work, and neither of them is JavaScript.</p>
 
       <div class="analysis-grid analysis-grid--two-col">
         <div class="analysis-point">
@@ -219,11 +219,11 @@ rm -rf npm-practice`;
 
         <div class="analysis-point">
           <h3>The double ampersand</h3>
-          <p><code>a &amp;&amp; b</code> means run <code>a</code>, and run <code>b</code> only if <code>a</code> succeeded. Success is measured by the exit code, a number every command returns when it finishes, where zero means fine. Chains stop at the first failure rather than plowing ahead on broken input.</p>
+          <p><code>a &amp;&amp; b</code> means run <code>a</code>, and run <code>b</code> only if <code>a</code> succeeded. Success is measured by the exit code, a number every command returns when it finishes, where zero means fine. A chain stops at the first failure instead of carrying on with broken input.</p>
         </div>
       </div>
 
-      <p class="mt-1">Stop the server, then open <code>files.txt</code>. It holds the folder listing, written there by the first half of the chain before the second half started. Turning a multi-step job into one command a teammate can run without instructions is the actual point of the scripts block.</p>
+      <p class="mt-1">Stop the server, then open <code>files.txt</code>. It holds the folder listing, written there by the first half of the chain before the second half started. That is what the scripts block is for: turning a multi-step job into one command a teammate can run without instructions.</p>
     </div>
   </section>
 
@@ -236,7 +236,7 @@ rm -rf npm-practice`;
         <CodeBlock code={cleanup} lang="bash" />
       </div>
 
-      <p class="mt-1">Deleting it is part of the exercise. Everything in that folder except <code>package.json</code> can be regenerated from <code>package.json</code>, and being willing to delete <code>node_modules</code> without a second thought is a genuinely useful reflex.</p>
+      <p class="mt-1">Deleting it is part of the exercise. Everything in that folder except <code>package.json</code> can be regenerated from <code>package.json</code>, and being willing to delete <code>node_modules</code> without a second thought is a useful reflex to have.</p>
     </div>
   </section>
 
@@ -249,7 +249,7 @@ rm -rf npm-practice`;
           <div class="tip-number">1</div>
           <div>
             <h3>The terminal's current folder decides everything</h3>
-            <p>npm acts on wherever the terminal is standing. <code>pwd</code> before an install costs one second and prevents a real class of confusion.</p>
+            <p>npm acts on wherever the terminal is standing. Running <code>pwd</code> before an install costs one second and heads off a whole class of confusion.</p>
           </div>
         </div>
 
@@ -257,7 +257,7 @@ rm -rf npm-practice`;
           <div class="tip-number">2</div>
           <div>
             <h3>Read package.json after every command that touches it</h3>
-            <p>The file is short and it is the record of what you did. Watching it change is how the commands stop being incantations.</p>
+            <p>The file is short, and it is the record of what you did. Watching it change after each command is how you learn what each command does.</p>
           </div>
         </div>
 

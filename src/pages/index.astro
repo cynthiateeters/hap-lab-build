@@ -8,7 +8,7 @@
 import MainLayout from '../layouts/MainLayout.astro';
 
 const introContent = `
-    <p><strong>Every modern website is built.</strong> Somewhere between the files a developer edits and the page that arrives in a browser, a program ran. Learning to run that program is straightforward. Knowing what it is, and why it exists, is what this lab is for.</p>
+    <p><strong>Every modern website is built.</strong> Somewhere between the files a developer edits and the page that arrives in a browser, a program ran. Running that program takes one command. This lab is about what the program is and why it exists.</p>
     <p class="mt-1">Nine pages covering what Node is, what npm is and is not, what <code>node_modules</code> really contains, why opening an HTML file directly stops working eventually, what a port number is, and where static site generators fit.</p>
     <p class="mt-1">No project to hand in here. This is the reading that makes the projects make sense. 🟠</p>
 `;
@@ -16,14 +16,14 @@ const introContent = `
 
 <MainLayout
   title="HAP's Learning Lab: How Sites Get Built"
-  description="What Node, npm, package.json, and a development server actually are. A reading lab on the machinery behind every modern website, from Prof. Cynthia Teeters."
+  description="What Node, npm, package.json, and a development server actually are. A reading lab on the tools behind every modern website, from Prof. Cynthia Teeters."
   headerTitle="How Sites Get Built"
   headerSubtitle="HAP's Learning Lab"
   avatarImage="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/canvas/hap/hap-has-tools"
   avatarAlt="HAP holding a wooden toolbox filled with hammer, pliers, and other tools"
   introContent={introContent}
   showNavigation={false}
-  footerReminder="Every tool in here is a program someone wrote. None of it is magic."
+  footerReminder="Every tool in here is a program that somebody sat down and wrote."
 >
 
   <section class="content-section">
@@ -32,13 +32,13 @@ const introContent = `
 
       <div class="analysis-grid analysis-grid--two-col">
         <div class="analysis-point">
-          <h3>The machinery, not the recipe</h3>
+          <h3>What the commands are doing</h3>
           <p>Plenty of instructions will tell you to run <code>npm init</code> and then <code>npm install</code>. This lab is about what those two commands did, what they left on your disk, and why anyone designed it that way.</p>
         </div>
 
         <div class="analysis-point">
-          <h3>Read it before you need it</h3>
-          <p>Nothing here is tied to a particular assignment. The commands are the real ones you will meet, so the machinery should look familiar when it shows up in a project.</p>
+          <h3>Not tied to an assignment</h3>
+          <p>Nothing here belongs to a particular project. The commands are the real ones you will meet, so they should look familiar when they show up in one.</p>
         </div>
 
         <div class="analysis-point">
@@ -48,7 +48,7 @@ const introContent = `
 
         <div class="analysis-point">
           <h3>Where it stops</h3>
-          <p>This lab covers the foundation: a runtime, a package manager, a manifest, a local server. Static site generators get an introduction and their own lab.</p>
+          <p>This lab covers four things: a runtime, a package manager, a manifest, and a local server. Static site generators get an introduction here and a lab of their own.</p>
         </div>
       </div>
     </div>
@@ -113,7 +113,7 @@ const introContent = `
           <a href="/what-comes-next/" class="insight-card page-card-link">
             <p class="index-card-type"><span class="index-card-order">Page 8</span> &middot; Explanation</p>
             <h3>Where this goes next</h3>
-            <p>Static site generators, what they are made of, and why they turn out to be the same pieces arranged.</p>
+            <p>Static site generators, what they are made of, and how they use the pieces from the earlier pages.</p>
             <p class="page-cta">&rarr; Read this page</p>
           </a>
 

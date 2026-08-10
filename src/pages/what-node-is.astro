@@ -9,7 +9,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 import CodeBlock from '../components/CodeBlock.astro';
 
 const introContent = `
-    <p>Installing Node is step one of nearly every web project, and almost nobody explains what got installed. Node is a program that runs JavaScript outside a browser. Everything else on this page follows from that one sentence.</p>
+    <p>Node is a program that runs JavaScript outside a browser. Installing it is step one of nearly every web project, and almost nobody explains what got installed, so the rest of this page works out what that one sentence implies.</p>
 `;
 
 const versionCheck = `node --version
@@ -32,7 +32,7 @@ import { readFileSync } from 'node:fs';`;
 <PageLayout
   slug="/what-node-is/"
   title="What Node is"
-  subtitle="A JavaScript engine, taken out of the browser and given a computer"
+  subtitle="A JavaScript engine taken out of the browser and given a computer"
   description="Node.js is a program that runs JavaScript outside a web browser. What that means, what Node has that browsers do not, what it lacks, and why the entire web toolchain sits on top of it."
   avatarImage="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/canvas/hap/hap-holding-js-coin"
   avatarAlt="HAP proudly holding a large glowing JavaScript logo coin"
@@ -53,8 +53,8 @@ import { readFileSync } from 'node:fs';`;
       <div class="hap-note-callout">
         <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/canvas/hap/hap-brain-explodes" alt="HAP with a surprised expression and his head exploding with stars and lightning" width="150" height="150" class="hap-note-image" decoding="async" loading="lazy" />
         <div class="hap-note-content">
-          <h3>🟠 The part that reframes everything</h3>
-          <p>The same JavaScript you write for a web page is the language Node runs. The syntax is identical. What changes is what the language is allowed to touch. In a browser it can touch a web page. In Node it can touch your computer.</p>
+          <h3>🟠 The part worth holding onto</h3>
+          <p>The same JavaScript you write for a web page is the language Node runs, with identical syntax. What changes is what the language is allowed to touch: a web page in the browser, and your computer in Node.</p>
         </div>
       </div>
     </div>
@@ -82,11 +82,11 @@ import { readFileSync } from 'node:fs';`;
 
         <div class="analysis-point">
           <h3>The command line</h3>
-          <p>Node scripts receive arguments, environment variables, and an exit code. That is what makes a JavaScript file usable as a tool rather than a web page.</p>
+          <p>Node scripts receive arguments and environment variables, and hand back an exit code. That is what lets a JavaScript file work as a command line tool.</p>
         </div>
       </div>
 
-      <p class="mt-1">The trade runs both directions. Node has no <code>document</code>, no <code>window</code>, and no rendered page, because there is no page. Code written for one place does not automatically run in the other.</p>
+      <p class="mt-1">The trade runs both directions. Node has no <code>document</code> and no <code>window</code>, because there is no page for them to describe. Code written for one place does not automatically run in the other.</p>
 
       <div class="prompt-box mt-1">
         <div class="prompt-label">Each of these works in exactly one place:</div>
@@ -122,7 +122,7 @@ import { readFileSync } from 'node:fs';`;
         <CodeBlock code={runScript} lang="bash" />
       </div>
 
-      <p class="mt-1">No HTML file, no browser, no page. The output lands in the terminal. <code>process</code> is one of the objects Node hands to JavaScript, and it describes the running program itself: which version of Node, which folder it started in, what the user typed to launch it.</p>
+      <p class="mt-1">There is no HTML file and no browser involved, and the output lands in the terminal. <code>process</code> is one of the objects Node hands to JavaScript, and it describes the running program itself: which version of Node, which folder it started in, what the user typed to launch it.</p>
     </div>
   </section>
 
@@ -146,8 +146,8 @@ import { readFileSync } from 'node:fs';`;
         <h4>Not required to write a website</h4>
         <p>Plain HTML and CSS work with no Node anywhere. Node is required for the tools, not for the web.</p>
 
-        <h4>Not the only one</h4>
-        <p>Deno and Bun run JavaScript outside the browser too. Node is the oldest and by far the most widely assumed.</p>
+        <h4>Not the only option</h4>
+        <p>Deno and Bun run JavaScript outside the browser too. Node is the oldest and by far the one most documentation assumes.</p>
       </div>
     </div>
   </section>
@@ -156,9 +156,9 @@ import { readFileSync } from 'node:fs';`;
     <div class="topic-section">
       <h2>Why This Is The Foundation Of The Toolchain</h2>
 
-      <p>Once JavaScript could read files and start programs, developers could write their tools in the same language they were already writing their websites in. That is the whole reason the web toolchain is made of JavaScript. Not because JavaScript is especially good at building software, but because every front-end developer already knew it, and Node removed the reason they could not use it.</p>
+      <p>Once JavaScript could read files and start programs, developers could write their tools in the same language they were already writing their websites in. That is why the web toolchain ended up made of JavaScript. Not for any technical advantage, but because every front-end developer already knew the language, and Node removed the reason they could not use it for tools.</p>
 
-      <p class="mt-1">Every tool in the rest of this lab is a JavaScript program that Node runs. The thing that fetches those programs and keeps track of them is next.</p>
+      <p class="mt-1">Every tool in the rest of this lab is a JavaScript program that Node runs. The next page covers the program that fetches those tools and keeps track of them.</p>
     </div>
   </section>
 

@@ -9,7 +9,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 import CodeBlock from '../components/CodeBlock.astro';
 
 const introContent = `
-    <p>Node and npm arrive together, get talked about together, and do completely different jobs. Node runs JavaScript. npm goes and gets JavaScript that other people wrote. Keeping them separate in your head makes the error messages readable.</p>
+    <p>Node and npm arrive together and get talked about together, but they do completely different jobs. Node runs JavaScript, while npm goes and fetches JavaScript that other people wrote. Keeping the two separate in your head is what makes the error messages readable.</p>
 `;
 
 const threeThings = `npm install http-server
@@ -42,7 +42,7 @@ const depsBlock = `{
   avatarImage="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/canvas/hap/hap-juggles"
   avatarAlt="HAP juggling floating HTML code tags"
   introContent={introContent}
-  footerReminder="Node runs the code. npm fetches the code. Two programs, two jobs."
+  footerReminder="Node runs the code and npm fetches it. Two programs with two different jobs."
 >
 
   <section class="content-section">
@@ -69,7 +69,7 @@ const depsBlock = `{
 
         <div class="analysis-point">
           <h3>Why the confusion sticks</h3>
-          <p>npm ships inside the Node installer, so nobody installs it on purpose and nobody has a moment where they learn what it is. It simply appears.</p>
+          <p>npm ships inside the Node installer, so nobody installs it on purpose and nobody gets a moment where they learn what it is. It is already there the first time anyone needs it.</p>
         </div>
       </div>
 
@@ -91,8 +91,8 @@ const depsBlock = `{
       <div class="hap-note-callout">
         <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/canvas/hap/hap-confused-map" alt="HAP with a backpack looking confused while reading a treasure map" width="150" height="150" class="hap-note-image" decoding="async" loading="lazy" />
         <div class="hap-note-content">
-          <h3>🟠 node_modules is not a cache and not a mystery</h3>
-          <p>It is a plain folder full of plain folders, each one downloaded from the registry, each one containing readable JavaScript. Nothing is compiled and nothing is encrypted. Opening it and reading a package's source is a completely reasonable thing to do.</p>
+          <h3>🟠 What node_modules actually is</h3>
+          <p>A plain folder full of plain folders, each one downloaded from the registry and each one holding readable JavaScript. None of it is compiled or encrypted, so opening it and reading a package's source is a completely reasonable thing to do.</p>
           <p class="mt-1">It is also enormous, entirely reconstructable from <code>package.json</code>, and therefore never committed to git. Deleting it and running <code>npm install</code> again is the standard first move when a project starts behaving strangely.</p>
         </div>
       </div>
@@ -153,7 +153,7 @@ const depsBlock = `{
         <h4>Getting it wrong</h4>
         <p>Nothing breaks locally either way. The cost shows up on a deploy server, which can be told to skip devDependencies and will then fail on a tool filed in the wrong list.</p>
 
-        <h4>The honest summary</h4>
+        <h4>The short version</h4>
         <p>Ask whether a visitor's browser needs this code. If not, it belongs in devDependencies.</p>
       </div>
     </div>
@@ -168,11 +168,11 @@ const depsBlock = `{
         <div class="hap-note-content">
           <h3>A note from Grace Hopper</h3>
           <p>The registry is public. Anyone may publish to it, and a published package may run a script of its own at the moment it is installed. A single install command can therefore execute code written by a person you have never evaluated.</p>
-          <p class="mt-1">This is not a reason to avoid packages. It is a reason to be deliberate about them. Confirm the name character by character before installing, because names that differ by one letter from a popular package are a known attack. Prefer a platform capability over a dependency where one exists. Install fewer things.</p>
+          <p class="mt-1">That is a reason to be deliberate about packages rather than a reason to avoid them. Confirm the name character by character before installing, because names that differ by one letter from a popular package are a known attack. Where the platform already does the job, use the platform instead. And install fewer things.</p>
         </div>
       </div>
 
-      <p class="mt-1">Reading the count of folders in <code>node_modules</code> and understanding that each one is code you agreed to run is the moment package management stops feeling like paperwork.</p>
+      <p class="mt-1">Count the folders in <code>node_modules</code> sometime, and remember that every one of them is code you agreed to run. That is the part of package management worth taking seriously.</p>
     </div>
   </section>
 
@@ -180,7 +180,7 @@ const depsBlock = `{
     <div class="topic-section">
       <h2>Where The Files End Up</h2>
 
-      <p>Running an install in a project folder produces three changes, and knowing which is which makes the next page's steps predictable.</p>
+      <p>Running an install in a project folder produces three changes. Knowing which is which makes the next page's steps predictable.</p>
 
       <ol>
         <li><code>node_modules/</code> appears or grows. Downloaded code. Ignored by git.</li>

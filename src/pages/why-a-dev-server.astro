@@ -9,7 +9,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 import CodeBlock from '../components/CodeBlock.astro';
 
 const introContent = `
-    <p>Double-click an HTML file and it opens. It also quietly loses half of what the modern web can do. This page is about why that happens, what a development server changes, and what a port number is.</p>
+    <p>Double-click an HTML file and it opens, but a set of browser features quietly stops working. This page covers why that happens, what a development server changes, and what a port number is.</p>
 `;
 
 const twoUrls = `file:///Users/you/projects/my-site/index.html
@@ -46,9 +46,9 @@ const inUseError = `Error: listen EADDRINUSE: address already in use 0.0.0.0:300
         <CodeBlock code={twoUrls} lang="text" />
       </div>
 
-      <p class="mt-1">Same file, same bytes, same browser. The first one is the browser reading a file off the disk directly. The second is the browser sending a request over the network to a program that answers it, even though that program happens to be running on the same machine.</p>
+      <p class="mt-1">Same file, same bytes, same browser. In the first case the browser reads a file off the disk directly. In the second it sends a request over the network to a program that answers it, even though that program happens to be running on the same machine.</p>
 
-      <p class="mt-1">The word before the colon is the <strong>scheme</strong>, and it decides which of those two things happens. That word is why the same page behaves differently in the two cases.</p>
+      <p class="mt-1">The word before the colon is the <strong>scheme</strong>, and it decides which of those two things happens. That one word is why the same page behaves differently in the two cases.</p>
     </div>
   </section>
 
@@ -90,8 +90,8 @@ const inUseError = `Error: listen EADDRINUSE: address already in use 0.0.0.0:300
       <div class="hap-note-callout">
         <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/canvas/hap/hap-broke-things" alt="HAP looking sad while holding tangled wires" width="150" height="150" class="hap-note-image" decoding="async" loading="lazy" />
         <div class="hap-note-content">
-          <h3>🟠 The confusing part is that nothing looks broken</h3>
-          <p>The HTML renders. The CSS applies. Only the parts that needed to fetch something are missing, and the reason is in the console rather than on the page. A page that looks mostly right while quietly doing nothing is the signature of this problem, and checking the console is the fix.</p>
+          <h3>🟠 Nothing looks broken, which is the hard part</h3>
+          <p>The HTML renders and the CSS applies, so only the parts that needed to fetch something are missing, and the reason is in the console rather than on the page. When a page looks mostly right but a piece of it does nothing, open the console before anything else.</p>
         </div>
       </div>
     </div>
@@ -101,9 +101,9 @@ const inUseError = `Error: listen EADDRINUSE: address already in use 0.0.0.0:300
     <div class="topic-section">
       <h2>What A Development Server Is</h2>
 
-      <p>A development server is a small program that watches a folder, listens for HTTP requests, and answers them with files from that folder. It is not a website host and it is not reachable from the internet. Its only job is to make your own files arrive over <code>http</code> instead of <code>file</code>, which gives the page a real origin and restores everything on the list above.</p>
+      <p>A development server is a small program that watches a folder, listens for HTTP requests, and answers them with files from that folder. It is not a website host, and nothing on the internet can reach it. Its one job is to make your own files arrive over <code>http</code> instead of <code>file</code>, which gives the page a real origin and restores everything on the list above.</p>
 
-      <p class="mt-1">Most of them add conveniences on top: reloading the browser when a file changes, printing each request as it comes in, serving <code>index.html</code> when a folder is requested. Those are extras. The origin is the point.</p>
+      <p class="mt-1">Most of them add conveniences on top: reloading the browser when a file changes, printing each request as it comes in, serving <code>index.html</code> when a folder is requested. Useful as those are, the origin is the reason you need the server at all.</p>
 
       <div class="hap-info-grid">
         <h4>localhost</h4>
@@ -122,7 +122,7 @@ const inUseError = `Error: listen EADDRINUSE: address already in use 0.0.0.0:300
         <p>A real host serves the built output to the public over HTTPS, from a machine that is not yours. The dev server is a stand-in so you can see the result before that happens.</p>
 
         <h4>Any of them will do</h4>
-        <p>The VS Code Live Server extension, a Node server package, or a server built into a framework all solve the same problem the same way.</p>
+        <p>The VS Code Live Server extension, a Node server package, and a server built into a framework all solve this the same way.</p>
       </div>
     </div>
   </section>
@@ -133,7 +133,7 @@ const inUseError = `Error: listen EADDRINUSE: address already in use 0.0.0.0:300
 
       <p>One computer has one network address but runs many programs that want to talk over the network. A port number is how the machine knows which program an incoming request belongs to. Think of the address as the building and the port as the apartment number.</p>
 
-      <p class="mt-1">Ports run from 1 to 65535. Some are conventional: 80 for <code>http</code>, 443 for <code>https</code>. Browsers assume those two, which is why a normal web address has no port in it. Development servers pick high numbers that nothing else claims, which is where 3000, 5173, 5500, and 8080 come from. There is nothing special about any of them.</p>
+      <p class="mt-1">Ports run from 1 to 65535. Some are conventional: 80 for <code>http</code>, 443 for <code>https</code>. Browsers assume those two, which is why a normal web address has no port in it. Development servers pick high numbers that nothing else claims, which is where 3000, 5173, 5500, and 8080 come from. Those four are conventions people copied from each other, and nothing about them is special.</p>
 
       <div class="analysis-grid analysis-grid--two-col">
         <div class="analysis-point">
@@ -162,7 +162,7 @@ const inUseError = `Error: listen EADDRINUSE: address already in use 0.0.0.0:300
         <CodeBlock code={inUseError} lang="text" />
       </div>
 
-      <p class="mt-1">Two fixes. Find the old terminal tab and stop that server with <kbd>Ctrl</kbd> and <kbd>C</kbd>, or start this one on a different port.</p>
+      <p class="mt-1">There are two fixes: find the old terminal tab and stop that server with <kbd>Ctrl</kbd> and <kbd>C</kbd>, or start this one on a different port.</p>
     </div>
   </section>
 
@@ -170,7 +170,7 @@ const inUseError = `Error: listen EADDRINUSE: address already in use 0.0.0.0:300
     <div class="topic-section">
       <h2>Try Breaking It On Purpose</h2>
 
-      <p>The fastest way to make this stick is to see the same files behave three different ways.</p>
+      <p>The fastest way to make this stick is to watch the same files behave three different ways.</p>
 
       <ol>
         <li>Serve a project and open it at its <code>localhost</code> address. Everything works.</li>
@@ -178,7 +178,7 @@ const inUseError = `Error: listen EADDRINUSE: address already in use 0.0.0.0:300
         <li>Open it with a different server on a different port. It is served, so fetches work again, but anything that hard-coded the first port does not.</li>
       </ol>
 
-      <p class="mt-1">Nothing in the files changed across those three. The delivery changed, and the delivery is part of what the page is allowed to do.</p>
+      <p class="mt-1">Nothing in the files changed across those three attempts. Only the delivery changed, and the delivery is part of what decides what the page is allowed to do.</p>
     </div>
   </section>
 

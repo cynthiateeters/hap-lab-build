@@ -9,7 +9,7 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import CodeBlock from '../../components/CodeBlock.astro';
 
 const introContent = `
-    <p>The fields that appear in a <code>package.json</code> for a front-end project, what each one controls, and which ones can be left alone. Look-up material rather than reading material.</p>
+    <p>The fields that appear in a <code>package.json</code> for a front-end project, what each one controls, and which ones can be left alone. Written for looking things up rather than reading straight through.</p>
 `;
 
 const wholeFile = `{
@@ -130,10 +130,10 @@ const rangeExamples = `"^14.1.1"    minor and patch updates allowed: 14.9.9 yes,
         <p>Two names npm treats specially. <code>npm start</code> and <code>npm test</code> work without the word <code>run</code>. Everything else needs it.</p>
 
         <h4>npm run with no name</h4>
-        <p>Lists every script defined in the file. The fastest way to find out what a project you just cloned can do.</p>
+        <p>Lists every script defined in the file. The fastest way to find out what a freshly cloned project can do.</p>
 
         <h4>Scripts calling scripts</h4>
-        <p><code>"start": "npm run build &amp;&amp; npm run dev"</code> is normal and encouraged. Small named steps, composed.</p>
+        <p><code>"start": "npm run build &amp;&amp; npm run dev"</code> is normal and encouraged. Build the big step out of small named ones.</p>
 
         <h4>pre and post prefixes</h4>
         <p>A script named <code>prebuild</code> runs automatically before <code>build</code>, and <code>postbuild</code> runs after. Convenient, and easy to miss when reading somebody else's file.</p>

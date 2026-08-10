@@ -9,7 +9,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 import CodeBlock from '../components/CodeBlock.astro';
 
 const introContent = `
-    <p>Nobody hands a web browser a folder anymore. Between the files a developer edits and the files a browser receives, there is usually a program doing work. That program is the build, and this page is about what it does and why anyone bothered inventing it.</p>
+    <p>Between the files a developer edits and the files a browser receives, there is usually a program doing work. That program is the build. This page covers what it does and why anyone bothered inventing it.</p>
 `;
 
 const buildShape = `my-project/
@@ -52,8 +52,8 @@ const buildShape = `my-project/
         </div>
 
         <div class="analysis-point">
-          <h3>Where the line actually falls</h3>
-          <p>The middle option and the last option both run programs. The difference is <em>when</em>. A static site runs its program once, before anyone visits. The third option runs its program once per visitor. Same code, wildly different cost.</p>
+          <h3>When the program runs</h3>
+          <p>The middle option and the last option both run programs. The difference is <em>when</em>. A static site runs its program once, before anyone visits, while the third option runs its program once per visitor. That difference in timing is most of the difference in cost.</p>
         </div>
       </div>
     </div>
@@ -61,9 +61,9 @@ const buildShape = `my-project/
 
   <section class="content-section">
     <div class="topic-section">
-      <h2>What A Build Step Actually Is</h2>
+      <h2>What A Build Step Is Made Of</h2>
 
-      <p>A build step has three parts, and none of them are mysterious.</p>
+      <p>A build step has three parts.</p>
 
       <ol>
         <li><strong>Input.</strong> The files a person edits. Templates, stylesheets, images, content, configuration.</li>
@@ -71,7 +71,7 @@ const buildShape = `my-project/
         <li><strong>Output.</strong> A folder of finished files, usually called <code>dist</code> or <code>_site</code> or <code>build</code>.</li>
       </ol>
 
-      <p>That is the whole idea. The reason it looks intimidating is that the program in the middle is usually assembled out of several smaller programs, installed from the internet, and wired together in a configuration file. The shape underneath stays this simple.</p>
+      <p>That is the whole idea. The reason it looks intimidating is that the program in the middle is usually assembled out of several smaller programs, installed from the internet, and wired together in a configuration file. Underneath all of that, the shape is still those three parts.</p>
 
       <div class="prompt-box mt-1">
         <div class="prompt-label">A typical project on disk:</div>
@@ -82,7 +82,7 @@ const buildShape = `my-project/
         <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/canvas/hap/hap-pointing-up" alt="HAP pointing upward with one finger, smiling encouragingly" width="150" height="150" class="hap-note-image" decoding="async" loading="lazy" />
         <div class="hap-note-content">
           <h3>🟠 The output folder is disposable</h3>
-          <p>Whatever the output folder is called, deleting it costs nothing. Running the build again recreates it from the source files. That is the test for whether something belongs in the output folder: if losing it would hurt, it was never output, it was source.</p>
+          <p>Whatever the output folder is called, deleting it costs nothing. Running the build again recreates it from the source files. That gives you a test for whether a file belongs there: if losing it would hurt, it was source all along.</p>
           <p class="mt-1">This is also why the output folder is almost always in <code>.gitignore</code>. Committing generated files means every teammate's build produces a different diff of files nobody wrote.</p>
         </div>
       </div>
@@ -91,9 +91,9 @@ const buildShape = `my-project/
 
   <section class="content-section">
     <div class="topic-section">
-      <h2>Why Anybody Bothers</h2>
+      <h2>What A Build Buys You</h2>
 
-      <p>Hand-written HTML works. So a build step has to earn its complexity. Here is what it buys.</p>
+      <p>Hand-written HTML works fine, so a build step has to be worth the extra complexity. Here is what you get for it.</p>
 
       <div class="analysis-grid analysis-grid--two-col">
         <div class="analysis-point">
@@ -151,9 +151,9 @@ const buildShape = `my-project/
     <div class="topic-section">
       <h2>Why This Course Builds Static Sites</h2>
 
-      <p>Static sites are not a beginner's version of a real website. They are a legitimate production choice, and plenty of large sites run this way because the files are already finished before anyone asks for them, which makes them fast and hard to break.</p>
+      <p>A static site is a legitimate production choice, not a beginner's substitute for a real website. Plenty of large sites run this way, because the files are already finished before anyone asks for them, which makes them fast and hard to break.</p>
 
-      <p class="mt-1">They are also the honest place to learn the machinery. A static site build has every piece of a modern toolchain in it. A runtime that is not the browser, a package manager, dependencies, scripts, a local server, and a deploy. Nothing is hidden behind a framework doing five of those things at once. Once these pieces make sense here, the bigger tools stop looking like magic and start looking like the same pieces with more of them.</p>
+      <p class="mt-1">They are also a good place to learn from, because a static site build contains every piece of a modern toolchain: a runtime that is not the browser, a package manager, dependencies, scripts, a local server, and a deploy. None of it is hidden behind a framework doing five of those things at once. Once these pieces make sense here, a bigger tool reads as the same pieces with more of them.</p>
 
       <p class="mt-1">The next page starts with the runtime, because none of the rest can happen without it.</p>
     </div>

@@ -9,7 +9,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 import CodeBlock from '../components/CodeBlock.astro';
 
 const introContent = `
-    <p>An AI assistant is extremely good at the subject of this lab and fails in a few specific, recognisable ways. This page is about which is which, and about the one failure that is a genuine security problem rather than an inconvenience.</p>
+    <p>An AI assistant is very good at the subject of this lab, and it fails in a few specific ways that are worth being able to spot. This page covers which is which, including the one failure that is a security problem rather than an inconvenience.</p>
 `;
 
 const goodPrompt = `Here is my package.json. Go through it field by field and tell me
@@ -27,19 +27,19 @@ those, say so rather than guessing.`;
 <PageLayout
   slug="/working-with-ai/"
   title="Working with an AI assistant on this"
-  subtitle="Where it helps, where it invents things, and what to check"
+  subtitle="Where it helps, where it invents things, and what to check before you run anything"
   description="How to use an AI assistant while learning Node, npm, and build tooling: what it does well, the specific ways it fails on package management, and why an invented package name is a security problem."
   avatarImage="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/canvas/hap/hap-and-claude"
   avatarAlt="HAP standing next to a smaller sage-green AI assistant robot"
   introContent={introContent}
-  footerReminder="Ask it to explain your file. Be slower about letting it write one."
+  footerReminder="Ask it to explain a file you already have, and be slower about letting it write one for you."
 >
 
   <section class="content-section">
     <div class="topic-section">
-      <h2>What It Is Genuinely Good At Here</h2>
+      <h2>What It Is Good At Here</h2>
 
-      <p>This subject plays to an assistant's strengths. The material is stable, heavily documented, and full of jargon that means something precise, which is exactly the kind of thing it handles well.</p>
+      <p>This subject plays to an assistant's strengths. The material is stable, heavily documented, and full of jargon that means something precise, all of which it handles well.</p>
 
       <div class="analysis-grid analysis-grid--two-col">
         <div class="analysis-point">
@@ -73,7 +73,7 @@ those, say so rather than guessing.`;
         <CodeBlock code={badPrompt} lang="text" />
       </div>
 
-      <p class="mt-1">The difference is whether the answer can be checked. The first prompt hands over a file and asks for a reading of it, and every claim can be verified against the file. The second asks for invention with no way to tell a good answer from a bad one.</p>
+      <p class="mt-1">The difference is whether the answer can be checked. The first prompt hands over a file and asks for a reading of it, so every claim can be verified against the file. The second asks the assistant to invent something, and leaves you no way to tell a good answer from a bad one.</p>
     </div>
   </section>
 
@@ -86,24 +86,24 @@ those, say so rather than guessing.`;
         <div class="hap-note-content">
           <h3>A note from Grace Hopper</h3>
           <p>An assistant asked for an install command will sometimes produce a package name that does not exist. The name is plausible, formed from words that fit the task, and delivered with the same confidence as a correct one.</p>
-          <p class="mt-1">The consequence is not an error message. Attackers watch for names that assistants invent repeatedly and publish real packages under those names. The install then succeeds, and it succeeds by installing code written specifically to be found this way. Verify a package name against the registry before you run the command, every time.</p>
+          <p class="mt-1">You will not always get an error message. Attackers watch for names that assistants invent repeatedly, then publish real packages under those names. The install succeeds, and what it installs is code written specifically to be found this way. Verify a package name against the registry before you run the command, every time.</p>
         </div>
       </div>
 
-      <p class="mt-1">The check takes fifteen seconds. Search the exact name on <a href="https://www.npmjs.com" target="_blank" rel="noopener noreferrer">npmjs.com</a> and read three things: the weekly download count, the date of the last publish, and whether the repository link goes anywhere real. A package with four downloads a week that appeared last month, when the assistant described it as standard, is the shape of the problem.</p>
+      <p class="mt-1">The check takes fifteen seconds. Search the exact name on <a href="https://www.npmjs.com" target="_blank" rel="noopener noreferrer">npmjs.com</a> and read three things: the weekly download count, the date of the last publish, and whether the repository link goes anywhere real. If the assistant called a package standard and the registry shows four downloads a week and a first publish last month, stop there.</p>
 
       <div class="prompt-box mt-1">
         <div class="prompt-label">Worth pasting before any install it suggests:</div>
         <CodeBlock code={checkPrompt} lang="text" />
       </div>
 
-      <p class="mt-1">The answer is still worth checking yourself. The value of asking is that it makes the assistant state the claim explicitly rather than burying it in a command.</p>
+      <p class="mt-1">Check the answer yourself anyway. Asking is worth it because it makes the assistant state the claim out in the open rather than burying it inside a command.</p>
     </div>
   </section>
 
   <section class="content-section">
     <div class="topic-section">
-      <h2>The Other Failures, Which Are Merely Annoying</h2>
+      <h2>The Other Failures, Which Are Only Annoying</h2>
 
       <div class="hap-info-grid">
         <h4>Advice from an older era</h4>
@@ -122,7 +122,7 @@ those, say so rather than guessing.`;
         <p>Version numbers in a suggested <code>package.json</code> are frequently made up. Let npm write them by installing rather than typing them in.</p>
 
         <h4>Agreeing with you</h4>
-        <p>Push back on a correct answer and it will often fold. Its agreement is not evidence. If you were right, you were right before it agreed.</p>
+        <p>Push back on a correct answer and it will often fold and agree with you instead. Treat that agreement as worth nothing, because it happens whether or not you were right.</p>
       </div>
     </div>
   </section>
@@ -131,12 +131,12 @@ those, say so rather than guessing.`;
     <div class="topic-section">
       <h2>A Working Habit</h2>
 
-      <p>The pattern that holds up is to let the assistant read and let yourself write, at least while the material is new.</p>
+      <p>While the material is still new, let the assistant do the reading and do the writing yourself.</p>
 
       <ol>
         <li><strong>Run the command yourself.</strong> Let npm write the version numbers and the lock file. Those are the parts most likely to be invented and the parts that cost nothing to generate correctly.</li>
         <li><strong>Hand it the result.</strong> Ask it to explain what changed and why. Now every claim has a file behind it.</li>
-        <li><strong>Ask what you would have gotten wrong.</strong> A useful question, and one it answers well, because it is reading rather than generating.</li>
+        <li><strong>Ask what you would have gotten wrong.</strong> It answers this one well, because it is reading your file rather than generating a new one.</li>
         <li><strong>Verify anything that gets installed.</strong> Package names against the registry, before the command runs.</li>
         <li><strong>Keep the explanation, discard the code you cannot read.</strong> Code you cannot explain is code you cannot debug at two in the morning, and this is a course about being able to.</li>
       </ol>
@@ -144,9 +144,9 @@ those, say so rather than guessing.`;
       <div class="hap-note-callout">
         <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/canvas/hap/hap-thinking-w-duck" alt="HAP thinking pensively while holding a rubber duck" width="150" height="150" class="hap-note-image" decoding="async" loading="lazy" />
         <div class="hap-note-content">
-          <h3>🟠 The tell that you have gone too fast</h3>
-          <p>A project that runs, built out of commands you could not repeat from memory and files you have not read. It works right up until it does not, and then there is nothing to reason from.</p>
-          <p class="mt-1">The fix is not to stop using the assistant. It is to be able to say, for every file in the project, what it is and why it is there.</p>
+          <h3>🟠 A sign that you have gone too fast</h3>
+          <p>The project runs, but it is built out of commands you could not repeat from memory and files you have not read. That works until something breaks, and then you have nothing to reason from.</p>
+          <p class="mt-1">The fix is not to stop using the assistant. Aim to be able to say, for every file in the project, what it is and why it is there.</p>
         </div>
       </div>
     </div>
@@ -185,7 +185,7 @@ those, say so rather than guessing.`;
           <div class="tip-number">4</div>
           <div>
             <h3>"How would I check this myself?"</h3>
-            <p>Turns an answer into a method, which survives being wrong.</p>
+            <p>Turns a single answer into a method you can use again, even on the days the answer is wrong.</p>
           </div>
         </div>
 

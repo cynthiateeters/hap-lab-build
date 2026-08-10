@@ -9,7 +9,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 import CodeBlock from '../components/CodeBlock.astro';
 
 const introContent = `
-    <p>A handwritten build script works until there are forty pages. What replaces it is a category of tool called a static site generator, and everything on the previous pages is what it is made of.</p>
+    <p>A handwritten build script works until there are forty pages. What replaces it is a category of tool called a static site generator, built out of the pieces the previous pages covered.</p>
 `;
 
 const generatorShape = `content/          markdown files, one per page
@@ -24,7 +24,7 @@ _site/            finished HTML, one file per piece of content`;
 <PageLayout
   slug="/what-comes-next/"
   title="Where this goes next"
-  subtitle="Static site generators, and why they are the same pieces with more of them"
+  subtitle="Static site generators, and the pieces they are built from"
   description="What a static site generator does, how templates and content and data combine into pages, which generators are worth knowing about, and what stays true no matter which one a project uses."
   avatarImage="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/canvas/hap/hap-pointing-up"
   avatarAlt="HAP pointing upward with one finger, smiling encouragingly"
@@ -34,17 +34,17 @@ _site/            finished HTML, one file per piece of content`;
 
   <section class="content-section">
     <div class="topic-section">
-      <h2>The Problem That Produces Them</h2>
+      <h2>The Problem They Solve</h2>
 
-      <p>Ten hand-written pages are manageable. Forty are not, and the failure is specific: the navigation bar exists in forty copies, and one of them will be wrong. Every page repeats the same head tag, the same header, the same footer, and every change to any of those is forty edits.</p>
+      <p>Ten hand-written pages are manageable. Forty are not, and the failure is specific: the navigation bar exists in forty copies, and one of them will be wrong. Every page repeats the same head tag, the same header, the same footer, and changing any of those means forty edits.</p>
 
-      <p class="mt-1">The obvious fix is to write the shared parts once and have a program stamp them onto each page. A static site generator is that program, taken seriously.</p>
+      <p class="mt-1">The obvious fix is to write the shared parts once and have a program stamp them onto each page. A static site generator is that program, with the rough edges worked out.</p>
     </div>
   </section>
 
   <section class="content-section">
     <div class="topic-section">
-      <h2>What A Generator Actually Does</h2>
+      <h2>What A Generator Does</h2>
 
       <p>It reads three kinds of input and writes one kind of output.</p>
 
@@ -78,8 +78,8 @@ _site/            finished HTML, one file per piece of content`;
       <div class="hap-note-callout">
         <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/canvas/hap/hap-lectures" alt="HAP teaching at a chalkboard with HTML code on it" width="150" height="150" class="hap-note-image" decoding="async" loading="lazy" />
         <div class="hap-note-content">
-          <h3>🟠 Nothing new is being introduced</h3>
-          <p>A generator is a package on the registry. npm installs it. Node runs it. It writes into an output folder that gets ignored by git. A dev server previews the result. Those are the four ideas from the earlier pages, arranged.</p>
+          <h3>🟠 There is nothing new here</h3>
+          <p>A generator is a package on the registry that npm installs and Node runs. It writes into an output folder that git ignores, and a dev server previews the result. Every piece of that came from an earlier page in this lab.</p>
         </div>
       </div>
     </div>
@@ -106,7 +106,7 @@ _site/            finished HTML, one file per piece of content`;
         <p>Application frameworks that can also generate static output. Considerably more machinery, aimed at sites that are closer to apps.</p>
 
         <h4>What they share</h4>
-        <p>Templates plus content plus data, in, and HTML out. The syntax differs. The shape does not.</p>
+        <p>Templates, content, and data go in, and HTML comes out. The syntax differs from one to the next, but that shape does not.</p>
       </div>
     </div>
   </section>
@@ -115,14 +115,14 @@ _site/            finished HTML, one file per piece of content`;
     <div class="topic-section">
       <h2>What Stays True</h2>
 
-      <p>Tool choice changes less than the marketing suggests. These hold regardless of which generator a project uses.</p>
+      <p>Which generator a project uses matters less than the marketing suggests. These five hold either way.</p>
 
       <ol>
         <li>The output folder is generated and disposable, and it belongs in <code>.gitignore</code>.</li>
         <li><code>package.json</code> and <code>package-lock.json</code> are the record of what the project needs, and both get committed.</li>
         <li>Running the site locally means running a dev server, because the output is a site rather than a file.</li>
         <li>Deploying means running the build somewhere and publishing the output folder.</li>
-        <li>Every problem is in one of three places: your source, the configuration, or a dependency. Knowing which of the three is most of debugging.</li>
+        <li>Every problem is in one of three places: your source, the configuration, or a dependency. Working out which one is most of debugging.</li>
       </ol>
     </div>
   </section>
