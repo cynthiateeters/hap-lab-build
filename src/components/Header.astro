@@ -1,0 +1,57 @@
+---
+/**
+ * Header.astro - lab header
+ *
+ * Shows the page title, subtitle, optional page-type badge, an optional
+ * avatar, and the introduction block.
+ *
+ * Reference pages pass showAvatar={false} and no badge image. HAP does not
+ * narrate Reference pages, so the header carries no character art there.
+ */
+
+interface Props {
+  title: string;
+  subtitle: string;
+  avatarImage?: string;
+  avatarAlt?: string;
+  showAvatar?: boolean;
+  pageType?: string;
+  introContent: string;
+}
+
+const {
+  title,
+  subtitle,
+  avatarImage,
+  avatarAlt,
+  showAvatar = true,
+  pageType,
+  introContent
+} = Astro.props;
+
+const typeClass = pageType ? `page-type-badge page-type-badge--${pageType.toLowerCase()}` : '';
+---
+
+<header class="header">
+    <div class="header-content">
+        <div class="hybit-welcome">
+            {showAvatar && avatarImage && (
+                <div class="hybit-avatar">
+                    <img src={avatarImage}
+                        alt={avatarAlt}
+                        width="200" height="200"
+                        decoding="async"
+                        fetchpriority="high">
+                </div>
+            )}
+            <div>
+                {pageType && <p class={typeClass}>{pageType}</p>}
+                <h1>{title}</h1>
+                <p class="subtitle">{subtitle}</p>
+            </div>
+        </div>
+        <div class="intro-box">
+            <div set:html={introContent} />
+        </div>
+    </div>
+</header>

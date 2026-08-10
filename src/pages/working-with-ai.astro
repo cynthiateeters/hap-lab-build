@@ -1,0 +1,208 @@
+---
+/*
+ * HAP Educational Content © 2026 Cynthia Teeters. All rights reserved.
+ * HyBit A. ProtoBot (HAP) character and the apprentice learning methodology
+ * are proprietary educational innovations.
+ */
+
+import PageLayout from '../layouts/PageLayout.astro';
+import CodeBlock from '../components/CodeBlock.astro';
+
+const introContent = `
+    <p>An AI assistant is extremely good at the subject of this lab and fails in a few specific, recognisable ways. This page is about which is which, and about the one failure that is a genuine security problem rather than an inconvenience.</p>
+`;
+
+const goodPrompt = `Here is my package.json. Go through it field by field and tell me
+what each one controls. If any field is doing nothing useful for a
+static site, say so and explain why.`;
+
+const badPrompt = `set up my project`;
+
+const checkPrompt = `Before I install this, confirm the package name character by
+character against the npm registry, and tell me its weekly download
+count and the date of its most recent publish. If you cannot verify
+those, say so rather than guessing.`;
+---
+
+<PageLayout
+  slug="/working-with-ai/"
+  title="Working with an AI assistant on this"
+  subtitle="Where it helps, where it invents things, and what to check"
+  description="How to use an AI assistant while learning Node, npm, and build tooling: what it does well, the specific ways it fails on package management, and why an invented package name is a security problem."
+  avatarImage="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/canvas/hap/hap-and-claude"
+  avatarAlt="HAP standing next to a smaller sage-green AI assistant robot"
+  introContent={introContent}
+  footerReminder="Ask it to explain your file. Be slower about letting it write one."
+>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>What It Is Genuinely Good At Here</h2>
+
+      <p>This subject plays to an assistant's strengths. The material is stable, heavily documented, and full of jargon that means something precise, which is exactly the kind of thing it handles well.</p>
+
+      <div class="analysis-grid analysis-grid--two-col">
+        <div class="analysis-point">
+          <h3>Explaining a file you already have</h3>
+          <p>Paste a <code>package.json</code> and ask what each field does. The file is right there, so there is nothing to invent, and the answer is checkable against the file itself.</p>
+        </div>
+
+        <div class="analysis-point">
+          <h3>Decoding an error message</h3>
+          <p>Paste the whole error, including the lines above and below. Error text is distinctive and an assistant will usually name the cause faster than a search engine will.</p>
+        </div>
+
+        <div class="analysis-point">
+          <h3>Translating vocabulary</h3>
+          <p>Asking what a term means in this specific context, and how it differs from a term it sounds like, is reliably useful.</p>
+        </div>
+
+        <div class="analysis-point">
+          <h3>Reading somebody else's project</h3>
+          <p>Handing it an unfamiliar <code>package.json</code> and asking what the project does and how to run it is faster than reconstructing it yourself.</p>
+        </div>
+      </div>
+
+      <div class="prompt-box mt-1">
+        <div class="prompt-label">A prompt that works:</div>
+        <CodeBlock code={goodPrompt} lang="text" />
+      </div>
+
+      <div class="prompt-box mt-1">
+        <div class="prompt-label">A prompt that produces confident nonsense:</div>
+        <CodeBlock code={badPrompt} lang="text" />
+      </div>
+
+      <p class="mt-1">The difference is whether the answer can be checked. The first prompt hands over a file and asks for a reading of it, and every claim can be verified against the file. The second asks for invention with no way to tell a good answer from a bad one.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>The Failure That Is A Security Problem</h2>
+
+      <div class="hap-note-callout hap-note-callout--grace">
+        <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/canvas/hap/grace-pointing-up-terminal" alt="Grace Hopper robot pointing up with a glowing vacuum tube, beside a terminal" width="150" height="150" class="hap-note-image" decoding="async" loading="lazy" />
+        <div class="hap-note-content">
+          <h3>A note from Grace Hopper</h3>
+          <p>An assistant asked for an install command will sometimes produce a package name that does not exist. The name is plausible, formed from words that fit the task, and delivered with the same confidence as a correct one.</p>
+          <p class="mt-1">The consequence is not an error message. Attackers watch for names that assistants invent repeatedly and publish real packages under those names. The install then succeeds, and it succeeds by installing code written specifically to be found this way. Verify a package name against the registry before you run the command, every time.</p>
+        </div>
+      </div>
+
+      <p class="mt-1">The check takes fifteen seconds. Search the exact name on <a href="https://www.npmjs.com" target="_blank" rel="noopener noreferrer">npmjs.com</a> and read three things: the weekly download count, the date of the last publish, and whether the repository link goes anywhere real. A package with four downloads a week that appeared last month, when the assistant described it as standard, is the shape of the problem.</p>
+
+      <div class="prompt-box mt-1">
+        <div class="prompt-label">Worth pasting before any install it suggests:</div>
+        <CodeBlock code={checkPrompt} lang="text" />
+      </div>
+
+      <p class="mt-1">The answer is still worth checking yourself. The value of asking is that it makes the assistant state the claim explicitly rather than burying it in a command.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>The Other Failures, Which Are Merely Annoying</h2>
+
+      <div class="hap-info-grid">
+        <h4>Advice from an older era</h4>
+        <p>Training data is full of years of accumulated tutorials. An assistant will suggest tools and patterns that were standard in 2019 and are not now, with no signal that the answer has a date on it.</p>
+
+        <h4>Reaching for a package too fast</h4>
+        <p>Asked how to do something, it tends to answer with a dependency. Node and the browser have grown a lot of built-in capability, and the built-in answer is usually better because it adds nothing to install.</p>
+
+        <h4>Suggesting global installs</h4>
+        <p><code>npm install -g</code> appears constantly in older documentation. It makes a project unbuildable on anyone else's machine, and a project-local devDependency is almost always what was meant.</p>
+
+        <h4>Inventing configuration options</h4>
+        <p>Config file keys are guessed the same way package names are. A key that does nothing produces no error, so this failure is silent.</p>
+
+        <h4>Confident wrong version numbers</h4>
+        <p>Version numbers in a suggested <code>package.json</code> are frequently made up. Let npm write them by installing rather than typing them in.</p>
+
+        <h4>Agreeing with you</h4>
+        <p>Push back on a correct answer and it will often fold. Its agreement is not evidence. If you were right, you were right before it agreed.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>A Working Habit</h2>
+
+      <p>The pattern that holds up is to let the assistant read and let yourself write, at least while the material is new.</p>
+
+      <ol>
+        <li><strong>Run the command yourself.</strong> Let npm write the version numbers and the lock file. Those are the parts most likely to be invented and the parts that cost nothing to generate correctly.</li>
+        <li><strong>Hand it the result.</strong> Ask it to explain what changed and why. Now every claim has a file behind it.</li>
+        <li><strong>Ask what you would have gotten wrong.</strong> A useful question, and one it answers well, because it is reading rather than generating.</li>
+        <li><strong>Verify anything that gets installed.</strong> Package names against the registry, before the command runs.</li>
+        <li><strong>Keep the explanation, discard the code you cannot read.</strong> Code you cannot explain is code you cannot debug at two in the morning, and this is a course about being able to.</li>
+      </ol>
+
+      <div class="hap-note-callout">
+        <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/canvas/hap/hap-thinking-w-duck" alt="HAP thinking pensively while holding a rubber duck" width="150" height="150" class="hap-note-image" decoding="async" loading="lazy" />
+        <div class="hap-note-content">
+          <h3>🟠 The tell that you have gone too fast</h3>
+          <p>A project that runs, built out of commands you could not repeat from memory and files you have not read. It works right up until it does not, and then there is nothing to reason from.</p>
+          <p class="mt-1">The fix is not to stop using the assistant. It is to be able to say, for every file in the project, what it is and why it is there.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>Questions Worth Asking It</h2>
+
+      <div class="tips-container">
+        <div class="tip-card">
+          <div class="tip-number">1</div>
+          <div>
+            <h3>"Walk through my package.json field by field."</h3>
+            <p>Checkable, specific, and it surfaces the fields <code>npm init</code> wrote that are doing nothing.</p>
+          </div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-number">2</div>
+          <div>
+            <h3>"Here is the full error. What is it telling me?"</h3>
+            <p>Paste all of it. The useful line is often several above the one that looks important.</p>
+          </div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-number">3</div>
+          <div>
+            <h3>"Is there a way to do this without adding a dependency?"</h3>
+            <p>Frequently yes, and it will not volunteer that unless asked.</p>
+          </div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-number">4</div>
+          <div>
+            <h3>"How would I check this myself?"</h3>
+            <p>Turns an answer into a method, which survives being wrong.</p>
+          </div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-number">5</div>
+          <div>
+            <h3>"What is the current way to do this, and what changed?"</h3>
+            <p>Prompts it to notice its own age, which it will not do unprompted.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</PageLayout>
+
+<!--
+HAP Educational Content © 2026 Cynthia Teeters. All rights reserved.
+HyBit A. ProtoBot (HAP) character and the apprentice learning methodology are proprietary educational innovations.
+-->

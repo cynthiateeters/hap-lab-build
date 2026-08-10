@@ -1,0 +1,30 @@
+---
+/**
+ * Footer.astro - lab footer
+ *
+ * The reminder line is HAP speaking, so Reference pages omit it by passing
+ * showReminder={false}.
+ */
+
+interface Props {
+  reminder?: string;
+  showReminder?: boolean;
+}
+
+const { reminder, showReminder = true } = Astro.props;
+---
+
+<footer class='footer'>
+  <p><strong>HAP's Learning Lab</strong> | An AI-Enhanced Educational Experience by Prof. Cynthia Teeters</p>
+  {showReminder && reminder && (
+    <p class='footer-reminder'>{reminder} 🟠 HAP</p>
+  )}
+  <div class='footer-copyright'>
+    <img src='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_80,c_limit/canvas/hap/hap-headshot' alt='HAP, a friendly robot with a lightbulb head' class='footer-hybit' width='80' height='80' decoding='async' loading='lazy' />
+    <div>
+      <p>HAP&trade; Educational Content &copy; 2026 Cynthia Teeters. All rights reserved.</p>
+      <p>HyBit A. ProtoBot&trade; (HAP&trade;) character and the apprentice learning methodology are proprietary educational innovations.</p>
+      <p>Character concept, teaching methodology, and all written content created by Prof. Cynthia Teeters. Visual elements created with AI assistance.</p>
+    </div>
+  </div>
+</footer>

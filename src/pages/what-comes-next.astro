@@ -1,0 +1,146 @@
+---
+/*
+ * HAP Educational Content © 2026 Cynthia Teeters. All rights reserved.
+ * HyBit A. ProtoBot (HAP) character and the apprentice learning methodology
+ * are proprietary educational innovations.
+ */
+
+import PageLayout from '../layouts/PageLayout.astro';
+import CodeBlock from '../components/CodeBlock.astro';
+
+const introContent = `
+    <p>A handwritten build script works until there are forty pages. What replaces it is a category of tool called a static site generator, and everything on the previous pages is what it is made of.</p>
+`;
+
+const generatorShape = `content/          markdown files, one per page
+_includes/        templates: the shell every page goes into
+_data/            structured data available to every template
+        │
+        ▼   the generator reads all three
+        │
+_site/            finished HTML, one file per piece of content`;
+---
+
+<PageLayout
+  slug="/what-comes-next/"
+  title="Where this goes next"
+  subtitle="Static site generators, and why they are the same pieces with more of them"
+  description="What a static site generator does, how templates and content and data combine into pages, which generators are worth knowing about, and what stays true no matter which one a project uses."
+  avatarImage="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/canvas/hap/hap-pointing-up"
+  avatarAlt="HAP pointing upward with one finger, smiling encouragingly"
+  introContent={introContent}
+  footerReminder="Every generator is a package, installed by npm, run by Node, previewed on a dev server."
+>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>The Problem That Produces Them</h2>
+
+      <p>Ten hand-written pages are manageable. Forty are not, and the failure is specific: the navigation bar exists in forty copies, and one of them will be wrong. Every page repeats the same head tag, the same header, the same footer, and every change to any of those is forty edits.</p>
+
+      <p class="mt-1">The obvious fix is to write the shared parts once and have a program stamp them onto each page. A static site generator is that program, taken seriously.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>What A Generator Actually Does</h2>
+
+      <p>It reads three kinds of input and writes one kind of output.</p>
+
+      <div class="prompt-box mt-1">
+        <div class="prompt-label">The shape of a generated project:</div>
+        <CodeBlock code={generatorShape} lang="text" />
+      </div>
+
+      <div class="analysis-grid analysis-grid--two-col">
+        <div class="analysis-point">
+          <h3>Content</h3>
+          <p>Usually Markdown, one file per page, holding the words. Often with a small block of settings at the top called front matter: a title, a date, a template to use.</p>
+        </div>
+
+        <div class="analysis-point">
+          <h3>Templates</h3>
+          <p>HTML with placeholders. The shell that every page drops into, plus smaller reusable pieces for things like a card or a navigation bar.</p>
+        </div>
+
+        <div class="analysis-point">
+          <h3>Data</h3>
+          <p>Structured information that is not prose. A list of projects, a set of links, values fetched from an API at build time. Available to every template.</p>
+        </div>
+
+        <div class="analysis-point">
+          <h3>Output</h3>
+          <p>Plain HTML files. Once the build finishes, the generator is out of the picture entirely. What gets deployed is ordinary HTML, CSS, and JavaScript that any web server can hand out.</p>
+        </div>
+      </div>
+
+      <div class="hap-note-callout">
+        <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/canvas/hap/hap-lectures" alt="HAP teaching at a chalkboard with HTML code on it" width="150" height="150" class="hap-note-image" decoding="async" loading="lazy" />
+        <div class="hap-note-content">
+          <h3>🟠 Nothing new is being introduced</h3>
+          <p>A generator is a package on the registry. npm installs it. Node runs it. It writes into an output folder that gets ignored by git. A dev server previews the result. Those are the four ideas from the earlier pages, arranged.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>The Ones Worth Recognising</h2>
+
+      <div class="hap-info-grid">
+        <h4>Eleventy</h4>
+        <p>JavaScript, deliberately small, no opinion about how content is structured. Popular for teaching because very little of it is hidden.</p>
+
+        <h4>Astro</h4>
+        <p>JavaScript. Ships zero JavaScript to the browser by default and lets interactive components opt in. This lab is built with it.</p>
+
+        <h4>Jekyll</h4>
+        <p>Ruby. The oldest of the widely used ones, and the reason GitHub Pages exists in the form it does.</p>
+
+        <h4>Hugo</h4>
+        <p>Go. Distributed as a single downloaded program rather than an npm package, and extremely fast on very large sites.</p>
+
+        <h4>Next and Nuxt</h4>
+        <p>Application frameworks that can also generate static output. Considerably more machinery, aimed at sites that are closer to apps.</p>
+
+        <h4>What they share</h4>
+        <p>Templates plus content plus data, in, and HTML out. The syntax differs. The shape does not.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>What Stays True</h2>
+
+      <p>Tool choice changes less than the marketing suggests. These hold regardless of which generator a project uses.</p>
+
+      <ol>
+        <li>The output folder is generated and disposable, and it belongs in <code>.gitignore</code>.</li>
+        <li><code>package.json</code> and <code>package-lock.json</code> are the record of what the project needs, and both get committed.</li>
+        <li>Running the site locally means running a dev server, because the output is a site rather than a file.</li>
+        <li>Deploying means running the build somewhere and publishing the output folder.</li>
+        <li>Every problem is in one of three places: your source, the configuration, or a dependency. Knowing which of the three is most of debugging.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>Where To Go From Here</h2>
+
+      <div class="hub-return-card">
+        <p><a href="https://hap-ssg.netlify.app" target="_blank" rel="noopener noreferrer">HAP's Static Site Generator lab</a> picks up exactly here and works through templates, content, data, and a real build.</p>
+        <p class="mt-1">The <a href="/reference/commands/">command set</a> and the <a href="/reference/package-json/">package.json reference</a> on this site stay useful the whole way through.</p>
+      </div>
+    </div>
+  </section>
+
+</PageLayout>
+
+<!--
+HAP Educational Content © 2026 Cynthia Teeters. All rights reserved.
+HyBit A. ProtoBot (HAP) character and the apprentice learning methodology are proprietary educational innovations.
+-->

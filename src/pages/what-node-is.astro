@@ -1,0 +1,170 @@
+---
+/*
+ * HAP Educational Content © 2026 Cynthia Teeters. All rights reserved.
+ * HyBit A. ProtoBot (HAP) character and the apprentice learning methodology
+ * are proprietary educational innovations.
+ */
+
+import PageLayout from '../layouts/PageLayout.astro';
+import CodeBlock from '../components/CodeBlock.astro';
+
+const introContent = `
+    <p>Installing Node is step one of nearly every web project, and almost nobody explains what got installed. Node is a program that runs JavaScript outside a browser. Everything else on this page follows from that one sentence.</p>
+`;
+
+const versionCheck = `node --version
+npm --version`;
+
+const nodeScript = `/* hello.js */
+
+console.log('Running in:', process.version);
+console.log('This folder:', process.cwd());`;
+
+const runScript = `node hello.js`;
+
+const noDom = `/* This works in a browser and crashes in Node */
+document.querySelector('h1');
+
+/* This works in Node and crashes in a browser */
+import { readFileSync } from 'node:fs';`;
+---
+
+<PageLayout
+  slug="/what-node-is/"
+  title="What Node is"
+  subtitle="A JavaScript engine, taken out of the browser and given a computer"
+  description="Node.js is a program that runs JavaScript outside a web browser. What that means, what Node has that browsers do not, what it lacks, and why the entire web toolchain sits on top of it."
+  avatarImage="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/canvas/hap/hap-holding-js-coin"
+  avatarAlt="HAP proudly holding a large glowing JavaScript logo coin"
+  introContent={introContent}
+  footerReminder="Node is JavaScript with a computer attached instead of a web page."
+>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>JavaScript Always Needed A Host</h2>
+
+      <p>JavaScript by itself does very little. The language gives you numbers, strings, arrays, objects, functions, and loops. It has no way to draw anything, read a file, or talk to a network. Every useful thing JavaScript does comes from the program running it.</p>
+
+      <p class="mt-1">In a browser, that program is the browser. Chrome runs JavaScript with an engine called V8, and Chrome hands the language a set of extra objects to work with: <code>document</code> for the page, <code>window</code> for the tab, <code>fetch</code> for the network, <code>localStorage</code> for saved data. None of those are part of JavaScript. They are the browser lending the language its own abilities.</p>
+
+      <p class="mt-1">In 2009 Ryan Dahl took V8, the same engine out of Chrome, and wrapped it in a different program. That program handed JavaScript a different set of abilities: read and write files, open network connections, start other programs, read the arguments someone typed on a command line. He called it Node.js.</p>
+
+      <div class="hap-note-callout">
+        <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/canvas/hap/hap-brain-explodes" alt="HAP with a surprised expression and his head exploding with stars and lightning" width="150" height="150" class="hap-note-image" decoding="async" loading="lazy" />
+        <div class="hap-note-content">
+          <h3>🟠 The part that reframes everything</h3>
+          <p>The same JavaScript you write for a web page is the language Node runs. The syntax is identical. What changes is what the language is allowed to touch. In a browser it can touch a web page. In Node it can touch your computer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>What Node Has That A Browser Does Not</h2>
+
+      <div class="analysis-grid analysis-grid--two-col">
+        <div class="analysis-point">
+          <h3>The file system</h3>
+          <p>Node can read, write, rename, and delete files anywhere the user account is allowed to. A browser deliberately cannot, because a web page you have never visited before is not something you want reading your documents.</p>
+        </div>
+
+        <div class="analysis-point">
+          <h3>Processes</h3>
+          <p>Node can start other programs and read what they printed. Chaining several tools into one command depends entirely on this.</p>
+        </div>
+
+        <div class="analysis-point">
+          <h3>Servers, not only clients</h3>
+          <p>A browser opens connections to servers. Node can be the thing listening. This is how a local development server exists at all.</p>
+        </div>
+
+        <div class="analysis-point">
+          <h3>The command line</h3>
+          <p>Node scripts receive arguments, environment variables, and an exit code. That is what makes a JavaScript file usable as a tool rather than a web page.</p>
+        </div>
+      </div>
+
+      <p class="mt-1">The trade runs both directions. Node has no <code>document</code>, no <code>window</code>, and no rendered page, because there is no page. Code written for one place does not automatically run in the other.</p>
+
+      <div class="prompt-box mt-1">
+        <div class="prompt-label">Each of these works in exactly one place:</div>
+        <CodeBlock code={noDom} lang="javascript" />
+      </div>
+
+      <p class="mt-1">When a tutorial's code throws <code>ReferenceError: document is not defined</code>, this is almost always the reason. Browser code got run by Node.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>Seeing It For Yourself</h2>
+
+      <p>Node installs as a command. Open a terminal and ask it what version it is.</p>
+
+      <div class="prompt-box mt-1">
+        <div class="prompt-label">Confirming Node is installed:</div>
+        <CodeBlock code={versionCheck} lang="bash" />
+      </div>
+
+      <p class="mt-1">Two version numbers come back, which is already worth noticing: installing Node installed a second program called npm. That one gets its own page.</p>
+
+      <p class="mt-1">A JavaScript file is a program now. Save this as <code>hello.js</code>:</p>
+
+      <div class="prompt-box mt-1">
+        <div class="prompt-label">hello.js</div>
+        <CodeBlock code={nodeScript} lang="javascript" />
+      </div>
+
+      <div class="prompt-box mt-1">
+        <div class="prompt-label">Running it:</div>
+        <CodeBlock code={runScript} lang="bash" />
+      </div>
+
+      <p class="mt-1">No HTML file, no browser, no page. The output lands in the terminal. <code>process</code> is one of the objects Node hands to JavaScript, and it describes the running program itself: which version of Node, which folder it started in, what the user typed to launch it.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>Things Node Is Not</h2>
+
+      <div class="hap-info-grid">
+        <h4>Not a framework</h4>
+        <p>Node has no opinion about how to structure an app. It runs whatever JavaScript it is given.</p>
+
+        <h4>Not a web server</h4>
+        <p>Node can <em>be used to write</em> a web server, and many people have. Installing Node does not start one.</p>
+
+        <h4>Not a language</h4>
+        <p>The language is JavaScript. Node is a program that runs it.</p>
+
+        <h4>Not part of the browser</h4>
+        <p>Nothing about installing Node changes how Chrome or Firefox behaves.</p>
+
+        <h4>Not required to write a website</h4>
+        <p>Plain HTML and CSS work with no Node anywhere. Node is required for the tools, not for the web.</p>
+
+        <h4>Not the only one</h4>
+        <p>Deno and Bun run JavaScript outside the browser too. Node is the oldest and by far the most widely assumed.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>Why This Is The Foundation Of The Toolchain</h2>
+
+      <p>Once JavaScript could read files and start programs, developers could write their tools in the same language they were already writing their websites in. That is the whole reason the web toolchain is made of JavaScript. Not because JavaScript is especially good at building software, but because every front-end developer already knew it, and Node removed the reason they could not use it.</p>
+
+      <p class="mt-1">Every tool in the rest of this lab is a JavaScript program that Node runs. The thing that fetches those programs and keeps track of them is next.</p>
+    </div>
+  </section>
+
+</PageLayout>
+
+<!--
+HAP Educational Content © 2026 Cynthia Teeters. All rights reserved.
+HyBit A. ProtoBot (HAP) character and the apprentice learning methodology are proprietary educational innovations.
+-->

@@ -1,0 +1,83 @@
+---
+/**
+ * PageLayout.astro - wrapper for every content page in this lab
+ *
+ * Replaces the old StationLayout. Pages are named rather than numbered, so
+ * the reading order lives in src/data/pages.js and this layout reads its
+ * neighbours from there.
+ *
+ * Reference pages get no avatar and no footer reminder. HAP does not narrate
+ * Reference. Everything else keeps him as a presence in the header.
+ *
+ * Usage:
+ *   <PageLayout
+ *     slug="/what-node-is/"
+ *     title="What Node is"
+ *     subtitle="Why JavaScript stopped needing a browser"
+ *     description="Meta description for SEO"
+ *     avatarImage="https://res.cloudinary.com/..."
+ *     avatarAlt="HAP ..."
+ *     introContent={introContent}
+ *   >
+ *     <!-- page content -->
+ *   </PageLayout>
+ */
+
+import MainLayout from './MainLayout.astro';
+import { navigationFor } from '../data/pages.js';
+
+interface Props {
+  slug: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  avatarImage?: string;
+  avatarAlt?: string;
+  introContent: string;
+  ogImage?: string;
+  footerReminder?: string;
+}
+
+const {
+  slug,
+  title,
+  subtitle,
+  description,
+  avatarImage,
+  avatarAlt,
+  introContent,
+  ogImage,
+  footerReminder
+} = Astro.props;
+
+const { prevPage, nextPage, positionLabel, type } = navigationFor(slug);
+
+const isReference = type === 'Reference';
+const pageTitle = `${title} | HAP's Learning Lab: How Sites Get Built`;
+---
+
+<MainLayout
+  title={pageTitle}
+  description={description}
+  ogImage={ogImage}
+  headerTitle={title}
+  headerSubtitle={subtitle}
+  pageType={type}
+  avatarImage={avatarImage}
+  avatarAlt={avatarAlt}
+  showAvatar={!isReference}
+  introContent={introContent}
+  showNavigation={true}
+  positionLabel={positionLabel}
+  prevPage={prevPage}
+  nextPage={nextPage}
+  footerReminder={footerReminder}
+  showFooterReminder={!isReference}
+>
+  <slot />
+</MainLayout>
+
+<!--
+HAP Educational Content © 2026 Cynthia Teeters. All rights reserved.
+HyBit A. ProtoBot (HAP) character and the apprentice learning methodology are proprietary educational innovations.
+-->

@@ -1,0 +1,230 @@
+---
+/*
+ * HAP Educational Content © 2026 Cynthia Teeters. All rights reserved.
+ * HyBit A. ProtoBot (HAP) character and the apprentice learning methodology
+ * are proprietary educational innovations.
+ */
+
+import PageLayout from '../../layouts/PageLayout.astro';
+import CodeBlock from '../../components/CodeBlock.astro';
+
+const introContent = `
+    <p>The terminal and npm commands that come up while building a static site, with what each one does and what its output means. Written for looking things up mid-task.</p>
+`;
+
+const navExamples = `pwd                 print the folder the terminal is standing in
+ls                  list what is in it
+ls -a               list it including hidden files
+cd my-project       move into my-project
+cd ..               move up one level
+cd ~                move to your home folder
+cd -                move back to where you just were
+mkdir my-project    make a folder
+clear               clear the screen`;
+
+const pathExamples = `index.html          relative: in the current folder
+./index.html        relative: the same thing, said explicitly
+../index.html       relative: one folder up
+docs/notes.md       relative: down into docs
+~/projects/site     absolute: from your home folder
+/Users/you/site     absolute: from the root of the disk`;
+
+const shellOps = `command &&  command    run the second only if the first succeeded
+command ||  command    run the second only if the first failed
+command  >  file       write output into file, replacing it
+command  >> file       write output onto the end of file
+command  |  command    feed the first command's output into the second`;
+
+const npmCommands = `npm init -y                     create a package.json with defaults
+npm install                     install everything package.json lists
+npm install name                add a package to dependencies
+npm install --save-dev name     add a package to devDependencies
+npm uninstall name              remove a package and its entry
+npm run                         list the scripts this project defines
+npm run scriptname              run one of them
+npm start                       shorthand for npm run start
+npm ls --depth=0                list the packages you asked for directly
+npm outdated                    show which have newer versions available
+npx name                        run a package once without installing it`;
+
+const nodeCommands = `node --version      print the Node version
+node file.js        run a JavaScript file
+node                open an interactive prompt (Ctrl+D to leave)`;
+
+const keys = `Ctrl + C        stop the running command
+Ctrl + D        close an interactive prompt
+Up arrow        recall the previous command
+Tab             complete a file or folder name
+Ctrl + L        clear the screen`;
+---
+
+<PageLayout
+  slug="/reference/commands/"
+  title="Command set"
+  subtitle="Terminal, shell operators, npm, and node"
+  description="Terminal navigation, path syntax, shell operators, npm commands, and node commands, with what each one does and how to read its output."
+  introContent={introContent}
+>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>Before Anything Else</h2>
+
+      <p>Every command below acts on the folder the terminal is currently standing in. A command that behaves unexpectedly is very often a correct command run in the wrong place, so <code>pwd</code> is the first thing to check.</p>
+
+      <p class="mt-1">On Windows, these are the Git Bash forms. PowerShell and Command Prompt use different names for several of them and handle quote marks differently, which changes the behaviour of npm scripts.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>Moving Around</h2>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Navigation:</div>
+        <CodeBlock code={navExamples} lang="bash" />
+      </div>
+
+      <div class="hap-info-grid mt-1">
+        <h4>Tab completion</h4>
+        <p>Type the first few characters of a folder name and press Tab. The shell finishes it. This prevents typos in paths, which are the most common reason a command cannot find something.</p>
+
+        <h4>Spaces in names</h4>
+        <p>A folder called <code>my project</code> has to be quoted or the space is read as the end of the argument. Tab completion handles the escaping for you.</p>
+
+        <h4>Opening the folder</h4>
+        <p><code>open .</code> on macOS and <code>start .</code> on Windows open the current folder in the file browser, which is useful for confirming you are where you think you are.</p>
+
+        <h4>Getting there without typing</h4>
+        <p>In VS Code, opening the project folder and then the integrated terminal starts the terminal already in the right place.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>Paths</h2>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Relative and absolute:</div>
+        <CodeBlock code={pathExamples} lang="text" />
+      </div>
+
+      <p class="mt-1">A path starting with <code>/</code> or <code>~</code> is absolute and means the same thing from anywhere. Anything else is relative and depends on where the terminal is standing. Inside a web page, a path starting with <code>/</code> means the root of the site rather than the root of the disk, which is a separate meaning that happens to share the character.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>Chaining And Redirecting</h2>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Shell operators:</div>
+        <CodeBlock code={shellOps} lang="text" />
+      </div>
+
+      <p class="mt-1">These are shell features rather than npm features, which is why they work inside an npm script. Every command finishes with an <strong>exit code</strong>, a number where zero means success. That number is what <code>&amp;&amp;</code> and <code>||</code> are testing.</p>
+
+      <p class="mt-1">A single <code>&gt;</code> replaces the file's contents every time it runs. Two of them append instead. Getting these backwards silently destroys the file's previous contents, and there is no undo.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>npm</h2>
+
+      <div class="prompt-box">
+        <div class="prompt-label">The commands worth knowing:</div>
+        <CodeBlock code={npmCommands} lang="bash" />
+      </div>
+
+      <div class="hap-info-grid mt-1">
+        <h4>npm install with no package name</h4>
+        <p>Reads <code>package.json</code> and <code>package-lock.json</code> and downloads everything listed. This is the first command to run after cloning a project.</p>
+
+        <h4>npm ci</h4>
+        <p>Like <code>npm install</code>, but it installs strictly from the lock file and deletes <code>node_modules</code> first. Deploy servers use it because it is reproducible.</p>
+
+        <h4>npx</h4>
+        <p>Runs a package without adding it to the project. Handy for one-off generators. It downloads and executes code, so the name matters as much as it does for an install.</p>
+
+        <h4>Global installs</h4>
+        <p><code>-g</code> installs a tool for your whole user account rather than for a project. Avoid it for anything a project depends on, because it makes the project unbuildable for anyone who does not have your machine.</p>
+
+        <h4>Reading the output</h4>
+        <p>A line like <code>added 43 packages in 2s</code> is the success message. A vulnerability count printed afterwards is a report about the packages, not a failure of the command.</p>
+
+        <h4>When something is wrong</h4>
+        <p>Delete <code>node_modules</code>, then run <code>npm install</code> again. This resolves a large share of problems and costs nothing, because the folder is fully rebuildable.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>node</h2>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Running JavaScript directly:</div>
+        <CodeBlock code={nodeCommands} lang="bash" />
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>Keys</h2>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Worth committing to muscle memory:</div>
+        <CodeBlock code={keys} lang="text" />
+      </div>
+
+      <p class="mt-1"><kbd>Ctrl</kbd> and <kbd>C</kbd> is the one that matters most. A development server holds the terminal on purpose and will keep holding it until stopped this way.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>Errors And What They Mean</h2>
+
+      <div class="analysis-grid analysis-grid--two-col">
+        <div class="analysis-point">
+          <h3>command not found</h3>
+          <p>The shell has no program by that name on its path. Either the tool is not installed, or it is installed into <code>node_modules</code> and needs to be run through an npm script.</p>
+        </div>
+
+        <div class="analysis-point">
+          <h3>Missing script: "name"</h3>
+          <p>No script by that name in <code>package.json</code>. Usually a typo, or the file has unsaved changes in the editor.</p>
+        </div>
+
+        <div class="analysis-point">
+          <h3>ENOENT: no such file or directory</h3>
+          <p>A path pointed at something that is not there. Check <code>pwd</code> first, then the spelling.</p>
+        </div>
+
+        <div class="analysis-point">
+          <h3>EADDRINUSE</h3>
+          <p>The port is already taken, nearly always by a server still running in another terminal tab. Stop that one or use a different port.</p>
+        </div>
+
+        <div class="analysis-point">
+          <h3>EACCES</h3>
+          <p>A permissions refusal. On a global install this is a sign the install should have been local to the project instead.</p>
+        </div>
+
+        <div class="analysis-point">
+          <h3>ERR_MODULE_NOT_FOUND</h3>
+          <p>An <code>import</code> pointed at something Node cannot find. Check the path and check whether <code>"type": "module"</code> is set in <code>package.json</code>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</PageLayout>
+
+<!--
+HAP Educational Content © 2026 Cynthia Teeters. All rights reserved.
+HyBit A. ProtoBot (HAP) character and the apprentice learning methodology are proprietary educational innovations.
+-->

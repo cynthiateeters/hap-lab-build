@@ -1,0 +1,215 @@
+---
+/*
+ * HAP Educational Content © 2026 Cynthia Teeters. All rights reserved.
+ * HyBit A. ProtoBot (HAP) character and the apprentice learning methodology
+ * are proprietary educational innovations.
+ */
+
+import PageLayout from '../../layouts/PageLayout.astro';
+import CodeBlock from '../../components/CodeBlock.astro';
+
+const introContent = `
+    <p>The fields that appear in a <code>package.json</code> for a front-end project, what each one controls, and which ones can be left alone. Look-up material rather than reading material.</p>
+`;
+
+const wholeFile = `{
+  "name": "my-project",
+  "version": "1.0.0",
+  "description": "A short sentence about the project",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "http-server -p 3000",
+    "build": "node scripts/build.js",
+    "start": "npm run build && npm run dev"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "keywords": [],
+  "author": "Your Name",
+  "license": "MIT"
+}`;
+
+const rangeExamples = `"^14.1.1"    minor and patch updates allowed: 14.9.9 yes, 15.0.0 no
+"~14.1.1"    patch updates only: 14.1.9 yes, 14.2.0 no
+"14.1.1"     exactly this version, nothing else
+"*"          any version at all (avoid)`;
+---
+
+<PageLayout
+  slug="/reference/package-json/"
+  title="package.json fields"
+  subtitle="Every field, and which ones can be left alone"
+  description="Every field commonly found in a package.json for a front-end project: name, version, private, type, scripts, dependencies, devDependencies, and the version range syntax."
+  introContent={introContent}
+>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>A Complete File</h2>
+
+      <div class="prompt-box">
+        <div class="prompt-label">package.json</div>
+        <CodeBlock code={wholeFile} lang="json" />
+      </div>
+
+      <p class="mt-1">Only <code>name</code> and <code>version</code> are strictly required, and even those matter mainly to packages that get published. A project that stays private can carry a mostly empty file and work perfectly.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>Identity Fields</h2>
+
+      <div class="analysis-grid analysis-grid--two-col">
+        <div class="analysis-point">
+          <h3>name</h3>
+          <p>Lowercase, no spaces. Hyphens are fine. It defaults to the folder name. For a published package this has to be unique across the whole registry. For a project that stays private it is a label and nothing more.</p>
+        </div>
+
+        <div class="analysis-point">
+          <h3>version</h3>
+          <p>Three numbers separated by dots, called semantic versioning: major, minor, patch. Meaningful for published packages. For a website it is decoration that nobody reads.</p>
+        </div>
+
+        <div class="analysis-point">
+          <h3>description</h3>
+          <p>One sentence. Shown on the registry page for published packages. Harmless and useful to fill in either way.</p>
+        </div>
+
+        <div class="analysis-point">
+          <h3>author, license, keywords</h3>
+          <p>Metadata for the registry. <code>npm init -y</code> fills <code>license</code> with <code>ISC</code>, which is a real open source license and probably not the one intended. Set it deliberately or set <code>private</code> instead.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>Behaviour Fields</h2>
+
+      <div class="hap-info-grid">
+        <h4>private</h4>
+        <p>Set to <code>true</code>, npm refuses to publish this project to the public registry. Worth setting on anything that is not meant to be published, because it turns an accidental publish into an error message.</p>
+
+        <h4>type</h4>
+        <p>Set to <code>"module"</code>, <code>.js</code> files in the project use <code>import</code> and <code>export</code>. Left out, they use the older <code>require</code> style. Mixing the two produces confusing errors about unexpected tokens.</p>
+
+        <h4>main</h4>
+        <p>Which file is the package's entry point when another package imports it. Written by <code>npm init</code> whether or not that file exists. Irrelevant to a website that nobody imports.</p>
+
+        <h4>engines</h4>
+        <p>Which Node versions the project supports. Deploy platforms read this and will pick a matching Node version, which makes it more useful than it looks.</p>
+
+        <h4>browserslist</h4>
+        <p>Which browsers to support. Several build tools read it to decide how far to translate modern syntax. Absent unless a tool asked for it.</p>
+
+        <h4>workspaces</h4>
+        <p>For repositories holding several packages at once. Not something a single site needs.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>scripts</h2>
+
+      <p>A set of named shortcuts. Each value is a line handed to the shell, so shell features work inside it: <code>&amp;&amp;</code> to chain, <code>&gt;</code> to redirect output into a file, <code>|</code> to pipe one command into the next.</p>
+
+      <p class="mt-1">Inside a script, commands installed into <code>node_modules</code> are found automatically. That is the reason scripts exist rather than typing the tool's name directly.</p>
+
+      <div class="hap-info-grid">
+        <h4>npm run name</h4>
+        <p>Runs the script called <code>name</code>. Works for any name.</p>
+
+        <h4>npm start and npm test</h4>
+        <p>Two names npm treats specially. <code>npm start</code> and <code>npm test</code> work without the word <code>run</code>. Everything else needs it.</p>
+
+        <h4>npm run with no name</h4>
+        <p>Lists every script defined in the file. The fastest way to find out what a project you just cloned can do.</p>
+
+        <h4>Scripts calling scripts</h4>
+        <p><code>"start": "npm run build &amp;&amp; npm run dev"</code> is normal and encouraged. Small named steps, composed.</p>
+
+        <h4>pre and post prefixes</h4>
+        <p>A script named <code>prebuild</code> runs automatically before <code>build</code>, and <code>postbuild</code> runs after. Convenient, and easy to miss when reading somebody else's file.</p>
+
+        <h4>Quoting</h4>
+        <p>The value is JSON, so a quote mark inside it has to be escaped with a backslash. This is the usual source of a script that looks right and behaves wrong.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>dependencies And devDependencies</h2>
+
+      <div class="analysis-grid analysis-grid--two-col">
+        <div class="analysis-point">
+          <h3>dependencies</h3>
+          <p>Code the finished product needs at run time. Added by <code>npm install name</code>.</p>
+        </div>
+
+        <div class="analysis-point">
+          <h3>devDependencies</h3>
+          <p>Tools used only while developing or building. Added by <code>npm install --save-dev name</code>. For a static site, nearly everything belongs here.</p>
+        </div>
+
+        <div class="analysis-point">
+          <h3>peerDependencies</h3>
+          <p>Used by plugins to say which host package they attach to. Something you read in other people's files rather than write in your own.</p>
+        </div>
+
+        <div class="analysis-point">
+          <h3>optionalDependencies</h3>
+          <p>Packages whose install failure should not fail the whole install. Rare.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>Version Range Syntax</h2>
+
+      <p>The string next to a package name is a rule about which versions are acceptable, not a fixed choice. The exact version that got installed lives in <code>package-lock.json</code>.</p>
+
+      <div class="prompt-box mt-1">
+        <div class="prompt-label">What the prefixes mean:</div>
+        <CodeBlock code={rangeExamples} lang="text" />
+      </div>
+
+      <p class="mt-1">The caret is npm's default because semantic versioning promises that minor and patch releases do not break existing behaviour. That promise is a convention rather than an enforced rule, which is one more reason the lock file gets committed.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="topic-section">
+      <h2>Files That Sit Next To It</h2>
+
+      <div class="hap-info-grid">
+        <h4>package-lock.json</h4>
+        <p>Generated by npm. Records the exact resolved version and an integrity checksum for every installed package. Never hand-edited. Committed to git.</p>
+
+        <h4>node_modules/</h4>
+        <p>The downloaded packages themselves. Rebuildable from the two files above. Never committed.</p>
+
+        <h4>.npmrc</h4>
+        <p>npm configuration for this project. Most projects have none.</p>
+
+        <h4>.gitignore</h4>
+        <p>Not an npm file, but it is where <code>node_modules</code> and the build output folder get excluded from git.</p>
+      </div>
+    </div>
+  </section>
+
+</PageLayout>
+
+<!--
+HAP Educational Content © 2026 Cynthia Teeters. All rights reserved.
+HyBit A. ProtoBot (HAP) character and the apprentice learning methodology are proprietary educational innovations.
+-->
