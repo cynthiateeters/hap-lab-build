@@ -1,0 +1,189 @@
+WEBVTT
+
+1
+00:00:05.000 --> 00:00:06.200
+Hi, I'm Hap.
+
+2
+00:00:06.200 --> 00:00:09.480
+Today we're opening a terminal
+inside Visual Studio Code,
+
+3
+00:00:09.480 --> 00:00:12.520
+and learning how to check which
+directory it's working in.
+
+4
+00:00:14.240 --> 00:00:17.440
+You've got a project open
+in Visual Studio Code,
+
+5
+00:00:17.440 --> 00:00:19.840
+and something is telling
+you to run a command.
+
+6
+00:00:20.320 --> 00:00:24.480
+That means you need a terminal, and
+Visual Studio Code has one built in.
+
+7
+00:00:26.095 --> 00:00:29.135
+Look along the menu bar for
+the word Terminal, click it,
+
+8
+00:00:29.135 --> 00:00:32.015
+and choose New Terminal from
+the list that drops down.
+
+9
+00:00:32.015 --> 00:00:33.375
+That's the route I'd start with,
+
+10
+00:00:33.375 --> 00:00:36.175
+because it works the same
+way on a Mac and on Windows.
+
+11
+00:00:37.790 --> 00:00:42.270
+A panel opens across the bottom of the
+window with a prompt waiting in it.
+
+12
+00:00:42.670 --> 00:00:45.630
+That prompt is the terminal,
+and it will sit there doing
+
+13
+00:00:45.630 --> 00:00:49.150
+nothing at all until you type
+something and press Enter.
+
+14
+00:00:49.939 --> 00:00:53.859
+On Windows the first line will
+probably mention PowerShell,
+
+15
+00:00:53.859 --> 00:00:57.059
+which is normal, and your assignment
+will tell you when to change it.
+
+16
+00:00:58.630 --> 00:01:01.750
+Every terminal has a
+current working directory.
+
+17
+00:01:02.070 --> 00:01:07.030
+Directory is the word developers use
+for what VS Code calls a folder,
+
+18
+00:01:07.190 --> 00:01:09.510
+so when you read one you
+can think the other.
+
+19
+00:01:09.995 --> 00:01:15.675
+VS Code sets that directory for you, and
+it uses whichever folder you have open.
+
+20
+00:01:15.995 --> 00:01:19.755
+Look at the top of the sidebar,
+at the name in capital letters.
+
+21
+00:01:19.915 --> 00:01:22.395
+That is your terminal's
+current working directory.
+
+22
+00:01:24.110 --> 00:01:27.310
+The terminal has its own way
+of telling you the same thing.
+
+23
+00:01:27.550 --> 00:01:28.750
+The command is
+
+24
+00:01:28.910 --> 00:01:31.470
+pwd, which is short for
+print working directory,
+
+25
+00:01:31.470 --> 00:01:33.390
+and you'll be typing it soon enough.
+
+26
+00:01:33.630 --> 00:01:36.350
+The sidebar and that
+command will always agree,
+
+27
+00:01:36.350 --> 00:01:38.510
+because they're describing
+the same directory.
+
+28
+00:01:40.165 --> 00:01:46.805
+If you haven't opened a folder
+at all, VS Code has no project
+directory to hand the terminal,
+
+29
+00:01:46.805 --> 00:01:48.805
+so it falls back to your home directory.
+
+30
+00:01:49.153 --> 00:01:54.193
+Anything you create from there ends up
+outside the project you meant to work in,
+
+31
+00:01:54.193 --> 00:01:57.633
+which is not only a confusing
+thing to find out later
+
+32
+00:01:57.633 --> 00:02:00.673
+but can also create problems
+with other files there.
+
+33
+00:02:02.421 --> 00:02:07.461
+When that name isn't the project you had
+in mind, go to File, then Open Folder,
+
+34
+00:02:07.461 --> 00:02:11.461
+and choose the project folder itself
+rather than the folder holding it.
+
+35
+00:02:11.701 --> 00:02:13.701
+Open a new terminal afterwards
+
+36
+00:02:13.701 --> 00:02:16.341
+and its working directory
+will be the one you wanted.
+
+37
+00:02:16.936 --> 00:02:17.736
+That's it.
+
+38
+00:02:17.736 --> 00:02:21.976
+You've got a terminal, and you know how
+to check its current working directory.
+
+39
+00:02:22.136 --> 00:02:24.056
+Now you can run that first command.
