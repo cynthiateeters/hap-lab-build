@@ -32,3 +32,6 @@ lighthouse-reports/
 
 reports/
 .specstory/
+
+# Local scratch
+tmp/curriculum-evaluation.pdf
