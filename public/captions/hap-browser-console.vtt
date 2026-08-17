@@ -1,0 +1,154 @@
+WEBVTT
+
+1
+00:00:05.000 --> 00:00:06.280
+Hi, I'm Hap.
+
+2
+00:00:06.280 --> 00:00:08.600
+Today we're opening the browser console,
+
+3
+00:00:08.600 --> 00:00:13.480
+and reading the error that turns up when a
+page asks for a file and doesn't get one.
+
+4
+00:00:15.142 --> 00:00:18.742
+Here's a page you've just opened
+by double-clicking the file.
+
+5
+00:00:18.902 --> 00:00:21.062
+The heading is there and
+the styling is there,
+
+6
+00:00:21.062 --> 00:00:24.342
+so the HTML parsed and the CSS applied.
+
+7
+00:00:24.422 --> 00:00:26.502
+But it still says loading the notes,
+
+8
+00:00:26.502 --> 00:00:30.827
+and it's going to say that forever
+because the file it needs never arrived.
+
+9
+00:00:30.827 --> 00:00:34.187
+When errors like this occur,
+they are written to the console.
+
+10
+00:00:34.427 --> 00:00:37.307
+To see the console, you
+have to open DevTools.
+
+11
+00:00:37.307 --> 00:00:41.627
+One way to do that is to right-click
+anywhere on the page and choose Inspect.
+
+12
+00:00:43.362 --> 00:00:48.242
+What opens is the Chrome DevTools'
+Elements panel that shows the HTML.
+
+13
+00:00:48.402 --> 00:00:50.562
+Across the top you'll
+see the tabs of other
+
+14
+00:00:50.562 --> 00:00:53.522
+panels and to see the errors,
+click on the Console tab.
+
+15
+00:00:55.076 --> 00:00:59.396
+The console is where the browser
+writes messages while the page runs.
+
+16
+00:00:59.636 --> 00:01:02.996
+It writes them as they happen
+rather than keeping a record,
+
+17
+00:01:03.076 --> 00:01:06.916
+so anything that went wrong before
+you opened it may already be gone.
+
+18
+00:01:07.156 --> 00:01:08.676
+So always reload the page.
+
+19
+00:01:10.487 --> 00:01:12.247
+So here's what it wrote.
+
+20
+00:01:12.247 --> 00:01:15.847
+Red means the browser tried
+to do something and couldn't.
+
+21
+00:01:16.087 --> 00:01:18.807
+Read the first red line
+rather than the last one,
+
+22
+00:01:18.807 --> 00:01:23.767
+because the ones underneath are
+usually the same problem arriving
+again with a different name.
+
+23
+00:01:24.368 --> 00:01:28.528
+This one says it failed to fetch, and
+then it names the file it wanted.
+
+24
+00:01:30.487 --> 00:01:33.767
+That failure is why sites
+need to run a server.
+
+25
+00:01:33.927 --> 00:01:37.607
+Fetching is one part of a
+page asking for another file,
+
+26
+00:01:37.767 --> 00:01:41.287
+and that request needs something
+on the other end to answer it.
+
+27
+00:01:41.367 --> 00:01:44.487
+Open the file straight off your
+disk and there's no server,
+
+28
+00:01:44.722 --> 00:01:49.762
+so the request fails and the piece
+that depended on it never fills in.
+
+29
+00:01:50.082 --> 00:01:53.202
+The server is the thing on
+the other end that answers,
+
+30
+00:01:53.362 --> 00:01:55.362
+which is why you run one while you work.
+
+31
+00:01:55.890 --> 00:01:56.770
+That's it.
+
+32
+00:01:56.770 --> 00:02:00.770
+Leave DevTools open while you work, and
+you'll see errors when they happen.

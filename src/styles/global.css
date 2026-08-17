@@ -1631,6 +1631,28 @@ pre {
   margin-inline: auto;
 }
 
+/*
+  A HAP video embedded in a page.
+
+  NOT A YOUTUBE IFRAME. The Content-Security-Policy in MainLayout.astro has no
+  frame-src, so an iframe is blocked outright, and media-src already allows
+  res.cloudinary.com. The same cut is on YouTube for anyone who finds it there;
+  this is the copy a student meets inside the lab.
+
+  The intrinsic width and height attributes on the element matter as much as this
+  rule: without them the box has no aspect ratio before the metadata loads, and
+  the page reflows around it mid-read.
+*/
+.hap-video {
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  margin-top: 1rem;
+  border-radius: var(--radius);
+  border: 2px solid var(--warm-orange);
+}
+
 .mt-0-5 {
   margin-top: 0.5rem;
 }
