@@ -1,0 +1,274 @@
+WEBVTT
+
+1
+00:00:05.000 --> 00:00:06.120
+Hi, I'm Hap.
+
+2
+00:00:06.120 --> 00:00:10.040
+Today we're looking at why npm
+matters so much in web development.
+
+3
+00:00:10.120 --> 00:00:12.360
+The name covers three separate things,
+
+4
+00:00:12.360 --> 00:00:14.840
+and every one of them is
+doing real work for you.
+
+5
+00:00:16.853 --> 00:00:19.413
+npm is a program on your computer.
+
+6
+00:00:19.653 --> 00:00:24.053
+npm is also a library on the internet,
+full of code other people wrote.
+
+7
+00:00:24.580 --> 00:00:27.620
+And npm is a format, an
+agreement about what
+
+8
+00:00:27.620 --> 00:00:30.660
+a downloadable folder of
+JavaScript looks like.
+
+9
+00:00:30.980 --> 00:00:36.100
+One name, three jobs, and between them
+they're how a website gets built today.
+
+10
+00:00:37.906 --> 00:00:40.386
+Let's start with the one on your computer.
+
+11
+00:00:40.546 --> 00:00:44.706
+When you install Node, npm
+is automatically included,
+
+12
+00:00:44.706 --> 00:00:47.666
+even though they are
+completely separate programs.
+
+13
+00:00:48.146 --> 00:00:50.711
+Checking their versions
+returns two different
+
+14
+00:00:50.711 --> 00:00:54.231
+numbers because they handle
+entirely different tasks.
+
+15
+00:00:54.551 --> 00:00:57.271
+Node executes your JavaScript code,
+
+16
+00:00:57.271 --> 00:01:01.591
+while npm downloads the external
+packages and libraries you need.
+
+17
+00:01:03.373 --> 00:01:07.533
+The npm registry is an online
+library containing millions
+
+18
+00:01:07.533 --> 00:01:11.533
+of packages that you can download
+without ever creating an account.
+
+19
+00:01:12.173 --> 00:01:14.093
+Along with a description of the package,
+
+20
+00:01:14.370 --> 00:01:17.810
+there is a direct link to
+its source code repository.
+
+21
+00:01:18.450 --> 00:01:21.490
+This link is incredibly
+valuable because it allows you
+
+22
+00:01:21.490 --> 00:01:25.490
+to thoroughly inspect and read the code
+before downloading it to your system.
+
+23
+00:01:27.295 --> 00:01:30.255
+The package on this page is Eleventy,
+
+24
+00:01:30.255 --> 00:01:35.935
+a static site generator that
+can turn a folder of templates
+into a multipage website.
+
+25
+00:01:36.255 --> 00:01:39.615
+That is the kind of tool
+npm exists to deliver,
+
+26
+00:01:39.615 --> 00:01:43.160
+because somebody else built
+it, published it under a name,
+
+27
+00:01:43.160 --> 00:01:46.520
+and your project installs it
+instead of rebuilding it.
+
+28
+00:01:46.600 --> 00:01:50.360
+Almost every website you work on is
+assembled from tools like this one.
+
+29
+00:01:52.171 --> 00:01:55.851
+The third meaning of npm
+refers to its package format.
+
+30
+00:01:55.851 --> 00:02:01.451
+A package is simply a folder of
+JavaScript code published with a
+specific name and version number,
+
+31
+00:02:01.451 --> 00:02:04.178
+which together act as a unique identifier.
+
+32
+00:02:04.178 --> 00:02:06.578
+When you request a package,
+the name specifies
+
+33
+00:02:06.578 --> 00:02:10.178
+which package and the version
+determines the exact release,
+
+34
+00:02:10.178 --> 00:02:13.058
+ensuring you receive reproducible
+code for your project.
+
+35
+00:02:14.928 --> 00:02:18.208
+Now watch one command
+use all three at once.
+
+36
+00:02:18.448 --> 00:02:19.568
+You type
+
+37
+00:02:19.568 --> 00:02:21.728
+npm install and a package name.
+
+38
+00:02:21.888 --> 00:02:27.248
+The program on your computer
+reads that name, asks the
+library on the internet for it,
+
+39
+00:02:27.443 --> 00:02:31.843
+and unpacks what comes back into
+a folder called node_modules.
+
+40
+00:02:34.083 --> 00:02:38.323
+The contents of that folder are fully
+operational programs and plain,
+
+41
+00:02:38.323 --> 00:02:41.523
+readable JavaScript libraries
+that build and run your website.
+
+42
+00:02:42.053 --> 00:02:46.533
+Because none of the code is hidden or
+compiled into an unreadable format,
+
+43
+00:02:46.613 --> 00:02:50.053
+you can open, inspect, and
+read any file at any time.
+
+44
+00:02:52.018 --> 00:02:55.458
+For many projects that
+node_modules folder gets big.
+
+45
+00:02:55.458 --> 00:02:59.538
+And, while your project needs
+it, the folder should never
+go into your repository,
+
+46
+00:02:59.538 --> 00:03:02.258
+because you can always
+get it again when needed.
+
+47
+00:03:02.258 --> 00:03:06.803
+Every last piece of it came from that
+library and can come back the same way.
+
+48
+00:03:08.163 --> 00:03:13.283
+There are many reasons why a file or
+folder should never be pushed to GitHub,
+
+49
+00:03:13.283 --> 00:03:16.723
+but almost always the list
+includes node_modules.
+
+50
+00:03:17.258 --> 00:03:21.578
+To not push certain files,
+you tell git to ignore them
+
+51
+00:03:21.578 --> 00:03:26.618
+by always having a .gitignore file
+in the repository's root folder.
+
+52
+00:03:28.273 --> 00:03:32.193
+This file, with its very
+specific name and location,
+
+53
+00:03:32.593 --> 00:03:35.473
+lists what files should
+never be pushed to GitHub.
+
+54
+00:03:35.984 --> 00:03:37.424
+So that's npm.
+
+55
+00:03:37.584 --> 00:03:41.504
+A program, a library, and a
+format, all under one name.
+
+56
+00:03:41.664 --> 00:03:45.024
+Every project you build from here
+on is going to use all three.
