@@ -66,106 +66,87 @@ const cleanup = `cd ..
 rm -rf npm-practice`;
 ---
 
-<PageLayout
-  slug="/make-a-package-json/"
-  title="Make a package.json and read it out loud"
-  subtitle="Twenty minutes in a throwaway folder, with every file explained"
-  description="A hands-on walk through npm init, installing a dev dependency, writing npm scripts, and chaining commands. Every file that appears is named and explained as it appears."
-  avatarImage="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/canvas/hap/hap-scientist"
-  avatarAlt="HAP wearing goggles and holding a bubbling test tube"
-  introContent={introContent}
-  footerReminder="Read package.json after every command that touches it, and the rest of this stops being guesswork."
->
-
-  <section class="content-section">
-    <div class="topic-section">
+<PageLayout slug='/make-a-package-json/' title='Make a package.json and read it out loud' subtitle='Twenty minutes in a throwaway folder, with every file explained' description='A hands-on walk through npm init, installing a dev dependency, writing npm scripts, and chaining commands. Every file that appears is named and explained as it appears.' avatarImage='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/canvas/hap/hap-scientist' avatarAlt='HAP wearing goggles and holding a bubbling test tube' introContent={introContent} footerReminder='Read package.json after every command that touches it, and the rest of this stops being guesswork.'>
+  <section class='content-section'>
+    <div class='topic-section'>
       <h2>Before You Start</h2>
 
       <p>You need a terminal open and Node installed. Typing <code>node --version</code> should print a number rather than an error. On Windows, use Git Bash rather than PowerShell or Command Prompt, because the quoting rules differ and the difference shows up later in a way that is genuinely hard to spot.</p>
 
-      <p class="mt-1">Everything below happens in a folder you are going to delete at the end. Nothing here is a deliverable.</p>
+      <p class='mt-1'>Everything below happens in a folder you are going to delete at the end. Nothing here is a deliverable.</p>
 
-      <h3 class="mt-2">Opening a terminal, if you have not before</h3>
+      <h3 class='mt-2'>Opening a terminal, if you have not before</h3>
 
       <p>That first line assumes you already know where to find one. Here is HAP opening the terminal built into VS Code, then answering the question that comes straight after it: which folder is that terminal standing in? Two and a half minutes.</p>
 
-      <video class="hap-video" controls preload="metadata" width="800" height="450">
-        <source
-          src="https://res.cloudinary.com/cynthia-teeters/video/upload/f_auto,q_auto/canvas/videos/hap-vs-code-terminal"
-          type="video/mp4"
-        />
-        <track
-          kind="captions"
-          src="/captions/hap-vs-code-terminal.vtt"
-          srclang="en"
-          label="English"
-          default
-        />
+      <video class='hap-video' controls preload='metadata' width='800' height='450'>
+        <source src='https://res.cloudinary.com/cynthia-teeters/video/upload/f_auto,q_auto/canvas/videos/hap-vs-code-terminal' type='video/mp4' />
+        <track kind='captions' src='/captions/hap-vs-code-terminal.vtt' srclang='en' label='English' default />
         Your browser does not support the video tag.
       </video>
     </div>
   </section>
 
-  <section class="content-section">
-    <div class="topic-section">
+  <section class='content-section'>
+    <div class='topic-section'>
       <h2>Step 1: Make An Empty Folder And Stand In It</h2>
 
-      <div class="prompt-box">
-        <div class="prompt-label">In your terminal:</div>
-        <CodeBlock code={step1} lang="bash" />
+      <div class='prompt-box'>
+        <div class='prompt-label'>In your terminal:</div>
+        <CodeBlock code={step1} lang='bash' />
       </div>
 
-      <p class="mt-1"><code>mkdir</code> makes the folder. <code>cd</code> moves the terminal into it. <code>pwd</code> prints where the terminal currently is, and it should end in <code>npm-practice</code>.</p>
+      <p class='mt-1'><code>mkdir</code> makes the folder. <code>cd</code> moves the terminal into it. <code>pwd</code> prints where the terminal currently is, and it should end in <code>npm-practice</code>.</p>
 
-      <p class="mt-1">That last command matters more than it looks. Every npm command acts on the folder the terminal is standing in, and it never asks whether that was the folder you meant. A lot of confusing npm behaviour turns out to be a command that ran perfectly in the wrong place.</p>
+      <p class='mt-1'>That last command matters more than it looks. Every npm command acts on the folder the terminal is standing in, and it never asks whether that was the folder you meant. A lot of confusing npm behaviour turns out to be a command that ran perfectly in the wrong place.</p>
     </div>
   </section>
 
-  <section class="content-section">
-    <div class="topic-section">
-      <h2>Step 2: Create The package.json</h2>
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>Step 2: Create The package.json File</h2>
 
-      <div class="prompt-box">
-        <div class="prompt-label">In your terminal:</div>
-        <CodeBlock code={step2} lang="bash" />
+      <div class='prompt-box'>
+        <div class='prompt-label'>In your terminal:</div>
+        <CodeBlock code={step2} lang='bash' />
       </div>
 
-      <p class="mt-1">Without <code>-y</code>, npm asks a series of questions. With it, npm accepts every default and writes the file immediately. Open <code>package.json</code> and read it before going on.</p>
+      <p class='mt-1'>Without <code>-y</code>, npm asks a series of questions. With it, npm accepts every default and writes the file immediately. Open <code>package.json</code> and read it before going on.</p>
 
-      <div class="prompt-box mt-1">
-        <div class="prompt-label">package.json, straight out of npm init:</div>
-        <CodeBlock code={initOutput} lang="json" />
+      <div class='prompt-box mt-1'>
+        <div class='prompt-label'>package.json, straight out of npm init:</div>
+        <CodeBlock code={initOutput} lang='json' />
       </div>
 
-      <p class="mt-1">Read it out loud, field by field. <code>name</code> came from the folder name. <code>version</code> is a starting point nobody uses for a website. <code>scripts</code> holds one placeholder that does nothing useful. The <a href="/reference/package-json/">package.json reference page</a> goes through every field properly.</p>
+      <p class='mt-1'>Read it out loud, field by field. <code>name</code> came from the folder name. <code>version</code> is a starting point nobody uses for a website. <code>scripts</code> holds one placeholder that does nothing useful. The <a href='/reference/package-json/'>package.json reference page</a> goes through every field properly.</p>
 
-      <p class="mt-1">Notice what is missing. There is no list of dependencies yet, because nothing has been installed.</p>
+      <p class='mt-1'>Notice what is missing. There is no list of dependencies yet, because nothing has been installed.</p>
     </div>
   </section>
 
-  <section class="content-section">
-    <div class="topic-section">
+  <section class='content-section'>
+    <div class='topic-section'>
       <h2>Step 3: Install One Tool</h2>
 
-      <div class="prompt-box">
-        <div class="prompt-label">In your terminal:</div>
-        <CodeBlock code={step3} lang="bash" />
+      <div class='prompt-box'>
+        <div class='prompt-label'>In your terminal:</div>
+        <CodeBlock code={step3} lang='bash' />
       </div>
 
-      <p class="mt-1"><code>http-server</code> is a small program that serves files over HTTP. The <code>--save-dev</code> flag files it as a development tool rather than something a visitor's browser needs.</p>
+      <p class='mt-1'><code>http-server</code> is a small program that serves files over HTTP. The <code>--save-dev</code> flag files it as a development tool rather than something a visitor's browser needs.</p>
 
-      <p class="mt-1">Three things changed on disk.</p>
+      <p class='mt-1'>Three things changed on disk.</p>
 
-      <div class="prompt-box mt-1">
-        <div class="prompt-label">The folder now:</div>
-        <CodeBlock code={afterInstall} lang="text" />
+      <div class='prompt-box mt-1'>
+        <div class='prompt-label'>The folder now:</div>
+        <CodeBlock code={afterInstall} lang='text' />
       </div>
 
-      <p class="mt-1">Open <code>package.json</code> again. It now has a <code>devDependencies</code> block naming <code>http-server</code> and a version. Open <code>package-lock.json</code> and scroll. It is thousands of lines describing every package that came down, including the ones <code>http-server</code> depends on that you never named. Look at <code>node_modules</code> and notice how many folders are in there for one small tool.</p>
+      <p class='mt-1'>Open <code>package.json</code> again. It now has a <code>devDependencies</code> block naming <code>http-server</code> and a version. Open <code>package-lock.json</code> and scroll. It is thousands of lines describing every package that came down, including the ones <code>http-server</code> depends on that you never named. Look at <code>node_modules</code> and notice how many folders are in there for one small tool.</p>
 
-      <div class="hap-note-callout">
-        <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/canvas/hap/hap-thumbs-up" alt="HAP giving an enthusiastic thumbs up with sparkles around him" width="150" height="150" class="hap-note-image" decoding="async" loading="lazy" />
-        <div class="hap-note-content">
+      <div class='hap-note-callout'>
+        <img src='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/canvas/hap/hap-thumbs-up' alt='HAP giving an enthusiastic thumbs up with sparkles around him' width='150' height='150' class='hap-note-image' decoding='async' loading='lazy' />
+        <div class='hap-note-content'>
           <h3>🟠 A message about vulnerabilities is not a failure</h3>
           <p>npm often ends an install by reporting a number of known vulnerabilities. That is a report about the packages, not an error in what you typed. The install finished. Whether any of those findings matter depends on whether the affected code ever runs in a place that handles untrusted input, which for a local development tool is usually no.</p>
         </div>
@@ -173,131 +154,131 @@ rm -rf npm-practice`;
     </div>
   </section>
 
-  <section class="content-section">
-    <div class="topic-section">
+  <section class='content-section'>
+    <div class='topic-section'>
       <h2>Step 4: Write A Script</h2>
 
       <p>An installed tool is not on your system path. Typing <code>http-server</code> by itself will most likely report that the command was not found. npm scripts exist to solve exactly this: inside a script, npm looks in <code>node_modules</code> first.</p>
 
-      <p class="mt-1">Open <code>package.json</code>, find the <code>scripts</code> block, and replace it with this.</p>
+      <p class='mt-1'>Open <code>package.json</code>, find the <code>scripts</code> block, and replace it with this.</p>
 
-      <div class="prompt-box mt-1">
-        <div class="prompt-label">package.json, the scripts block:</div>
-        <CodeBlock code={step4} lang="json" />
+      <div class='prompt-box mt-1'>
+        <div class='prompt-label'>package.json, the scripts block:</div>
+        <CodeBlock code={step4} lang='json' />
       </div>
 
-      <p class="mt-1">Save the file. Forgetting to save produces <code>Missing script: "serve"</code> on the next command, which is the single most common thing to go wrong in this whole exercise.</p>
+      <p class='mt-1'>Save the file. Forgetting to save produces <code>Missing script: "serve"</code> on the next command, which is the single most common thing to go wrong in this whole exercise.</p>
     </div>
   </section>
 
-  <section class="content-section">
-    <div class="topic-section">
+  <section class='content-section'>
+    <div class='topic-section'>
       <h2>Step 5: Run It</h2>
 
-      <div class="prompt-box">
-        <div class="prompt-label">In your terminal:</div>
-        <CodeBlock code={step5} lang="bash" />
+      <div class='prompt-box'>
+        <div class='prompt-label'>In your terminal:</div>
+        <CodeBlock code={step5} lang='bash' />
       </div>
 
-      <div class="prompt-box mt-1">
-        <div class="prompt-label">Roughly what comes back:</div>
-        <CodeBlock code={serveOutput} lang="text" />
+      <div class='prompt-box mt-1'>
+        <div class='prompt-label'>Roughly what comes back:</div>
+        <CodeBlock code={serveOutput} lang='text' />
       </div>
 
-      <p class="mt-1">The terminal stops and sits there, which is correct even though it is new. Most commands run, print something, and give you your prompt back. A server never finishes, because finishing would mean it stopped serving, so it holds the terminal until you stop it.</p>
+      <p class='mt-1'>The terminal stops and sits there, which is correct even though it is new. Most commands run, print something, and give you your prompt back. A server never finishes, because finishing would mean it stopped serving, so it holds the terminal until you stop it.</p>
 
-      <p class="mt-1">Open <code>http://127.0.0.1:3000</code> in a browser. There is no HTML file in this folder, so you get a file listing. That listing is being generated and delivered by a program running on your own machine. Press <kbd>Ctrl</kbd> and <kbd>C</kbd> in the terminal to stop it, and the prompt comes back.</p>
+      <p class='mt-1'>Open <code>http://127.0.0.1:3000</code> in a browser. There is no HTML file in this folder, so you get a file listing. That listing is being generated and delivered by a program running on your own machine. Press <kbd>Ctrl</kbd> and <kbd>C</kbd> in the terminal to stop it, and the prompt comes back.</p>
 
-      <p class="mt-1">The <a href="/why-a-dev-server/">page on dev servers</a> covers what the port number is doing and why any of this is necessary.</p>
+      <p class='mt-1'>The <a href='/why-a-dev-server/'>page on dev servers</a> covers what the port number is doing and why any of this is necessary.</p>
     </div>
   </section>
 
-  <section class="content-section">
-    <div class="topic-section">
+  <section class='content-section'>
+    <div class='topic-section'>
       <h2>Step 6: Chain Two Commands</h2>
 
       <p>A script can run other scripts, and commands can be strung together. Replace the scripts block again.</p>
 
-      <div class="prompt-box mt-1">
-        <div class="prompt-label">package.json, the scripts block:</div>
-        <CodeBlock code={step6} lang="json" />
+      <div class='prompt-box mt-1'>
+        <div class='prompt-label'>package.json, the scripts block:</div>
+        <CodeBlock code={step6} lang='json' />
       </div>
 
-      <div class="prompt-box mt-1">
-        <div class="prompt-label">In your terminal:</div>
-        <CodeBlock code={step7} lang="bash" />
+      <div class='prompt-box mt-1'>
+        <div class='prompt-label'>In your terminal:</div>
+        <CodeBlock code={step7} lang='bash' />
       </div>
 
-      <p class="mt-1">Two characters in there are doing real work, and neither of them is JavaScript.</p>
+      <p class='mt-1'>Two characters in there are doing real work, and neither of them is JavaScript.</p>
 
-      <div class="analysis-grid analysis-grid--two-col">
-        <div class="analysis-point">
+      <div class='analysis-grid analysis-grid--two-col'>
+        <div class='analysis-point'>
           <h3>The greater-than sign</h3>
           <p><code>ls &gt; files.txt</code> takes what <code>ls</code> would have printed to the screen and writes it into a file instead. This is called redirection. It overwrites the file every time. Two of them in a row, <code>&gt;&gt;</code>, appends rather than overwrites.</p>
         </div>
 
-        <div class="analysis-point">
+        <div class='analysis-point'>
           <h3>The double ampersand</h3>
           <p><code>a &amp;&amp; b</code> means run <code>a</code>, and run <code>b</code> only if <code>a</code> succeeded. Success is measured by the exit code, a number every command returns when it finishes, where zero means fine. A chain stops at the first failure instead of carrying on with broken input.</p>
         </div>
       </div>
 
-      <p class="mt-1">Stop the server, then open <code>files.txt</code>. It holds the folder listing, written there by the first half of the chain before the second half started. That is what the scripts block is for: turning a multi-step job into one command a teammate can run without instructions.</p>
+      <p class='mt-1'>Stop the server, then open <code>files.txt</code>. It holds the folder listing, written there by the first half of the chain before the second half started. That is what the scripts block is for: turning a multi-step job into one command a teammate can run without instructions.</p>
     </div>
   </section>
 
-  <section class="content-section">
-    <div class="topic-section">
+  <section class='content-section'>
+    <div class='topic-section'>
       <h2>Step 7: Throw It Away</h2>
 
-      <div class="prompt-box">
-        <div class="prompt-label">In your terminal:</div>
-        <CodeBlock code={cleanup} lang="bash" />
+      <div class='prompt-box'>
+        <div class='prompt-label'>In your terminal:</div>
+        <CodeBlock code={cleanup} lang='bash' />
       </div>
 
-      <p class="mt-1">Deleting it is part of the exercise. Everything in that folder except <code>package.json</code> can be regenerated from <code>package.json</code>, and being willing to delete <code>node_modules</code> without a second thought is a useful reflex to have.</p>
+      <p class='mt-1'>Deleting it is part of the exercise. Everything in that folder except <code>package.json</code> can be regenerated from <code>package.json</code>, and being willing to delete <code>node_modules</code> without a second thought is a useful reflex to have.</p>
     </div>
   </section>
 
-  <section class="content-section">
-    <div class="topic-section">
+  <section class='content-section'>
+    <div class='topic-section'>
       <h2>What To Take Away</h2>
 
-      <div class="tips-container">
-        <div class="tip-card">
-          <div class="tip-number">1</div>
+      <div class='tips-container'>
+        <div class='tip-card'>
+          <div class='tip-number'>1</div>
           <div>
             <h3>The terminal's current folder decides everything</h3>
             <p>npm acts on wherever the terminal is standing. Running <code>pwd</code> before an install costs one second and heads off a whole class of confusion.</p>
           </div>
         </div>
 
-        <div class="tip-card">
-          <div class="tip-number">2</div>
+        <div class='tip-card'>
+          <div class='tip-number'>2</div>
           <div>
             <h3>Read package.json after every command that touches it</h3>
             <p>The file is short, and it is the record of what you did. Watching it change after each command is how you learn what each command does.</p>
           </div>
         </div>
 
-        <div class="tip-card">
-          <div class="tip-number">3</div>
+        <div class='tip-card'>
+          <div class='tip-number'>3</div>
           <div>
             <h3>Save before you run</h3>
             <p><code>Missing script</code> nearly always means the editor still holds unsaved changes.</p>
           </div>
         </div>
 
-        <div class="tip-card">
-          <div class="tip-number">4</div>
+        <div class='tip-card'>
+          <div class='tip-number'>4</div>
           <div>
             <h3>A server holding the terminal is correct behaviour</h3>
             <p>It has not hung. Open a second terminal tab if you need one, and stop the server with <kbd>Ctrl</kbd> and <kbd>C</kbd> when you are done.</p>
           </div>
         </div>
 
-        <div class="tip-card">
-          <div class="tip-number">5</div>
+        <div class='tip-card'>
+          <div class='tip-number'>5</div>
           <div>
             <h3>Scripts are shell, not JavaScript</h3>
             <p>The contents of a script line are handed to your shell. <code>&amp;&amp;</code> and <code>&gt;</code> are shell features, which is why the choice of terminal on Windows matters.</p>
@@ -306,7 +287,6 @@ rm -rf npm-practice`;
       </div>
     </div>
   </section>
-
 </PageLayout>
 
 <!--

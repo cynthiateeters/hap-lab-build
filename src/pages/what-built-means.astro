@@ -18,49 +18,39 @@ const buildShape = `my-project/
 └── dist/           ← the files a browser receives (generated)`;
 ---
 
-<PageLayout
-  slug="/what-built-means/"
-  title="What people mean when they say a site is built"
-  subtitle="Source files in, deployable files out"
-  description="A site that is built has source files that a program turns into the files a browser actually receives. What a build step is, why static sites use one, and the vocabulary that goes with it."
-  avatarImage="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/canvas/hap/hap-has-tools"
-  avatarAlt="HAP holding a wooden toolbox filled with hammer, pliers, and other tools"
-  introContent={introContent}
-  footerReminder="A build is a program that turns files you wrote into files a browser can use."
->
-
-  <section class="content-section">
-    <div class="topic-section">
-      <h2>Three Ways Files Reach A Browser</h2>
+<PageLayout slug='/what-built-means/' title='What people mean when they say a site is built' subtitle='Source files in, deployable files out' description='A site that is built has source files that a program turns into the files a browser actually receives. What a build step is, why static sites use one, and the vocabulary that goes with it.' avatarImage='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/canvas/hap/hap-has-tools' avatarAlt='HAP holding a wooden toolbox filled with hammer, pliers, and other tools' introContent={introContent} footerReminder='A build is a program that turns files you wrote into files a browser can use.'>
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>The Ways Files Reach A Browser</h2>
 
       <p>Every website on the internet gets its HTML to your browser in one of three ways. Telling them apart is the fastest way to understand where a build fits.</p>
 
-      <div class="analysis-grid analysis-grid--two-col">
-        <div class="analysis-point">
+      <div class='analysis-grid analysis-grid--two-col'>
+        <div class='analysis-point'>
           <h3>Hand-written files</h3>
-          <p>Somebody types HTML into a file, uploads the file, and the server hands out exactly that file. No program stands in between. This is how the web started and it still works fine for a page or two.</p>
+          <p>Someone writes text and markup into a file, usually named 'index.html', then uploads it along with some CSS for styling and a handful of images. The folder structure has to match exactly how it worked on their own machine, since a link like <code>&lt;img src="images/logo.png"&gt;</code> only finds that image if the images folder sits in the same place relative to the HTML file. When a visitor arrives, the server hands out those exact files, unchanged. No program sits in between to generate or alter anything. This is how the web began, and for small, straightforward sites, it still works beautifully.</p>
         </div>
 
-        <div class="analysis-point">
-          <h3>Built ahead of time</h3>
-          <p>A developer edits source files. A program on their computer reads those source files and writes a finished set of HTML, CSS, and JavaScript. Those finished files get uploaded. The server hands out exactly those. This is a <strong>static site</strong>, and it is what this course builds.</p>
-        </div>
-
-        <div class="analysis-point">
+        <div class='analysis-point'>
           <h3>Assembled per request</h3>
-          <p>The server runs a program every time somebody asks for a page, and that program produces the HTML on the spot, usually from a database. Most sites with logins and shopping carts work this way.</p>
+          <p>The page is dynamically generated for a specific visitor at the exact moment that visitor is on that page. The server runs a program, and that program produces the HTML on the spot, usually from a database. When you click a link on a dynamic site, the browser sends an HTTP request. The request wakes up the server, which then pulls user data from a database, drops that data into an HTML skeleton file (a process called templating), and hands the completed HTML back to the browser. Most sites with logins and shopping carts work this way.</p>
         </div>
 
-        <div class="analysis-point">
-          <h3>When the program runs</h3>
-          <p>The middle option and the last option both run programs. The difference is <em>when</em>. A static site runs its program once, before anyone visits, while the third option runs its program once per visitor. That difference in timing is most of the difference in cost.</p>
+        <div class='analysis-point'>
+          <h3>Built ahead of time</h3>
+          <p>A developer edits source files. A program on their computer reads those source files and writes a finished set of HTML, CSS, and JavaScript. Those finished files get uploaded. The server hands out exactly those. This is a <strong>static site</strong>, and it is what this course builds. The static site builder called Eleventy (11ty, or Build Awesome) is the example we use because it does not force unnecessary JavaScript onto the user's browser. This frees us to explore the other parts of web development: HTML, CSS, semantic structure, accessibility, and standard browser features, without getting bogged down by heavy front-end frameworks.</p>
+        </div>
+
+        <div class='analysis-point'>
+          <h3>A Mix</h3>
+          <p>The hybrid option combines both worlds by pre-building as much of the site as possible while leaving small "islands" of the page ready to run live programs. Instead of choosing between a purely static site or a fully live server, a hybrid system builds your standard text and images ahead of time so they load instantly. Then, it only runs a live program on the specific parts of the page that actually require it, like a dynamic shopping cart. This approach gives you the speed of a static site for most of your layout, while still providing the interactive use where you need it.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="content-section">
-    <div class="topic-section">
+  <section class='content-section'>
+    <div class='topic-section'>
       <h2>What A Build Step Is Made Of</h2>
 
       <p>A build step has three parts.</p>
@@ -73,45 +63,45 @@ const buildShape = `my-project/
 
       <p>That is the whole idea. The reason it looks intimidating is that the program in the middle is usually assembled out of several smaller programs, installed from the internet, and wired together in a configuration file. Underneath all of that, the shape is still those three parts.</p>
 
-      <div class="prompt-box mt-1">
-        <div class="prompt-label">A typical project on disk:</div>
-        <CodeBlock code={buildShape} lang="text" />
+      <div class='prompt-box mt-1'>
+        <div class='prompt-label'>A typical project on disk:</div>
+        <CodeBlock code={buildShape} lang='text' />
       </div>
 
-      <div class="hap-note-callout">
-        <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/canvas/hap/hap-pointing-up" alt="HAP pointing upward with one finger, smiling encouragingly" width="150" height="150" class="hap-note-image" decoding="async" loading="lazy" />
-        <div class="hap-note-content">
+      <div class='hap-note-callout'>
+        <img src='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/canvas/hap/hap-pointing-up' alt='HAP pointing upward with one finger, smiling encouragingly' width='150' height='150' class='hap-note-image' decoding='async' loading='lazy' />
+        <div class='hap-note-content'>
           <h3>🟠 The output folder is disposable</h3>
           <p>Whatever the output folder is called, deleting it costs nothing. Running the build again recreates it from the source files. That gives you a test for whether a file belongs there: if losing it would hurt, it was source all along.</p>
-          <p class="mt-1">This is also why the output folder is almost always in <code>.gitignore</code>. Committing generated files means every teammate's build produces a different diff of files nobody wrote.</p>
+          <p class='mt-1'>This is also why the output folder is almost always in <code>.gitignore</code>. Committing generated files means every teammate's build produces a different diff of files nobody wrote.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="content-section">
-    <div class="topic-section">
+  <section class='content-section'>
+    <div class='topic-section'>
       <h2>What A Build Buys You</h2>
 
       <p>Hand-written HTML works fine, so a build step has to be worth the extra complexity. Here is what you get for it.</p>
 
-      <div class="analysis-grid analysis-grid--two-col">
-        <div class="analysis-point">
+      <div class='analysis-grid analysis-grid--two-col'>
+        <div class='analysis-point'>
           <h3>One change, many pages</h3>
           <p>Change the navigation bar in one template and forty pages get the new navigation. Without a build, that is forty files edited by hand and one of them silently missed.</p>
         </div>
 
-        <div class="analysis-point">
+        <div class='analysis-point'>
           <h3>Work in a nicer format than the browser accepts</h3>
           <p>Write content in Markdown, get HTML. Write modern CSS, get CSS that older browsers understand. The build translates between what is pleasant to write and what browsers actually run.</p>
         </div>
 
-        <div class="analysis-point">
+        <div class='analysis-point'>
           <h3>Automatic optimization</h3>
           <p>Shrinking images, stripping whitespace, and bundling files are boring, repetitive, and easy to forget. A build does them every single time without being asked.</p>
         </div>
 
-        <div class="analysis-point">
+        <div class='analysis-point'>
           <h3>Repeatability</h3>
           <p>Because the output is produced by a program, it comes out the same way on your laptop, on a teammate's laptop, and on the machine that publishes the site. Hand-editing has no such guarantee.</p>
         </div>
@@ -119,15 +109,15 @@ const buildShape = `my-project/
     </div>
   </section>
 
-  <section class="content-section">
-    <div class="topic-section">
+  <section class='content-section'>
+    <div class='topic-section'>
       <h2>The Vocabulary</h2>
 
       <p>These words show up constantly in tool documentation and error messages. They mean specific things.</p>
 
-      <div class="hap-info-grid">
+      <div class='hap-info-grid'>
         <h4>Source</h4>
-        <p>The files a person writes and a person owns. Committed to git. Losing them is a real loss.</p>
+        <p>The files a person writes and a person owns. Committed to git. Losing them is a real loss. Developers often create a folder called <code>src</code> to hold these files</p>
 
         <h4>Build</h4>
         <p>Both a noun and a verb. The act of running the program, and the set of files it produced.</p>
@@ -147,18 +137,17 @@ const buildShape = `my-project/
     </div>
   </section>
 
-  <section class="content-section">
-    <div class="topic-section">
+  <section class='content-section'>
+    <div class='topic-section'>
       <h2>Why This Course Builds Static Sites</h2>
 
       <p>A static site is a legitimate production choice, not a beginner's substitute for a real website. Plenty of large sites run this way, because the files are already finished before anyone asks for them, which makes them fast and hard to break.</p>
 
-      <p class="mt-1">They are also a good place to learn from, because a static site build contains every piece of a modern toolchain: a runtime that is not the browser, a package manager, dependencies, scripts, a local server, and a deploy. None of it is hidden behind a framework doing five of those things at once. Once these pieces make sense here, a bigger tool reads as the same pieces with more of them.</p>
+      <p class='mt-1'>They are also a good place to learn from, because a static site build contains every piece of a modern toolchain: a runtime that is not the browser, a package manager, dependencies, scripts, a local server, and a deploy. None of it is hidden behind a framework doing five of those things at once. Once these pieces make sense here, a bigger tool reads as the same pieces with more of them.</p>
 
-      <p class="mt-1">The next page starts with the runtime, because none of the rest can happen without it.</p>
+      <p class='mt-1'>The next page starts with the runtime, because none of the rest can happen without it.</p>
     </div>
   </section>
-
 </PageLayout>
 
 <!--
