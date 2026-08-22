@@ -69,6 +69,20 @@ rm -rf npm-practice`;
 <PageLayout slug='/make-a-package-json/' title='Make a package.json and read it out loud' subtitle='Twenty minutes in a throwaway folder, with every file explained' description='A hands-on walk through npm init, installing a dev dependency, writing npm scripts, and chaining commands. Every file that appears is named and explained as it appears.' avatarImage='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/canvas/hap/hap-scientist' avatarAlt='HAP wearing goggles and holding a bubbling test tube' introContent={introContent} footerReminder='Read package.json after every command that touches it, and the rest of this stops being guesswork.'>
   <section class='content-section'>
     <div class='topic-section'>
+      <h2>Watch This First</h2>
+
+      <p>Everything on this page is a thing you do. This is the same material explained before you have to do it: what <code>npm init</code> actually writes, what <code>npm install</code> adds to the file without you typing, the four rules JSON insists on, and how a script gets added and run. Five and a half minutes.</p>
+
+      <video class='hap-video' controls preload='metadata' width='800' height='450'>
+        <source src='https://res.cloudinary.com/cynthia-teeters/video/upload/f_auto,q_auto/canvas/videos/hap-package-json' type='video/mp4' />
+        <track kind='captions' src='/captions/hap-package-json.vtt' srclang='en' label='English' default />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </section>
+
+  <section class='content-section'>
+    <div class='topic-section'>
       <h2>Before You Start</h2>
 
       <p>You need a terminal open and Node installed. Typing <code>node --version</code> should print a number rather than an error. On Windows, use Git Bash rather than PowerShell or Command Prompt, because the quoting rules differ and the difference shows up later in a way that is genuinely hard to spot.</p>

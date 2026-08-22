@@ -1,0 +1,428 @@
+WEBVTT
+
+1
+00:00:05.000 --> 00:00:06.280
+Hi, I'm Hap.
+
+2
+00:00:06.280 --> 00:00:08.840
+Today we're looking at package.json,
+
+3
+00:00:08.840 --> 00:00:12.840
+a file npm needs before it can
+do anything for your project.
+
+4
+00:00:13.240 --> 00:00:15.160
+Everything I'm about to run happens
+
+5
+00:00:15.160 --> 00:00:18.600
+in the terminal inside VS Code,
+so let me open that first.
+
+6
+00:00:20.645 --> 00:00:22.325
+That's the terminal every set
+
+7
+00:00:22.325 --> 00:00:25.605
+of instructions means when it
+tells you to run a command.
+
+8
+00:00:26.085 --> 00:00:30.725
+The one I'm running now is npm
+init, with a -y on the end,
+
+9
+00:00:30.725 --> 00:00:33.285
+and it makes the file this
+whole video is about.
+
+10
+00:00:35.435 --> 00:00:36.635
+There it is,
+
+11
+00:00:36.955 --> 00:00:39.755
+package.json, and it's
+an ordinary text file.
+
+12
+00:00:40.395 --> 00:00:43.195
+You can open it, read
+it, and type into it,
+
+13
+00:00:43.195 --> 00:00:45.595
+the same as any other
+file in your project.
+
+14
+00:00:46.155 --> 00:00:47.195
+Where
+
+15
+00:00:47.195 --> 00:00:49.995
+package.json sits defines
+a project's root folder,
+
+16
+00:00:50.150 --> 00:00:52.470
+and where this root is needs to be right.
+
+17
+00:00:52.790 --> 00:00:54.310
+Web developers need the root
+
+18
+00:00:54.310 --> 00:00:57.190
+to be in the repository's
+home, the same place where
+
+19
+00:00:58.150 --> 00:00:59.350
+README.md is.
+
+20
+00:01:00.630 --> 00:01:02.870
+Now look at what npm actually wrote.
+
+21
+00:01:03.475 --> 00:01:06.675
+There's a name, taken from
+the folder you are in.
+
+22
+00:01:06.995 --> 00:01:10.275
+A version, starting at 1.0.0.
+
+23
+00:01:10.515 --> 00:01:14.035
+A description, which npm went
+and read out of your README.
+
+24
+00:01:14.275 --> 00:01:18.835
+An author, filled in if you've told npm
+who you are, and empty if you haven't.
+
+25
+00:01:19.340 --> 00:01:23.580
+And a few more: main,
+keywords, type, and scripts.
+
+26
+00:01:23.820 --> 00:01:28.460
+The -y is what skipped the questions
+npm would otherwise have asked,
+
+27
+00:01:28.460 --> 00:01:30.620
+and it answered every one
+of them with a default.
+
+28
+00:01:32.855 --> 00:01:35.895
+The install command adds
+something to that file,
+
+29
+00:01:35.975 --> 00:01:38.375
+and it does it without you typing into it.
+
+30
+00:01:38.615 --> 00:01:44.615
+I'm installing a package called
+cowsay, with --save-dev on the end.
+
+31
+00:01:45.420 --> 00:01:50.780
+When you run npm install with a package
+name, npm goes to the registry,
+
+32
+00:01:50.860 --> 00:01:55.660
+which is an online library of packages,
+and fetches the one you asked for.
+
+33
+00:01:56.140 --> 00:01:59.260
+Installing is not the same as
+downloading a single file.
+
+34
+00:02:00.015 --> 00:02:04.655
+Instead it brings the package and
+everything that package itself depends on.
+
+35
+00:02:06.415 --> 00:02:07.615
+Watch the bottom of
+
+36
+00:02:08.015 --> 00:02:09.135
+package.json.
+
+37
+00:02:09.135 --> 00:02:11.615
+There's a new key called devDependencies,
+
+38
+00:02:12.010 --> 00:02:15.130
+holding the name of what I
+installed and a version.
+
+39
+00:02:15.530 --> 00:02:19.530
+That dev part comes from the special
+flag I used when I installed:
+
+40
+00:02:19.770 --> 00:02:23.050
+it marks cowsay as something
+you use while you work,
+
+41
+00:02:23.130 --> 00:02:26.250
+rather than something the finished
+site needs in order to run.
+
+42
+00:02:27.265 --> 00:02:29.665
+npm edited your file for you.
+
+43
+00:02:29.985 --> 00:02:34.065
+Two other things appeared beside
+it: a folder called node_modules,
+
+44
+00:02:34.065 --> 00:02:36.945
+holding the actual code, and a file called
+
+45
+00:02:38.385 --> 00:02:41.265
+package-lock.json, which records
+the exact versions that landed.
+
+46
+00:02:41.852 --> 00:02:45.052
+That one is generated, and
+you never edit it by hand.
+
+47
+00:02:47.210 --> 00:02:49.850
+Everything you've been looking at is JSON,
+
+48
+00:02:50.010 --> 00:02:52.570
+and JSON is stricter
+than you might expect.
+
+49
+00:02:52.970 --> 00:02:58.410
+Every key and every text value is wrapped
+in double quotes, never single ones.
+
+50
+00:02:58.730 --> 00:03:01.210
+A colon separates a name from its value.
+
+51
+00:03:01.945 --> 00:03:06.025
+In a JSON list a comma separates
+one pair from the next,
+
+52
+00:03:06.185 --> 00:03:08.665
+and there is no comma after the last one.
+
+53
+00:03:09.225 --> 00:03:11.705
+That's the whole set of
+rules you need here,
+
+54
+00:03:11.945 --> 00:03:17.890
+and getting one of them wrong is
+the difference between a file npm
+can read and a file it refuses.
+
+55
+00:03:19.730 --> 00:03:22.690
+One thing that trips people
+up in the other direction:
+
+56
+00:03:23.250 --> 00:03:25.730
+the order of the keys means nothing.
+
+57
+00:03:26.050 --> 00:03:29.490
+npm doesn't care whether
+name comes before version.
+
+58
+00:03:29.810 --> 00:03:31.810
+What it cares about is the commas.
+
+59
+00:03:33.912 --> 00:03:35.272
+Look at scripts.
+
+60
+00:03:35.592 --> 00:03:38.792
+It is a JSON list
+enclosed in curly braces,
+
+61
+00:03:38.872 --> 00:03:43.592
+and it already has something in it: a
+test entry that npm wrote as an example.
+
+62
+00:03:43.912 --> 00:03:46.952
+Having a line there matters
+because when you're told to add
+
+63
+00:03:46.952 --> 00:03:51.197
+a script to package.json, you're
+adding a line to that list.
+
+64
+00:03:51.357 --> 00:03:54.477
+In JSON lists you must
+make sure each entry
+
+65
+00:03:54.477 --> 00:03:57.197
+ends with a comma except for the last one.
+
+66
+00:03:59.037 --> 00:04:00.237
+Watch me do it.
+
+67
+00:04:00.237 --> 00:04:04.622
+I'm calling mine say, and the
+command it runs is cowsay,
+
+68
+00:04:04.782 --> 00:04:06.942
+followed by the phrase I want back.
+
+69
+00:04:07.502 --> 00:04:11.422
+The name on the left is mine, and
+I could have called it anything.
+
+70
+00:04:11.822 --> 00:04:14.782
+The part on the right is the
+command that actually runs.
+
+71
+00:04:16.933 --> 00:04:19.973
+There's one step between
+typing that and it working,
+
+72
+00:04:20.213 --> 00:04:23.733
+and it catches people who are
+otherwise doing everything right.
+
+73
+00:04:25.573 --> 00:04:26.773
+npm reads
+
+74
+00:04:27.253 --> 00:04:28.453
+package.json off the disk.
+
+75
+00:04:29.318 --> 00:04:32.278
+If your editor still
+shows an unsaved file,
+
+76
+00:04:32.438 --> 00:04:35.958
+the script you just typed exists
+on your screen and nowhere else.
+
+77
+00:04:36.358 --> 00:04:40.678
+Be sure to save it first before testing
+to see if the new script runs correctly.
+
+78
+00:04:42.919 --> 00:04:44.279
+Now the payoff.
+
+79
+00:04:44.599 --> 00:04:45.639
+You run
+
+80
+00:04:45.639 --> 00:04:48.759
+npm run, and then the name
+you gave your script.
+
+81
+00:04:49.159 --> 00:04:51.559
+The first two lines you'll
+see both start with
+
+82
+00:04:52.119 --> 00:04:53.399
+npm notice run.
+
+83
+00:04:53.559 --> 00:04:56.279
+There is one naming the
+package and the script,
+
+84
+00:04:56.354 --> 00:04:59.074
+and one naming the command
+it's about to run.
+
+85
+00:04:59.314 --> 00:05:03.154
+That isn't an error and it isn't
+your output printed twice.
+
+86
+00:05:03.394 --> 00:05:06.354
+It's npm telling you
+exactly what it found in
+
+87
+00:05:07.074 --> 00:05:08.674
+package.json and what it's running.
+
+88
+00:05:09.462 --> 00:05:12.982
+Everything after those two lines
+is your command doing its work.
+
+89
+00:05:13.945 --> 00:05:15.145
+So that's
+
+90
+00:05:15.145 --> 00:05:15.945
+package.json.
+
+91
+00:05:15.945 --> 00:05:20.745
+npm made it, npm added to it, you
+edited it, and npm read it back.
+
+92
+00:05:20.905 --> 00:05:23.785
+Every project you build from
+here starts with this file.
