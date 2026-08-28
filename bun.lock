@@ -5,8 +5,10 @@
     "": {
       "name": "hap-learning-lab",
       "dependencies": {
-        "@astrojs/check": "^0.9.10",
         "astro": "^5.16.15",
+      },
+      "devDependencies": {
+        "@astrojs/check": "^0.9.10",
         "typescript": "^7.0.2",
       },
     },
