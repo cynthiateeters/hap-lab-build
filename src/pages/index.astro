@@ -8,45 +8,34 @@
 import MainLayout from '../layouts/MainLayout.astro';
 
 const introContent = `
-    <p><strong>Every modern website is built.</strong> Somewhere between the files a developer edits and the page that arrives in a browser, a program ran. Running that program takes one command. This lab is about what the program is and why it exists.</p>
+    <p><strong>Every modern website is built.</strong> Somewhere between the files a developer edits and the page that arrives in a browser, a program ran. A single command runs that program. This lab is about what the program is and why it exists.</p>
     <p class="mt-1">Nine pages covering what Node is, what npm is and is not, what <code>node_modules</code> really contains, why opening an HTML file directly stops working eventually, what a port number is, and where static site generators fit.</p>
     <p class="mt-1">No project to hand in here. This is the reading that makes the projects make sense. 🟠</p>
 `;
 ---
 
-<MainLayout
-  title="HAP's Learning Lab: How Sites Get Built"
-  description="What Node, npm, package.json, and a development server actually are. A reading lab on the tools behind every modern website, from Prof. Cynthia Teeters."
-  headerTitle="How Sites Get Built"
-  headerSubtitle="HAP's Learning Lab"
-  avatarImage="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/canvas/hap/hap-has-tools"
-  avatarAlt="HAP holding a wooden toolbox filled with hammer, pliers, and other tools"
-  introContent={introContent}
-  showNavigation={false}
-  footerReminder="Every tool in here is a program that somebody sat down and wrote."
->
-
-  <section class="content-section">
-    <div class="topic-section">
+<MainLayout title="HAP's Learning Lab: How Sites Get Built" description='What Node, npm, package.json, and a development server actually are. A reading lab on the tools behind every modern website, from Prof. Cynthia Teeters.' headerTitle='How Sites Get Built' headerSubtitle="HAP's Learning Lab" avatarImage='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/canvas/hap/hap-has-tools' avatarAlt='HAP holding a wooden toolbox filled with hammer, pliers, and other tools' introContent={introContent} showNavigation={false} footerReminder='Every tool in here is a program that somebody sat down and wrote.'>
+  <section class='content-section'>
+    <div class='topic-section'>
       <h2>What This Lab Covers</h2>
 
-      <div class="analysis-grid analysis-grid--two-col">
-        <div class="analysis-point">
+      <div class='analysis-grid analysis-grid--two-col'>
+        <div class='analysis-point'>
           <h3>What the commands are doing</h3>
           <p>Plenty of instructions will tell you to run <code>npm init</code> and then <code>npm install</code>. This lab is about what those two commands did, what they left on your disk, and why anyone designed it that way.</p>
         </div>
 
-        <div class="analysis-point">
+        <div class='analysis-point'>
           <h3>Not tied to an assignment</h3>
           <p>Nothing here belongs to a particular project. The commands are the real ones you will meet, so they should look familiar when they show up in one.</p>
         </div>
 
-        <div class="analysis-point">
+        <div class='analysis-point'>
           <h3>Four kinds of page</h3>
           <p>Some pages explain, one walks through a hands-on exercise, and two are lookup tables. Each page says at the top which kind it is, so you know what you are getting into.</p>
         </div>
 
-        <div class="analysis-point">
+        <div class='analysis-point'>
           <h3>Where it stops</h3>
           <p>This lab covers four things: a runtime, a package manager, a manifest, and a local server. Static site generators get an introduction here and a lab of their own.</p>
         </div>
@@ -54,93 +43,90 @@ const introContent = `
     </div>
   </section>
 
-  <section class="content-container">
-    <section class="content-section">
-      <h2 class="section-heading-centered">The Pages, In Order</h2>
+  <section class='content-container'>
+    <section class='content-section'>
+      <h2 class='section-heading-centered'>The Pages, In Order</h2>
 
-      <nav aria-label="Lab pages">
-        <div class="overview-grid">
-
-          <a href="/what-built-means/" class="insight-card page-card-link">
-            <p class="index-card-type"><span class="index-card-order">Page 1</span> &middot; Explanation</p>
-            <h3>What people mean when they say a site is built</h3>
-            <p>The three ways files reach a browser, what a build step is made of, and the vocabulary that comes with it.</p>
-            <p class="page-cta">&rarr; Read this page</p>
+      <nav aria-label='Lab pages'>
+        <div class='overview-grid'>
+          <a href='/what-built-means/' class='insight-card page-card-link'>
+            <p class='index-card-type'><span class='index-card-order'>Page 1</span> &middot; Explanation</p>
+            <h3>How a site is built</h3>
+            <p>This page covers the three ways files reach a browser, what a build step contains, and the vocabulary that goes with it.</p>
+            <p class='page-cta'>&rarr; Read this page</p>
           </a>
 
-          <a href="/what-node-is/" class="insight-card page-card-link">
-            <p class="index-card-type"><span class="index-card-order">Page 2</span> &middot; Explanation</p>
+          <a href='/what-node-is/' class='insight-card page-card-link'>
+            <p class='index-card-type'><span class='index-card-order'>Page 2</span> &middot; Explanation</p>
             <h3>What Node is</h3>
-            <p>JavaScript always needed a host. Node is a host that hands it a computer instead of a web page.</p>
-            <p class="page-cta">&rarr; Read this page</p>
+            <p>JavaScript cannot run on its own; it requires a runtime environment to work. Node.js is a runtime that gives JavaScript direct access to the computer's operating system and files.</p>
+            <p class='page-cta'>&rarr; Read this page</p>
           </a>
 
-          <a href="/npm-is-not-node/" class="insight-card page-card-link">
-            <p class="index-card-type"><span class="index-card-order">Page 3</span> &middot; Explanation</p>
-            <h3>npm is not Node</h3>
-            <p>A command, a registry, and a package format sharing one name. What <code>node_modules</code> holds and why the lock file gets committed.</p>
-            <p class="page-cta">&rarr; Read this page</p>
+          <a href='/what-is-npm/' class='insight-card page-card-link'>
+            <p class='index-card-type'><span class='index-card-order'>Page 3</span> &middot; Explanation</p>
+            <h3>What npm is</h3>
+            <p>A command, a registry, and a package format share one name. This page covers what <code>node_modules</code> holds and why we commit the lock file.</p>
+            <p class='page-cta'>&rarr; Read this page</p>
           </a>
 
-          <a href="/make-a-package-json/" class="insight-card page-card-link">
-            <p class="index-card-type"><span class="index-card-order">Page 4</span> &middot; Tutorial</p>
-            <h3>Make a package.json and read it out loud</h3>
-            <p>Twenty minutes in a throwaway folder, running the commands and naming every file that appears.</p>
-            <p class="page-cta">&rarr; Work through this page</p>
+          <a href='/make-a-package-json/' class='insight-card page-card-link'>
+            <p class='index-card-type'><span class='index-card-order'>Page 4</span> &middot; Tutorial</p>
+            <h3>What is package.json</h3>
+            <p>This tutorial takes twenty minutes in a throwaway folder to run the commands and name every file that appears.</p>
+            <p class='page-cta'>&rarr; Work through this page</p>
           </a>
 
-          <a href="/reference/package-json/" class="insight-card page-card-link">
-            <p class="index-card-type"><span class="index-card-order">Page 5</span> &middot; Reference</p>
+          <a href='/reference/package-json/' class='insight-card page-card-link'>
+            <p class='index-card-type'><span class='index-card-order'>Page 5</span> &middot; Reference</p>
             <h3>package.json fields</h3>
-            <p>Every field, what it controls, and which ones can be left alone. Version range syntax included.</p>
-            <p class="page-cta">&rarr; Look things up</p>
+            <p>This reference lists every field in package.json, what it controls, and which ones you can leave alone. Version range syntax is included.</p>
+            <p class='page-cta'>&rarr; Look things up</p>
           </a>
 
-          <a href="/why-a-dev-server/" class="insight-card page-card-link">
-            <p class="index-card-type"><span class="index-card-order">Page 6</span> &middot; Explanation</p>
+          <a href='/why-a-dev-server/' class='insight-card page-card-link'>
+            <p class='index-card-type'><span class='index-card-order'>Page 6</span> &middot; Explanation</p>
             <h3>Why a dev server, and what a port is</h3>
-            <p>Why opening an HTML file directly quietly breaks things, what an origin is, and where 3000 came from.</p>
-            <p class="page-cta">&rarr; Read this page</p>
+            <p>This page explains why opening an HTML file directly breaks things, what an origin is, and where port number 3000 came from.</p>
+            <p class='page-cta'>&rarr; Read this page</p>
           </a>
 
-          <a href="/reference/commands/" class="insight-card page-card-link">
-            <p class="index-card-type"><span class="index-card-order">Page 7</span> &middot; Reference</p>
+          <a href='/reference/commands/' class='insight-card page-card-link'>
+            <p class='index-card-type'><span class='index-card-order'>Page 7</span> &middot; Reference</p>
             <h3>Command set</h3>
-            <p>Terminal navigation, paths, shell operators, npm, node, and the errors worth recognizing on sight.</p>
-            <p class="page-cta">&rarr; Look things up</p>
+            <p>This reference lists terminal navigation, paths, shell operators, npm, node, and the errors worth recognizing on sight.</p>
+            <p class='page-cta'>&rarr; Look things up</p>
           </a>
 
-          <a href="/what-comes-next/" class="insight-card page-card-link">
-            <p class="index-card-type"><span class="index-card-order">Page 8</span> &middot; Explanation</p>
+          <a href='/what-comes-next/' class='insight-card page-card-link'>
+            <p class='index-card-type'><span class='index-card-order'>Page 8</span> &middot; Explanation</p>
             <h3>Where this goes next</h3>
-            <p>Static site generators, what they are made of, and how they use the pieces from the earlier pages.</p>
-            <p class="page-cta">&rarr; Read this page</p>
+            <p>This page introduces static site generators, explaining what they are made of and how they use the pieces from the earlier pages.</p>
+            <p class='page-cta'>&rarr; Read this page</p>
           </a>
 
-          <a href="/working-with-ai/" class="insight-card page-card-link">
-            <p class="index-card-type"><span class="index-card-order">Page 9</span> &middot; Explanation</p>
+          <a href='/working-with-ai/' class='insight-card page-card-link'>
+            <p class='index-card-type'><span class='index-card-order'>Page 9</span> &middot; Explanation</p>
             <h3>Working with an AI assistant on this</h3>
-            <p>Where it helps, the failures worth recognizing, and the one that is a security problem rather than an inconvenience.</p>
-            <p class="page-cta">&rarr; Read this page</p>
+            <p>This page covers where AI helps, the failures to recognize on sight, and the one that is a security problem rather than a minor inconvenience.</p>
+            <p class='page-cta'>&rarr; Read this page</p>
           </a>
-
         </div>
       </nav>
     </section>
   </section>
 
-  <section class="content-container">
-    <section class="content-section">
-      <div class="topic-section">
+  <section class='content-container'>
+    <section class='content-section'>
+      <div class='topic-section'>
         <h2>How To Use This</h2>
 
-        <p>Pages one through four are a sequence and reward being read in order. After that, the reference pages are there to return to, and the last three stand alone.</p>
+        <p>Pages one through four form a sequence and work best when read in order. After that, the reference pages are there to return to, and the last three stand alone.</p>
 
-        <p class="mt-1">If you are here because something specific broke, the <a href="/reference/commands/">command set</a> ends with a list of error messages and what each one means.</p>
+        <p class='mt-1'>If you are here because something specific broke, the <a href='/reference/commands/'>command set</a> ends with a list of error messages and what each one means.</p>
       </div>
     </section>
   </section>
-
 </MainLayout>
 
 <!--

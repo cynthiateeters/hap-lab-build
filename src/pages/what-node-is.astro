@@ -9,7 +9,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 import CodeBlock from '../components/CodeBlock.astro';
 
 const introContent = `
-    <p>Node is a program that runs JavaScript outside a browser. Installing it is step one of nearly every web project, and almost nobody explains what got installed, so the rest of this page works out what that one sentence implies.</p>
+    <p>Node is a program that runs JavaScript outside a browser. This installation is step one of nearly every web project, and almost nobody explains what got installed, so the rest of this page works out what that one sentence implies.</p>
 `;
 
 const versionCheck = `node --version
@@ -20,7 +20,9 @@ const nodeScript = `/* hello.js */
 console.log('Running in:', process.version);
 console.log('This folder:', process.cwd());`;
 
-const runScript = `node hello.js`;
+const runScript = `node hello.js          
+Running in: v24.19.0
+This folder: /Users/jake/Projects/hello`;
 
 const noDom = `/* This works in a browser and crashes in Node */
 document.querySelector('h1');
@@ -29,30 +31,20 @@ document.querySelector('h1');
 import { readFileSync } from 'node:fs';`;
 ---
 
-<PageLayout
-  slug="/what-node-is/"
-  title="What Node is"
-  subtitle="A JavaScript engine taken out of the browser and given a computer"
-  description="Node.js is a program that runs JavaScript outside a web browser. What that means, what Node has that browsers do not, what it lacks, and why the entire web toolchain sits on top of it."
-  avatarImage="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/canvas/hap/hap-holding-js-coin"
-  avatarAlt="HAP proudly holding a large glowing JavaScript logo coin"
-  introContent={introContent}
-  footerReminder="Node is JavaScript with a computer attached instead of a web page."
->
+<PageLayout slug='/what-node-is/' title='What Node is' subtitle='A JavaScript engine taken out of the browser and given a computer' description='Node.js is a program that runs JavaScript outside a web browser. What that means, what Node has that browsers do not, what it lacks, and why the entire web toolchain sits on top of it.' avatarImage='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/canvas/hap/hap-holding-js-coin' avatarAlt='HAP proudly holding a large glowing JavaScript logo coin' introContent={introContent} footerReminder='Node is JavaScript with a computer attached instead of a web page.'>
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>JavaScript Needs A Runtime Environment</h2>
 
-  <section class="content-section">
-    <div class="topic-section">
-      <h2>JavaScript Always Needed A Host</h2>
+      <p>JavaScript by itself does very little. The language gives you numbers, strings, arrays, objects, functions, and loops. It has no way to draw anything, read a file, or talk to a network. Every useful thing JavaScript does comes from the program providing JavaScript with what we call a runtime environment.</p>
 
-      <p>JavaScript by itself does very little. The language gives you numbers, strings, arrays, objects, functions, and loops. It has no way to draw anything, read a file, or talk to a network. Every useful thing JavaScript does comes from the program running it.</p>
+      <p class='mt-1'>In Google Chrome, the browser acts as the JavaScript runtime environment. At its core, Chrome runs JavaScript using an engine called V8, which compiles and executes the base language. However, V8 alone cannot interact with the outside world. To turn this engine into a complete runtime environment, Chrome injects its own Web APIs directly into the execution context.</p>
 
-      <p class="mt-1">In a browser, that program is the browser. Chrome runs JavaScript with an engine called V8, and Chrome hands the language a set of extra objects to work with: <code>document</code> for the page, <code>window</code> for the tab, <code>fetch</code> for the network, <code>localStorage</code> for saved data. None of those are part of JavaScript. They are the browser lending the language its own abilities.</p>
+      <p class='mt-1'>In 2009 Ryan Dahl took V8, the same engine out of Chrome, and wrapped it in a different program. That program handed JavaScript a different set of abilities: read and write files, open network connections, start other programs, read the arguments someone typed on a command line. He called it Node.js.</p>
 
-      <p class="mt-1">In 2009 Ryan Dahl took V8, the same engine out of Chrome, and wrapped it in a different program. That program handed JavaScript a different set of abilities: read and write files, open network connections, start other programs, read the arguments someone typed on a command line. He called it Node.js.</p>
-
-      <div class="hap-note-callout">
-        <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/canvas/hap/hap-brain-explodes" alt="HAP with a surprised expression and his head exploding with stars and lightning" width="150" height="150" class="hap-note-image" decoding="async" loading="lazy" />
-        <div class="hap-note-content">
+      <div class='hap-note-callout'>
+        <img src='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/canvas/hap/hap-brain-explodes' alt='HAP with a surprised expression and his head exploding with stars and lightning' width='150' height='150' class='hap-note-image' decoding='async' loading='lazy' />
+        <div class='hap-note-content'>
           <h3>🟠 The part worth holding onto</h3>
           <p>The same JavaScript you write for a web page is the language Node runs, with identical syntax. What changes is what the language is allowed to touch: a web page in the browser, and your computer in Node.</p>
         </div>
@@ -60,77 +52,73 @@ import { readFileSync } from 'node:fs';`;
     </div>
   </section>
 
-  <section class="content-section">
-    <div class="topic-section">
+  <section class='content-section'>
+    <div class='topic-section'>
       <h2>What Node Has That A Browser Does Not</h2>
 
-      <div class="analysis-grid analysis-grid--two-col">
-        <div class="analysis-point">
+      <div class='analysis-grid analysis-grid--two-col'>
+        <div class='analysis-point'>
           <h3>The file system</h3>
           <p>Node can read, write, rename, and delete files anywhere the user account is allowed to. A browser deliberately cannot, because a web page you have never visited before is not something you want reading your documents.</p>
         </div>
 
-        <div class="analysis-point">
+        <div class='analysis-point'>
           <h3>Processes</h3>
           <p>Node can start other programs and read what they printed. Chaining several tools into one command depends entirely on this.</p>
         </div>
 
-        <div class="analysis-point">
+        <div class='analysis-point'>
           <h3>Servers, not only clients</h3>
           <p>A browser opens connections to servers. Node can be the thing listening. This is how a local development server exists at all.</p>
         </div>
 
-        <div class="analysis-point">
+        <div class='analysis-point'>
           <h3>The command line</h3>
           <p>Node scripts receive arguments and environment variables, and hand back an exit code. That is what lets a JavaScript file work as a command line tool.</p>
         </div>
       </div>
 
-      <p class="mt-1">The trade runs both directions. Node has no <code>document</code> and no <code>window</code>, because there is no page for them to describe. Code written for one place does not automatically run in the other.</p>
+      <p class='mt-1'>While both environments execute the same core JavaScript, the browser runtime focuses on user interface and security, whereas the Node.js runtime prioritizes system access and server utility.</p>
 
-      <div class="prompt-box mt-1">
-        <div class="prompt-label">Each of these works in exactly one place:</div>
-        <CodeBlock code={noDom} lang="javascript" />
+      <div class='prompt-box mt-1'>
+        <div class='prompt-label'>Each of these works in exactly one place:</div>
+        <CodeBlock code={noDom} lang='javascript' />
       </div>
-
-      <p class="mt-1">When a tutorial's code throws <code>ReferenceError: document is not defined</code>, this is almost always the reason. Browser code got run by Node.</p>
     </div>
   </section>
 
-  <section class="content-section">
-    <div class="topic-section">
+  <section class='content-section'>
+    <div class='topic-section'>
       <h2>Seeing It For Yourself</h2>
 
-      <p>Node installs as a command. Open a terminal and ask it what version it is.</p>
+      <p>Node and npm install as commands that can run inside a terminal. You can open a terminal and ask it what version it is. This not only shows the current versions but it also checks that node and npm are available for your project.</p>
 
-      <div class="prompt-box mt-1">
-        <div class="prompt-label">Confirming Node is installed:</div>
-        <CodeBlock code={versionCheck} lang="bash" />
+      <div class='prompt-box mt-1'>
+        <div class='prompt-label'>Confirming Node is installed:</div>
+        <CodeBlock code={versionCheck} lang='bash' />
       </div>
 
-      <p class="mt-1">Two version numbers come back, which is already worth noticing: installing Node installed a second program called npm. That one gets its own page.</p>
+      <p class='mt-1'>Having Node installed allows you to run JavaScript files as programs. For example, here is a simple JavaScript file called <code>hello.js</code> that is written for Node:</p>
 
-      <p class="mt-1">A JavaScript file is a program now. Save this as <code>hello.js</code>:</p>
-
-      <div class="prompt-box mt-1">
-        <div class="prompt-label">hello.js</div>
-        <CodeBlock code={nodeScript} lang="javascript" />
+      <div class='prompt-box mt-1'>
+        <div class='prompt-label'>hello.js</div>
+        <CodeBlock code={nodeScript} lang='javascript' />
       </div>
 
-      <div class="prompt-box mt-1">
-        <div class="prompt-label">Running it:</div>
-        <CodeBlock code={runScript} lang="bash" />
+      <div class='prompt-box mt-1'>
+        <div class='prompt-label'>To run the script:</div>
+        <CodeBlock code={runScript} lang='bash' />
       </div>
 
-      <p class="mt-1">There is no HTML file and no browser involved, and the output lands in the terminal. <code>process</code> is one of the objects Node hands to JavaScript, and it describes the running program itself: which version of Node, which folder it started in, what the user typed to launch it.</p>
+      <p class='mt-1'>There is no HTML file and no browser involved, and the output lands in the terminal. <code>process</code> is one of the objects Node hands to JavaScript, and it describes the running program itself: which version of Node, which folder it started in, what the user typed to launch it.</p>
     </div>
   </section>
 
-  <section class="content-section">
-    <div class="topic-section">
+  <section class='content-section'>
+    <div class='topic-section'>
       <h2>Things Node Is Not</h2>
 
-      <div class="hap-info-grid">
+      <div class='hap-info-grid'>
         <h4>Not a framework</h4>
         <p>Node has no opinion about how to structure an app. It runs whatever JavaScript it is given.</p>
 
@@ -152,16 +140,15 @@ import { readFileSync } from 'node:fs';`;
     </div>
   </section>
 
-  <section class="content-section">
-    <div class="topic-section">
+  <section class='content-section'>
+    <div class='topic-section'>
       <h2>Why This Is The Foundation Of The Toolchain</h2>
 
       <p>Once JavaScript could read files and start programs, developers could write their tools in the same language they were already writing their websites in. That is why the web toolchain ended up made of JavaScript. Not for any technical advantage, but because every front-end developer already knew the language, and Node removed the reason they could not use it for tools.</p>
 
-      <p class="mt-1">Every tool in the rest of this lab is a JavaScript program that Node runs. The next page covers the program that fetches those tools and keeps track of them.</p>
+      <p class='mt-1'>Every tool in the rest of this lab is a JavaScript program that Node runs. The next page covers the program that fetches those tools and keeps track of them.</p>
     </div>
   </section>
-
 </PageLayout>
 
 <!--

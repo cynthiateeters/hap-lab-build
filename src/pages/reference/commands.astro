@@ -9,7 +9,7 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import CodeBlock from '../../components/CodeBlock.astro';
 
 const introContent = `
-    <p>The terminal and npm commands that come up while building a static site, with what each one does and what its output means. Written for looking things up mid-task.</p>
+    <p>This reference page covers terminal and npm commands used while building a static site, explaining what each command does and what its output means.</p>
 `;
 
 const navExamples = `pwd                 print the folder the terminal is standing in
@@ -87,7 +87,7 @@ Ctrl + L        clear the screen`;
 
       <div class="hap-info-grid mt-1">
         <h4>Tab completion</h4>
-        <p>Type the first few characters of a folder name and press Tab. The shell finishes it. This prevents typos in paths, which are the most common reason a command cannot find something.</p>
+        <p>You can type the first few characters of a folder name and press Tab to let the shell finish it. This prevents typos in paths, which are the most common reason a command cannot find something.</p>
 
         <h4>Spaces in names</h4>
         <p>A folder called <code>my project</code> has to be quoted or the space is read as the end of the argument. Tab completion handles the escaping for you.</p>
@@ -125,7 +125,7 @@ Ctrl + L        clear the screen`;
 
       <p class="mt-1">These are shell features rather than npm features, which is why they work inside an npm script. Every command finishes with an <strong>exit code</strong>, a number where zero means success. That number is what <code>&amp;&amp;</code> and <code>||</code> are testing.</p>
 
-      <p class="mt-1">A single <code>&gt;</code> replaces the file's contents every time it runs. Two of them append instead. Getting these backwards silently destroys the file's previous contents, and there is no undo.</p>
+      <p class="mt-1">A single <code>&gt;</code> replaces the file's contents every time it runs. Two of them append instead. If you get these backward, the command silently destroys the file's previous contents, and there is no undo.</p>
     </div>
   </section>
 
@@ -140,22 +140,22 @@ Ctrl + L        clear the screen`;
 
       <div class="hap-info-grid mt-1">
         <h4>npm install with no package name</h4>
-        <p>Reads <code>package.json</code> and <code>package-lock.json</code> and downloads everything listed. This is the first command to run after cloning a project.</p>
-
+        <p>This command reads <code>package.json</code> and <code>package-lock.json</code> to download everything listed. It is the first command to run after cloning a project.</p>
+ 
         <h4>npm ci</h4>
         <p>Like <code>npm install</code>, but it installs strictly from the lock file and deletes <code>node_modules</code> first. Deploy servers use it because it is reproducible.</p>
-
+ 
         <h4>npx</h4>
-        <p>Runs a package without adding it to the project. Handy for one-off generators. It downloads and executes code, so the name matters as much as it does for an install.</p>
-
+        <p>This utility runs a package without adding it to the project, which is handy for one-off generators. It downloads and executes code, so the name matters as much as it does for an install.</p>
+ 
         <h4>Global installs</h4>
-        <p><code>-g</code> installs a tool for your whole user account rather than for a project. Avoid it for anything a project depends on, because it makes the project unbuildable for anyone who does not have your machine.</p>
-
+        <p><code>-g</code> installs a tool for your whole user account rather than for a project. Avoiding global installs for project dependencies is best, because they make the project unbuildable for anyone else.</p>
+ 
         <h4>Reading the output</h4>
         <p>A line like <code>added 43 packages in 2s</code> is the success message. A vulnerability count printed afterwards is a report about the packages, not a failure of the command.</p>
-
+ 
         <h4>When something is wrong</h4>
-        <p>Delete <code>node_modules</code>, then run <code>npm install</code> again. This resolves a large share of problems and costs nothing, because the folder is fully rebuildable.</p>
+        <p>You can delete <code>node_modules</code> and run <code>npm install</code> again. This resolves a large share of problems and costs nothing, because the folder is fully rebuildable.</p>
       </div>
     </div>
   </section>
@@ -196,27 +196,27 @@ Ctrl + L        clear the screen`;
 
         <div class="analysis-point">
           <h3>Missing script: "name"</h3>
-          <p>No script by that name in <code>package.json</code>. Usually a typo, or the file has unsaved changes in the editor.</p>
+          <p>This means there is no script by that name in <code>package.json</code>. Usually a typo, or the file has unsaved changes in the editor.</p>
         </div>
-
+ 
         <div class="analysis-point">
           <h3>ENOENT: no such file or directory</h3>
-          <p>A path pointed at something that is not there. Check <code>pwd</code> first, then the spelling.</p>
+          <p>A path pointed at something missing. You can check <code>pwd</code> first, and then the spelling.</p>
         </div>
-
+ 
         <div class="analysis-point">
           <h3>EADDRINUSE</h3>
-          <p>The port is already taken, nearly always by a server still running in another terminal tab. Stop that one or use a different port.</p>
+          <p>The port is already taken, nearly always by a server still running in another terminal tab. You must stop that server or use a different port.</p>
         </div>
-
+ 
         <div class="analysis-point">
           <h3>EACCES</h3>
-          <p>A permissions refusal. On a global install this is a sign the install should have been local to the project instead.</p>
+          <p>A permissions refusal. On a global install, this indicates that the package belongs in the project instead.</p>
         </div>
-
+ 
         <div class="analysis-point">
           <h3>ERR_MODULE_NOT_FOUND</h3>
-          <p>An <code>import</code> pointed at something Node cannot find. Check the path and check whether <code>"type": "module"</code> is set in <code>package.json</code>.</p>
+          <p>An <code>import</code> pointed at something Node cannot find. You can verify the path and ensure <code>"type": "module"</code> is set in <code>package.json</code>.</p>
         </div>
       </div>
     </div>

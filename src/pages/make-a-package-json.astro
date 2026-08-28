@@ -9,12 +9,14 @@ import PageLayout from '../layouts/PageLayout.astro';
 import CodeBlock from '../components/CodeBlock.astro';
 
 const introContent = `
-    <p>Twenty minutes in a throwaway folder, running the commands and reading what changed after each one. Nothing here gets kept. The goal is to watch the files appear and be able to say out loud what each one is.</p>
+    <p>You will spend twenty minutes in a throwaway folder to run the commands and read what changed after each one. Nothing here is saved. The goal is to watch the files appear and learn to identify each one on sight.</p>
 `;
 
-const step1 = `mkdir npm-practice
+const step1 = `cd ~
+pwd # see where home is
+mkdir npm-practice
 cd npm-practice
-pwd`;
+pwd # make sure you are in the practice folder`;
 
 const step2 = `npm init -y`;
 
@@ -37,11 +39,9 @@ const afterInstall = `npm-practice/
 ├── package.json           ← changed
 └── package-lock.json      ← new`;
 
-const step4 = `{
-  "scripts": {
+const step4 = `"scripts": {
     "serve": "http-server -p 3000"
-  }
-}`;
+  },`;
 
 const step5 = `npm run serve`;
 
@@ -52,26 +52,25 @@ Available on:
   http://192.168.1.14:3000
 Hit CTRL-C to stop the server`;
 
-const step6 = `{
-  "scripts": {
+const step6 = `"scripts": {
     "list": "ls > files.txt",
     "serve": "http-server -p 3000",
     "start": "npm run list && npm run serve"
-  }
-}`;
+  },`;
 
 const step7 = `npm run start`;
 
-const cleanup = `cd ..
-rm -rf npm-practice`;
+const cleanup = `cd ~ # get back to your home directory
+ls npm-practice && rm -rf npm-practice # make sure npm-practice is there
+`;
 ---
 
-<PageLayout slug='/make-a-package-json/' title='Make a package.json and read it out loud' subtitle='Twenty minutes in a throwaway folder, with every file explained' description='A hands-on walk through npm init, installing a dev dependency, writing npm scripts, and chaining commands. Every file that appears is named and explained as it appears.' avatarImage='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/canvas/hap/hap-scientist' avatarAlt='HAP wearing goggles and holding a bubbling test tube' introContent={introContent} footerReminder='Read package.json after every command that touches it, and the rest of this stops being guesswork.'>
+<PageLayout slug='/make-a-package-json/' title='What is package.json' subtitle='Twenty minutes in a throwaway folder, with every file explained' description='A hands-on walk through npm init, installing a dev dependency, writing npm scripts, and chaining commands. Every file that appears is named and explained as it appears.' avatarImage='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/canvas/hap/hap-scientist' avatarAlt='HAP wearing goggles and holding a bubbling test tube' introContent={introContent} footerReminder='Read package.json after every command that touches it, and the rest of this stops being guesswork.'>
   <section class='content-section'>
     <div class='topic-section'>
       <h2>Watch This First</h2>
 
-      <p>Everything on this page is a thing you do. This is the same material explained before you have to do it: what <code>npm init</code> actually writes, what <code>npm install</code> adds to the file without you typing, the four rules JSON insists on, and how a script gets added and run. Five and a half minutes.</p>
+      <p>Everything on this page is a thing you do. This is the same material explained before you have to do it: what <code>npm init</code> actually writes, what <code>npm install</code> adds to the file without you typing, the four rules JSON insists on, and how a script gets added and run. This video runs for five and a half minutes.</p>
 
       <video class='hap-video' controls preload='metadata' width='800' height='450'>
         <source src='https://res.cloudinary.com/cynthia-teeters/video/upload/f_auto,q_auto/canvas/videos/hap-package-json' type='video/mp4' />
@@ -85,13 +84,13 @@ rm -rf npm-practice`;
     <div class='topic-section'>
       <h2>Before You Start</h2>
 
-      <p>You need a terminal open and Node installed. Typing <code>node --version</code> should print a number rather than an error. On Windows, use Git Bash rather than PowerShell or Command Prompt, because the quoting rules differ and the difference shows up later in a way that is genuinely hard to spot.</p>
+      <p>You need a terminal open and Node installed. Running the command <code>node --version</code> will print a number rather than an error. Windows requires running Git Bash rather than PowerShell or Command Prompt because the quoting rules differ and the difference shows up later in a way that is genuinely hard to spot.</p>
 
       <p class='mt-1'>Everything below happens in a folder you are going to delete at the end. Nothing here is a deliverable.</p>
 
       <h3 class='mt-2'>Opening a terminal, if you have not before</h3>
 
-      <p>That first line assumes you already know where to find one. Here is HAP opening the terminal built into VS Code, then answering the question that comes straight after it: which folder is that terminal standing in? Two and a half minutes.</p>
+      <p>That first line assumes you already know where to find one. Here is HAP opening the terminal built into VS Code, then answering the question that comes straight after it: which folder is that terminal standing in? This video runs for two and a half minutes.</p>
 
       <video class='hap-video' controls preload='metadata' width='800' height='450'>
         <source src='https://res.cloudinary.com/cynthia-teeters/video/upload/f_auto,q_auto/canvas/videos/hap-vs-code-terminal' type='video/mp4' />
@@ -110,9 +109,9 @@ rm -rf npm-practice`;
         <CodeBlock code={step1} lang='bash' />
       </div>
 
-      <p class='mt-1'><code>mkdir</code> makes the folder. <code>cd</code> moves the terminal into it. <code>pwd</code> prints where the terminal currently is, and it should end in <code>npm-practice</code>.</p>
+      <p class='mt-1'>The <code>mkdir</code> command makes the folder and <code>cd</code> moves the terminal into it. <code>pwd</code> prints where the terminal currently is, and it should end in <code>npm-practice</code>. Notice the # starts a comment.</p>
 
-      <p class='mt-1'>That last command matters more than it looks. Every npm command acts on the folder the terminal is standing in, and it never asks whether that was the folder you meant. A lot of confusing npm behavior turns out to be a command that ran perfectly in the wrong place.</p>
+      <p class='mt-1'>That <code>pwd</code> command matters more than it looks. Every npm command acts on the folder the terminal is standing in, and it never asks whether that was the folder you meant. A lot of confusing npm behavior turns out to be a command that ran in the wrong place, either because it printed lines of errors or, just as bad, because it worked but in the wrong place.</p>
     </div>
   </section>
 
@@ -125,16 +124,18 @@ rm -rf npm-practice`;
         <CodeBlock code={step2} lang='bash' />
       </div>
 
-      <p class='mt-1'>Without <code>-y</code>, npm asks a series of questions. With it, npm accepts every default and writes the file immediately. Open <code>package.json</code> and read it before going on.</p>
+      <p class='mt-1'>Without <code>-y</code>, npm asks a series of questions. With it, npm accepts every default and writes the file immediately. You can open <code>package.json</code> and read it before going on.</p>
 
       <div class='prompt-box mt-1'>
-        <div class='prompt-label'>package.json, straight out of npm init:</div>
+        <div class='prompt-label'>package.json, before any configuration settings:</div>
         <CodeBlock code={initOutput} lang='json' />
       </div>
 
-      <p class='mt-1'>Read it out loud, field by field. <code>name</code> came from the folder name. <code>version</code> is a starting point nobody uses for a website. <code>scripts</code> holds one placeholder that does nothing useful. The <a href='/reference/package-json/'>package.json reference page</a> goes through every field properly.</p>
+      <p class='mt-1'>You can read the file out loud, field by field. The <code>name</code> came from the folder name. The package <code>version</code> is mostly relevant only when you plan to publish your module on a public repository. While required, it is usually ignored for other purposes like building websites. The <code>scripts</code> list holds one placeholder that does nothing useful. Notice how lists are bracketed by open and close curly braces.</p>
 
-      <p class='mt-1'>Notice what is missing. There is no list of dependencies yet, because nothing has been installed.</p>
+      <p class='mt-1'>The <a href='/reference/package-json/'>package.json reference page</a> goes through every field properly.</p>
+
+      <p class='mt-1'>The list of dependencies is missing because nothing has been installed yet.</p>
     </div>
   </section>
 
@@ -156,7 +157,7 @@ rm -rf npm-practice`;
         <CodeBlock code={afterInstall} lang='text' />
       </div>
 
-      <p class='mt-1'>Open <code>package.json</code> again. It now has a <code>devDependencies</code> block naming <code>http-server</code> and a version. Open <code>package-lock.json</code> and scroll. It is thousands of lines describing every package that came down, including the ones <code>http-server</code> depends on that you never named. Look at <code>node_modules</code> and notice how many folders are in there for one small tool.</p>
+      <p class='mt-1'>You will see a <code>devDependencies</code> block naming <code>http-server</code> and its version when you open <code>package.json</code> again. Opening <code>package-lock.json</code> reveals thousands of lines describing every package that came down, including the ones <code>http-server</code> depends on that you never named. The <code>node_modules</code> folder contains dozens of subfolders for this single tool.</p>
 
       <div class='hap-note-callout'>
         <img src='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/canvas/hap/hap-thumbs-up' alt='HAP giving an enthusiastic thumbs up with sparkles around him' width='150' height='150' class='hap-note-image' decoding='async' loading='lazy' />
@@ -174,14 +175,14 @@ rm -rf npm-practice`;
 
       <p>An installed tool is not on your system path. Typing <code>http-server</code> by itself will most likely report that the command was not found. npm scripts exist to solve exactly this: inside a script, npm looks in <code>node_modules</code> first.</p>
 
-      <p class='mt-1'>Open <code>package.json</code>, find the <code>scripts</code> block, and replace it with this.</p>
+      <p class='mt-1'>You can open <code>package.json</code> to find and replace the <code>scripts</code> block with this code.</p>
 
       <div class='prompt-box mt-1'>
         <div class='prompt-label'>package.json, the scripts block:</div>
         <CodeBlock code={step4} lang='json' />
       </div>
 
-      <p class='mt-1'>Save the file. Forgetting to save produces <code>Missing script: "serve"</code> on the next command, which is the single most common thing to go wrong in this whole exercise.</p>
+      <p class='mt-1'>You must save the file, since forgetting to do so produces a <code>Missing script: "serve"</code> error on the next command. This is the single most common mistake in this exercise.</p>
     </div>
   </section>
 
@@ -195,13 +196,13 @@ rm -rf npm-practice`;
       </div>
 
       <div class='prompt-box mt-1'>
-        <div class='prompt-label'>Roughly what comes back:</div>
+        <div class='prompt-label'>Here is what the terminal prints:</div>
         <CodeBlock code={serveOutput} lang='text' />
       </div>
 
-      <p class='mt-1'>The terminal stops and sits there, which is correct even though it is new. Most commands run, print something, and give you your prompt back. A server never finishes, because finishing would mean it stopped serving, so it holds the terminal until you stop it.</p>
+      <p class='mt-1'>The terminal stops and sits there, which is correct even though it is new behavior you may never have seen before. Most terminal commands run, print something, and give you your prompt back. A server never finishes, because finishing would mean it stopped serving, so it holds the terminal until you stop it.</p>
 
-      <p class='mt-1'>Open <code>http://127.0.0.1:3000</code> in a browser. There is no HTML file in this folder, so you get a file listing. That listing is being generated and delivered by a program running on your own machine. Press <kbd>Ctrl</kbd> and <kbd>C</kbd> in the terminal to stop it, and the prompt comes back.</p>
+      <p class='mt-1'>You can visit <code>http://127.0.0.1:3000</code> in a browser. Because there is no HTML file in this folder, you will see a file listing generated by the server. You can stop the server and return to the prompt by pressing <kbd>Ctrl</kbd> and <kbd>C</kbd> in the terminal.</p>
 
       <p class='mt-1'>The <a href='/why-a-dev-server/'>page on dev servers</a> covers what the port number is doing and why any of this is necessary.</p>
     </div>
@@ -211,7 +212,7 @@ rm -rf npm-practice`;
     <div class='topic-section'>
       <h2>Step 6: Chain Two Commands</h2>
 
-      <p>A script can run other scripts, and commands can be strung together. Replace the scripts block again.</p>
+      <p>A script can run other scripts, and commands can be strung together. You can replace the scripts block again.</p>
 
       <div class='prompt-box mt-1'>
         <div class='prompt-label'>package.json, the scripts block:</div>
@@ -223,7 +224,7 @@ rm -rf npm-practice`;
         <CodeBlock code={step7} lang='bash' />
       </div>
 
-      <p class='mt-1'>Two characters in there are doing real work, and neither of them is JavaScript.</p>
+      <p class='mt-1'>Two characters in there are special shell characters.</p>
 
       <div class='analysis-grid analysis-grid--two-col'>
         <div class='analysis-point'>
@@ -237,7 +238,7 @@ rm -rf npm-practice`;
         </div>
       </div>
 
-      <p class='mt-1'>Stop the server, then open <code>files.txt</code>. It holds the folder listing, written there by the first half of the chain before the second half started. That is what the scripts block is for: turning a multi-step job into one command a teammate can run without instructions.</p>
+      <p class='mt-1'>Once you stop the server, opening <code>files.txt</code> reveals the folder listing written by the first half of the chain before the second started.</p>
     </div>
   </section>
 
@@ -250,7 +251,7 @@ rm -rf npm-practice`;
         <CodeBlock code={cleanup} lang='bash' />
       </div>
 
-      <p class='mt-1'>Deleting it is part of the exercise. Everything in that folder except <code>package.json</code> can be regenerated from <code>package.json</code>, and being willing to delete <code>node_modules</code> without a second thought is a useful reflex to have.</p>
+      <p class='mt-1'>This folder is meant to be deleted at the end as everything there was just practice.</p>
     </div>
   </section>
 
@@ -263,7 +264,7 @@ rm -rf npm-practice`;
           <div class='tip-number'>1</div>
           <div>
             <h3>The terminal's current folder decides everything</h3>
-            <p>npm acts on wherever the terminal is standing. Running <code>pwd</code> before an install costs one second and heads off a whole class of confusion.</p>
+            <p>npm acts on wherever the terminal is standing. A quick check with <code>pwd</code> before installing costs one second and heads off a whole class of confusion.</p>
           </div>
         </div>
 
@@ -271,7 +272,7 @@ rm -rf npm-practice`;
           <div class='tip-number'>2</div>
           <div>
             <h3>Read package.json after every command that touches it</h3>
-            <p>The file is short, and it is the record of what you did. Watching it change after each command is how you learn what each command does.</p>
+            <p>The file is short, and it is the record of what you did. You can learn what each command does by watching the file change after each step.</p>
           </div>
         </div>
 
@@ -279,7 +280,7 @@ rm -rf npm-practice`;
           <div class='tip-number'>3</div>
           <div>
             <h3>Save before you run</h3>
-            <p><code>Missing script</code> nearly always means the editor still holds unsaved changes.</p>
+            <p>A <code>script</code> not running usually means the editor still holds unsaved changes.</p>
           </div>
         </div>
 
@@ -287,7 +288,7 @@ rm -rf npm-practice`;
           <div class='tip-number'>4</div>
           <div>
             <h3>A server holding the terminal is correct behavior</h3>
-            <p>It has not hung. Open a second terminal tab if you need one, and stop the server with <kbd>Ctrl</kbd> and <kbd>C</kbd> when you are done.</p>
+            <p>It has not hung. You can open a second terminal tab if you need one, and stop the server with <kbd>Ctrl</kbd> and <kbd>C</kbd> when you are done.</p>
           </div>
         </div>
 

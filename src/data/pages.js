@@ -13,7 +13,7 @@ export const pages = [
   {
     slug: "/what-built-means/",
     type: "Explanation",
-    label: "What people mean when they say a site is built",
+    label: "How a site is built",
   },
   {
     slug: "/what-node-is/",
@@ -21,14 +21,14 @@ export const pages = [
     label: "What Node is",
   },
   {
-    slug: "/npm-is-not-node/",
+    slug: "/what-is-npm/",
     type: "Explanation",
-    label: "npm is not Node",
+    label: "What npm is",
   },
   {
     slug: "/make-a-package-json/",
     type: "Tutorial",
-    label: "Make a package.json and read it out loud",
+    label: "What is package.json",
   },
   {
     slug: "/reference/package-json/",

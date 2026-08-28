@@ -21,63 +21,53 @@ _data/            structured data available to every template
 _site/            finished HTML, one file per piece of content`;
 ---
 
-<PageLayout
-  slug="/what-comes-next/"
-  title="Where this goes next"
-  subtitle="Static site generators, and the pieces they are built from"
-  description="What a static site generator does, how templates and content and data combine into pages, which generators are worth knowing about, and what stays true no matter which one a project uses."
-  avatarImage="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/canvas/hap/hap-pointing-up"
-  avatarAlt="HAP pointing upward with one finger, smiling encouragingly"
-  introContent={introContent}
-  footerReminder="Every generator is a package, installed by npm, run by Node, previewed on a dev server."
->
-
-  <section class="content-section">
-    <div class="topic-section">
+<PageLayout slug='/what-comes-next/' title='Where this goes next' subtitle='Static site generators, and the pieces they are built from' description='What a static site generator does, how templates and content and data combine into pages, which generators are worth knowing about, and what stays true no matter which one a project uses.' avatarImage='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/canvas/hap/hap-pointing-up' avatarAlt='HAP pointing upward with one finger, smiling encouragingly' introContent={introContent} footerReminder='Every generator is a package, installed by npm, run by Node, previewed on a dev server.'>
+  <section class='content-section'>
+    <div class='topic-section'>
       <h2>The Problem They Solve</h2>
 
-      <p>Ten hand-written pages are manageable. Forty are not, and the failure is specific: the navigation bar exists in forty copies, and one of them will be wrong. Every page repeats the same head tag, the same header, the same footer, and changing any of those means forty edits.</p>
+      <p>To give websites a sense of cohesiveness, we usually want to have parts of pages be identical. The navigation across the top and the footer at the bottom are just two examples. When a site has a few hand-written pages, keeping pages synced during edits is hard but manageable. As sites grow, the task becomes much harder and tedious. For example, if every page of a twenty-page site repeats the same head tag, the same header and the same footer, changing any of those means twenty edits and twenty chances of getting something wrong, followed by testing twenty changed pages.</p>
 
-      <p class="mt-1">The obvious fix is to write the shared parts once and have a program stamp them onto each page. A static site generator is that program, with the rough edges worked out.</p>
+      <p class='mt-1'>Static site generators have the shared parts as templates and have a program include them in each page. Doing it this way ensures these parts remain consistent between pages.</p>
     </div>
   </section>
 
-  <section class="content-section">
-    <div class="topic-section">
+  <section class='content-section'>
+    <div class='topic-section'>
       <h2>What A Generator Does</h2>
 
       <p>It reads three kinds of input and writes one kind of output.</p>
 
-      <div class="prompt-box mt-1">
-        <div class="prompt-label">The shape of a generated project:</div>
-        <CodeBlock code={generatorShape} lang="text" />
+      <div class='prompt-box mt-1'>
+        <div class='prompt-label'>The shape of a generated project:</div>
+        <CodeBlock code={generatorShape} lang='text' />
       </div>
 
-      <div class="analysis-grid analysis-grid--two-col">
-        <div class="analysis-point">
+      <div class='analysis-grid analysis-grid--two-col'>
+        <div class='analysis-point'>
           <h3>Content</h3>
-          <p>Usually Markdown, one file per page, holding the words. Often with a small block of settings at the top called front matter: a title, a date, a template to use.</p>
+          <p>This is usually Markdown, with one file per page holding the words. It often includes a small block of settings at the top called front matter, naming a title, date, and template.</p>
         </div>
 
-        <div class="analysis-point">
+        <div class='analysis-point'>
           <h3>Templates</h3>
-          <p>HTML with placeholders. The shell that every page drops into, plus smaller reusable pieces for things like a card or a navigation bar.</p>
+          <p>These are HTML files containing placeholders. They act as the shell every page drops into, along with smaller reusable pieces for cards or navigation bars.</p>
         </div>
 
-        <div class="analysis-point">
+        <div class='analysis-point'>
           <h3>Data</h3>
-          <p>Structured information that is not prose. A list of projects, a set of links, values fetched from an API at build time. Available to every template.</p>
+          <p>This is structured information that is not prose, such as a list of projects, a set of links, or values fetched from an API at build time. It is available to every template.</p>
         </div>
 
-        <div class="analysis-point">
+        <div class='analysis-point'>
           <h3>Output</h3>
-          <p>Plain HTML files. Once the build finishes, the generator is out of the picture entirely. What gets deployed is ordinary HTML, CSS, and JavaScript that any web server can hand out.</p>
+          <p>These are plain HTML files. Once the build finishes, the generator is out of the picture entirely. What gets deployed is ordinary HTML, CSS, and JavaScript that any web server can hand out.</p>
         </div>
       </div>
 
-      <div class="hap-note-callout">
-        <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/canvas/hap/hap-lectures" alt="HAP teaching at a chalkboard with HTML code on it" width="150" height="150" class="hap-note-image" decoding="async" loading="lazy" />
-        <div class="hap-note-content">
+      <div class='hap-note-callout'>
+        <img src='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/canvas/hap/hap-lectures' alt='HAP teaching at a chalkboard with HTML code on it' width='150' height='150' class='hap-note-image' decoding='async' loading='lazy' />
+        <div class='hap-note-content'>
           <h3>🟠 There is nothing new here</h3>
           <p>A generator is a package on the registry that npm installs and Node runs. It writes into an output folder that git ignores, and a dev server previews the result. Every piece of that came from an earlier page in this lab.</p>
         </div>
@@ -85,25 +75,25 @@ _site/            finished HTML, one file per piece of content`;
     </div>
   </section>
 
-  <section class="content-section">
-    <div class="topic-section">
-      <h2>The Ones Worth Recognizing</h2>
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>Popular Static Site Generators</h2>
 
-      <div class="hap-info-grid">
+      <div class='hap-info-grid'>
         <h4>Eleventy</h4>
-        <p>JavaScript, deliberately small, no opinion about how content is structured. Popular for teaching because very little of it is hidden.</p>
+        <p>Written in JavaScript, this tool is deliberately small and has no opinion about how content is structured. It is popular for teaching because very little of it is hidden.</p>
 
         <h4>Astro</h4>
-        <p>JavaScript. Ships zero JavaScript to the browser by default and lets interactive components opt in. This lab is built with it.</p>
+        <p>Written in JavaScript, this tool ships zero JavaScript to the browser by default and lets interactive components opt in. This lab is built with it.</p>
 
         <h4>Jekyll</h4>
-        <p>Ruby. The oldest of the widely used ones, and the reason GitHub Pages exists in the form it does.</p>
+        <p>Written in Ruby, this is the oldest of the widely used generators. It is the reason GitHub Pages exists in its current form.</p>
 
         <h4>Hugo</h4>
-        <p>Go. Distributed as a single downloaded program rather than an npm package, and extremely fast on very large sites.</p>
+        <p>Written in Go, this tool is distributed as a single downloaded program rather than an npm package. It is extremely fast on very large sites.</p>
 
         <h4>Next and Nuxt</h4>
-        <p>Application frameworks that can also generate static output. Considerably more machinery, aimed at sites that are closer to apps.</p>
+        <p>These are application frameworks that can also generate static output. They use considerably more machinery and target sites that behave closer to apps.</p>
 
         <h4>What they share</h4>
         <p>Templates, content, and data go in, and HTML comes out. The syntax differs from one to the next, but that shape does not.</p>
@@ -111,33 +101,32 @@ _site/            finished HTML, one file per piece of content`;
     </div>
   </section>
 
-  <section class="content-section">
-    <div class="topic-section">
-      <h2>What Stays True</h2>
+  <section class='content-section'>
+    <div class='topic-section'>
+      <h2>What Remains Consistent</h2>
 
-      <p>Which generator a project uses matters less than the marketing suggests. These five hold either way.</p>
+      <p>A developer will typically choose a static site generator (SSG) based on build speed, language familiarity, and the level of interactivity the project requires. In most cases, here are the common features.</p>
 
       <ol>
         <li>The output folder is generated and disposable, and it belongs in <code>.gitignore</code>.</li>
         <li><code>package.json</code> and <code>package-lock.json</code> are the record of what the project needs, and both get committed.</li>
-        <li>Running the site locally means running a dev server, because the output is a site rather than a file.</li>
-        <li>Deploying means running the build somewhere and publishing the output folder.</li>
-        <li>Every problem is in one of three places: your source, the configuration, or a dependency. Working out which one is most of debugging.</li>
+        <li>Local previews require running a dev server because the output is a website rather than a standalone file.</li>
+        <li>Deployment consists of running the build step and publishing the resulting output folder.</li>
+        <li>Every problem resides in one of three places: your source, the configuration, or a dependency. Your first step in debugging is identifying which of these three areas is responsible.</li>
       </ol>
     </div>
   </section>
 
-  <section class="content-section">
-    <div class="topic-section">
+  <section class='content-section'>
+    <div class='topic-section'>
       <h2>Where To Go From Here</h2>
 
-      <div class="hub-return-card">
-        <p><a href="https://hap-ssg.netlify.app" target="_blank" rel="noopener noreferrer">HAP's Static Site Generator lab</a> picks up exactly here and works through templates, content, data, and a real build.</p>
-        <p class="mt-1">The <a href="/reference/commands/">command set</a> and the <a href="/reference/package-json/">package.json reference</a> on this site stay useful the whole way through.</p>
+      <div class='hub-return-card'>
+        <p><a href='https://hap-ssg.netlify.app' target='_blank' rel='noopener noreferrer'>HAP's Static Site Generator lab</a> picks up exactly here and works through templates, content, data, and a real build.</p>
+        <p class='mt-1'>The <a href='/reference/commands/'>command set</a> and the <a href='/reference/package-json/'>package.json reference</a> on this site stay useful the whole way through.</p>
       </div>
     </div>
   </section>
-
 </PageLayout>
 
 <!--

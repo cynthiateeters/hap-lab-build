@@ -18,12 +18,12 @@ const buildShape = `my-project/
 └── dist/           ← the files a browser receives (generated)`;
 ---
 
-<PageLayout slug='/what-built-means/' title='What people mean when they say a site is built' subtitle='Source files in, deployable files out' description='A site that is built has source files that a program turns into the files a browser actually receives. What a build step is, why static sites use one, and the vocabulary that goes with it.' avatarImage='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/canvas/hap/hap-has-tools' avatarAlt='HAP holding a wooden toolbox filled with hammer, pliers, and other tools' introContent={introContent} footerReminder='A build is a program that turns files you wrote into files a browser can use.'>
+<PageLayout slug='/what-built-means/' title='How a site is built' subtitle='Source files in, deployable files out' description='A site that is built has source files that a program turns into the files a browser actually receives. What a build step is, why static sites use one, and the vocabulary that goes with it.' avatarImage='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_200,c_limit/canvas/hap/hap-has-tools' avatarAlt='HAP holding a wooden toolbox filled with hammer, pliers, and other tools' introContent={introContent} footerReminder='A build is a program that turns files you wrote into files a browser can use.'>
   <section class='content-section'>
     <div class='topic-section'>
       <h2>The Ways Files Reach A Browser</h2>
 
-      <p>Every website on the internet gets its HTML to your browser in one of three ways. Telling them apart is the fastest way to understand where a build fits.</p>
+      <p>Every website on the internet gets its HTML to your browser in one of three ways. The fastest way to understand where a build fits is by separating these three approaches.</p>
 
       <div class='analysis-grid analysis-grid--two-col'>
         <div class='analysis-point'>
@@ -72,8 +72,8 @@ const buildShape = `my-project/
         <img src='https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/canvas/hap/hap-pointing-up' alt='HAP pointing upward with one finger, smiling encouragingly' width='150' height='150' class='hap-note-image' decoding='async' loading='lazy' />
         <div class='hap-note-content'>
           <h3>🟠 The output folder is disposable</h3>
-          <p>Whatever the output folder is called, deleting it costs nothing. Running the build again recreates it from the source files. That gives you a test for whether a file belongs there: if losing it would hurt, it was source all along.</p>
-          <p class='mt-1'>This is also why the output folder is almost always in <code>.gitignore</code>. Committing generated files means every teammate's build produces a different diff of files nobody wrote.</p>
+          <p>Whatever the output folder is called, deleting it costs nothing. A new build recreates the folder from your source files. That gives you a test for whether a file belongs there: if losing it would hurt, it was source all along.</p>
+          <p class='mt-1'>This is also why the output folder is almost always in <code>.gitignore</code>. If you commit generated files, every teammate's build will produce a different diff of files nobody wrote.</p>
         </div>
       </div>
     </div>
@@ -88,17 +88,17 @@ const buildShape = `my-project/
       <div class='analysis-grid analysis-grid--two-col'>
         <div class='analysis-point'>
           <h3>One change, many pages</h3>
-          <p>Change the navigation bar in one template and forty pages get the new navigation. Without a build, that is forty files edited by hand and one of them silently missed.</p>
+          <p>If you change the navigation bar in one template, forty pages get the update automatically. Without a build, that is forty files edited by hand and one of them silently missed.</p>
         </div>
 
         <div class='analysis-point'>
           <h3>Work in a nicer format than the browser accepts</h3>
-          <p>Write content in Markdown, get HTML. Write modern CSS, get CSS that older browsers understand. The build translates between what is pleasant to write and what browsers actually run.</p>
+          <p>Markdown content becomes HTML. Modern CSS compiles into code that older browsers can read. The build translates between what is pleasant to write and what browsers actually run.</p>
         </div>
 
         <div class='analysis-point'>
           <h3>Automatic optimization</h3>
-          <p>Shrinking images, stripping whitespace, and bundling files are boring, repetitive, and easy to forget. A build does them every single time without being asked.</p>
+          <p>Image optimization, whitespace cleanup, and file bundling are tedious to do by hand. A build handles them every time without being asked.</p>
         </div>
 
         <div class='analysis-point'>
@@ -117,22 +117,22 @@ const buildShape = `my-project/
 
       <div class='hap-info-grid'>
         <h4>Source</h4>
-        <p>The files a person writes and a person owns. Committed to git. Losing them is a real loss. Developers often create a folder called <code>src</code> to hold these files</p>
+        <p>These are the files a person writes and owns. They are committed to git, and losing them is a real loss. Developers often create a folder called <code>src</code> to hold them.</p>
 
         <h4>Build</h4>
-        <p>Both a noun and a verb. The act of running the program, and the set of files it produced.</p>
+        <p>This is both a noun and a verb, representing the act of running the build program and the resulting folder of files.</p>
 
         <h4>Artifact</h4>
-        <p>A file the build produced. Generated, disposable, recreatable.</p>
+        <p>This is any file produced by the build process. It is generated, disposable, and recreatable.</p>
 
         <h4>Dependency</h4>
-        <p>Code the project needs but did not write. Downloaded rather than typed.</p>
+        <p>This is external code the project needs but did not write. You download it rather than typing it yourself.</p>
 
         <h4>Deploy</h4>
-        <p>Moving the output somewhere the public can reach it. Separate from building, and it happens after.</p>
+        <p>This refers to moving the output to a server where the public can access it. It is separate from the build step and happens afterward.</p>
 
         <h4>Pipeline</h4>
-        <p>A build with several stages that run in order, where each stage feeds the next.</p>
+        <p>A pipeline is a build process with several stages running in order, where each stage feeds the next.</p>
       </div>
     </div>
   </section>
@@ -143,7 +143,7 @@ const buildShape = `my-project/
 
       <p>A static site is a legitimate production choice, not a beginner's substitute for a real website. Plenty of large sites run this way, because the files are already finished before anyone asks for them, which makes them fast and hard to break.</p>
 
-      <p class='mt-1'>They are also a good place to learn from, because a static site build contains every piece of a modern toolchain: a runtime that is not the browser, a package manager, dependencies, scripts, a local server, and a deploy. None of it is hidden behind a framework doing five of those things at once. Once these pieces make sense here, a bigger tool reads as the same pieces with more of them.</p>
+      <p class='mt-1'>They are also a good place to learn from, because a static site build contains every piece of a modern toolchain: a runtime that is not the browser, a package manager, dependencies, scripts, a local server, and a deploy. None of it is hidden behind a framework doing five of those things at once. Once you understand these pieces here, larger tools will make sense as the same components with more features.</p>
 
       <p class='mt-1'>The next page starts with the runtime, because none of the rest can happen without it.</p>
     </div>

@@ -9,7 +9,7 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import CodeBlock from '../../components/CodeBlock.astro';
 
 const introContent = `
-    <p>The fields that appear in a <code>package.json</code> for a front-end project, what each one controls, and which ones can be left alone. Written for looking things up rather than reading straight through.</p>
+    <p>This reference page covers the fields that appear in a <code>package.json</code> file for a front-end project, what each one controls, and which ones you can leave alone.</p>
 `;
 
 const wholeFile = `{
@@ -67,22 +67,22 @@ const rangeExamples = `"^14.1.1"    minor and patch updates allowed: 14.9.9 yes,
       <div class="analysis-grid analysis-grid--two-col">
         <div class="analysis-point">
           <h3>name</h3>
-          <p>Lowercase, no spaces. Hyphens are fine. It defaults to the folder name. For a published package this has to be unique across the whole registry. For a project that stays private it is a label and nothing more.</p>
+          <p>The name must be lowercase with no spaces, though hyphens are fine. It defaults to the folder name. For a published package, this name must be unique across the registry, but for a private project it acts as a simple label.</p>
         </div>
-
+ 
         <div class="analysis-point">
           <h3>version</h3>
-          <p>Three numbers separated by dots, called semantic versioning: major, minor, patch. Meaningful for published packages. For a website it is decoration that nobody reads.</p>
+          <p>This field uses three numbers separated by dots, representing major, minor, and patch releases. It is meaningful for published packages, but for a private website it serves as decoration.</p>
         </div>
-
+ 
         <div class="analysis-point">
           <h3>description</h3>
-          <p>One sentence. Shown on the registry page for published packages. Harmless and useful to fill in either way.</p>
+          <p>This is a one-sentence description shown on the registry page for published packages. It is harmless and useful to fill in for any project.</p>
         </div>
-
+ 
         <div class="analysis-point">
           <h3>author, license, keywords</h3>
-          <p>Metadata for the registry. <code>npm init -y</code> fills <code>license</code> with <code>ISC</code>, which is a real open source license and probably not the one intended. Set it deliberately or set <code>private</code> instead.</p>
+          <p>These are metadata fields for the registry. The command <code>npm init -y</code> fills the license field with ISC, which is a real open source license but might not be the one you want. You can set it deliberately or configure the project as private instead.</p>
         </div>
       </div>
     </div>
@@ -94,22 +94,22 @@ const rangeExamples = `"^14.1.1"    minor and patch updates allowed: 14.9.9 yes,
 
       <div class="hap-info-grid">
         <h4>private</h4>
-        <p>Set to <code>true</code>, npm refuses to publish this project to the public registry. Worth setting on anything that is not meant to be published, because it turns an accidental publish into an error message.</p>
-
+        <p>When this is set to <code>true</code>, npm refuses to publish the project to the public registry. Setting this is best for any private project to prevent accidental publishing.</p>
+ 
         <h4>type</h4>
-        <p>Set to <code>"module"</code>, <code>.js</code> files in the project use <code>import</code> and <code>export</code>. Left out, they use the older <code>require</code> style. Mixing the two produces confusing errors about unexpected tokens.</p>
-
+        <p>When this is set to <code>"module"</code>, the <code>.js</code> files in the project use <code>import</code> and <code>export</code>. Omitting this field makes files use the older <code>require</code> style. Mixing these two patterns produces confusing error messages about unexpected tokens.</p>
+ 
         <h4>main</h4>
-        <p>Which file is the package's entry point when another package imports it. Written by <code>npm init</code> whether or not that file exists. Irrelevant to a website that nobody imports.</p>
-
+        <p>This field specifies the entry point of the package when imported by another project. The <code>npm init</code> command writes this field whether the target file exists or not, and it remains irrelevant for a website that is not imported.</p>
+ 
         <h4>engines</h4>
-        <p>Which Node versions the project supports. Deploy platforms read this and will pick a matching Node version, which makes it more useful than it looks.</p>
-
+        <p>This field specifies the Node versions that the project supports. Deploy platforms read this to select a matching Node runtime, which makes it useful.</p>
+ 
         <h4>browserslist</h4>
-        <p>Which browsers to support. Several build tools read it to decide how far to translate modern syntax. Absent unless a tool asked for it.</p>
-
+        <p>This field indicates which browsers to support. Several build tools read it to decide how far to translate modern CSS and JavaScript. It is absent unless a tool explicitly requests it.</p>
+ 
         <h4>workspaces</h4>
-        <p>For repositories holding several packages at once. Not something a single site needs.</p>
+        <p>This field configures repositories that hold several packages at once. A single website project does not need it.</p>
       </div>
     </div>
   </section>
@@ -118,26 +118,26 @@ const rangeExamples = `"^14.1.1"    minor and patch updates allowed: 14.9.9 yes,
     <div class="topic-section">
       <h2>scripts</h2>
 
-      <p>A set of named shortcuts. Each value is a line handed to the shell, so shell features work inside it: <code>&amp;&amp;</code> to chain, <code>&gt;</code> to redirect output into a file, <code>|</code> to pipe one command into the next.</p>
-
+      <p>Scripts are a set of named shortcuts. Each value is a command handed to the shell, so shell features like <code>&amp;&amp;</code>, <code>&gt;</code>, and <code>|</code> work inside them.</p>
+ 
       <p class="mt-1">Inside a script, commands installed into <code>node_modules</code> are found automatically. That is the reason scripts exist rather than typing the tool's name directly.</p>
-
+ 
       <div class="hap-info-grid">
         <h4>npm run name</h4>
-        <p>Runs the script called <code>name</code>. Works for any name.</p>
-
+        <p>This command runs the script called <code>name</code>, and works for any script.</p>
+ 
         <h4>npm start and npm test</h4>
-        <p>Two names npm treats specially. <code>npm start</code> and <code>npm test</code> work without the word <code>run</code>. Everything else needs it.</p>
-
+        <p>These are two script names npm treats specially. They run without the word <code>run</code>, whereas other scripts require it.</p>
+ 
         <h4>npm run with no name</h4>
-        <p>Lists every script defined in the file. The fastest way to find out what a freshly cloned project can do.</p>
-
+        <p>This command lists every script defined in the file. It is the fastest way to see what a freshly cloned project can do.</p>
+ 
         <h4>Scripts calling scripts</h4>
-        <p><code>"start": "npm run build &amp;&amp; npm run dev"</code> is normal and encouraged. Build the big step out of small named ones.</p>
-
+        <p>A value like <code>"start": "npm run build &amp;&amp; npm run dev"</code> is common and encouraged. Building the big step out of small named ones keeps things organized.</p>
+ 
         <h4>pre and post prefixes</h4>
-        <p>A script named <code>prebuild</code> runs automatically before <code>build</code>, and <code>postbuild</code> runs after. Convenient, and easy to miss when reading somebody else's file.</p>
-
+        <p>A script named <code>prebuild</code> runs automatically before <code>build</code>, while <code>postbuild</code> runs afterward. This behavior is convenient, but it is easy to miss when reading a file.</p>
+ 
         <h4>Quoting</h4>
         <p>The value is JSON, so a quote mark inside it has to be escaped with a backslash. This is the usual source of a script that looks right and behaves wrong.</p>
       </div>
@@ -151,22 +151,22 @@ const rangeExamples = `"^14.1.1"    minor and patch updates allowed: 14.9.9 yes,
       <div class="analysis-grid analysis-grid--two-col">
         <div class="analysis-point">
           <h3>dependencies</h3>
-          <p>Code the finished product needs at run time. Added by <code>npm install name</code>.</p>
+          <p>This is code that the finished product needs at runtime. Running <code>npm install name</code> adds packages here.</p>
         </div>
-
+ 
         <div class="analysis-point">
           <h3>devDependencies</h3>
-          <p>Tools used only while developing or building. Added by <code>npm install --save-dev name</code>. For a static site, nearly everything belongs here.</p>
+          <p>These are tools used only while developing or building. Running <code>npm install --save-dev name</code> adds packages here, and nearly everything in a static site project belongs in this list.</p>
         </div>
-
+ 
         <div class="analysis-point">
           <h3>peerDependencies</h3>
-          <p>Used by plugins to say which host package they attach to. Something you read in other people's files rather than write in your own.</p>
+          <p>This list is used by plugins to specify which host packages they attach to. You will usually read this in other files rather than writing it yourself.</p>
         </div>
-
+ 
         <div class="analysis-point">
           <h3>optionalDependencies</h3>
-          <p>Packages whose install failure should not fail the whole install. Rare.</p>
+          <p>These are optional packages whose install failure does not stop the installation. Using this list is rare.</p>
         </div>
       </div>
     </div>
@@ -193,16 +193,16 @@ const rangeExamples = `"^14.1.1"    minor and patch updates allowed: 14.9.9 yes,
 
       <div class="hap-info-grid">
         <h4>package-lock.json</h4>
-        <p>Generated by npm. Records the exact resolved version and an integrity checksum for every installed package. Never hand-edited. Committed to git.</p>
-
+        <p>npm generates this file. It records the exact resolved version and an integrity checksum for every package. You do not hand-edit this file, but you do commit it.</p>
+ 
         <h4>node_modules/</h4>
-        <p>The downloaded packages themselves. Rebuildable from the two files above. Never committed.</p>
-
+        <p>This folder contains the downloaded packages themselves. You can rebuild it from the files above, and it is never committed.</p>
+ 
         <h4>.npmrc</h4>
-        <p>npm configuration for this project. Most projects have none.</p>
-
+        <p>This file holds npm configuration for the project. Most projects do not have one.</p>
+ 
         <h4>.gitignore</h4>
-        <p>Not an npm file, but it is where <code>node_modules</code> and the build output folder get excluded from git.</p>
+        <p>This is a git configuration file rather than an npm file, and it is where you exclude <code>node_modules</code> and the build output folder from git.</p>
       </div>
     </div>
   </section>

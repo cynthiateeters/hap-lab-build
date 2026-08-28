@@ -9,7 +9,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 import CodeBlock from '../components/CodeBlock.astro';
 
 const introContent = `
-    <p>Double-click an HTML file and it opens, but a set of browser features quietly stops working. This page covers why that happens, what a development server changes, and what a port number is.</p>
+    <p>If you double-click an HTML file, it will open, but a set of browser features quietly stops working. This page covers why that happens, what a development server changes, and what a port number is.</p>
 `;
 
 const twoUrls = `file:///Users/you/projects/my-site/index.html
@@ -46,7 +46,7 @@ const inUseError = `Error: listen EADDRINUSE: address already in use 0.0.0.0:300
         <CodeBlock code={twoUrls} lang="text" />
       </div>
 
-      <p class="mt-1">Same file, same bytes, same browser. In the first case the browser reads a file off the disk directly. In the second it sends a request over the network to a program that answers it, even though that program happens to be running on the same machine.</p>
+      <p class="mt-1">Both methods load the same file, same bytes, and same browser. In the first case the browser reads a file off the disk directly. In the second it sends a request over the network to a program that answers it, even though that program happens to be running on the same machine.</p>
 
       <p class="mt-1">The word before the colon is the <strong>scheme</strong>, and it decides which of those two things happens. That one word is why the same page behaves differently in the two cases.</p>
     </div>
@@ -68,7 +68,7 @@ const inUseError = `Error: listen EADDRINUSE: address already in use 0.0.0.0:300
       <div class="analysis-grid analysis-grid--two-col">
         <div class="analysis-point">
           <h3>Fetching another file fails</h3>
-          <p>Loading a JSON file of content, or any other data the page needs, is a cross-origin request under <code>file</code>. The browser blocks it and reports a CORS error, which is confusing because there is no other site involved.</p>
+          <p>A request to load a JSON file of content, or any other data the page needs, counts as a cross-origin request under <code>file</code>. The browser blocks it and reports a CORS error, which is confusing because there is no other site involved.</p>
         </div>
 
         <div class="analysis-point">
@@ -91,7 +91,7 @@ const inUseError = `Error: listen EADDRINUSE: address already in use 0.0.0.0:300
         <img src="https://res.cloudinary.com/cynthia-teeters/image/upload/f_auto,q_auto,w_150,c_limit/canvas/hap/hap-broke-things" alt="HAP looking sad while holding tangled wires" width="150" height="150" class="hap-note-image" decoding="async" loading="lazy" />
         <div class="hap-note-content">
           <h3>🟠 Nothing looks broken, which is the hard part</h3>
-          <p>The HTML renders and the CSS applies, so only the parts that needed to fetch something are missing, and the reason is in the console rather than on the page. When a page looks mostly right but a piece of it does nothing, open the console before anything else.</p>
+          <p>The HTML renders and the CSS applies, so only the parts that needed to fetch something are missing. Because the reason is logged in the console rather than on the page, checking the console first is best when a page half-functions.</p>
         </div>
       </div>
     </div>
@@ -107,20 +107,20 @@ const inUseError = `Error: listen EADDRINUSE: address already in use 0.0.0.0:300
 
       <div class="hap-info-grid">
         <h4>localhost</h4>
-        <p>A name that always means this computer. It resolves to <code>127.0.0.1</code>, an address that never leaves the machine.</p>
-
+        <p>This is a name that always means this computer. It resolves to <code>127.0.0.1</code>, which is an address that never leaves the machine.</p>
+ 
         <h4>Not on the internet</h4>
         <p>Nobody else can open your <code>localhost</code>. Sending that address to a classmate points at their machine, not yours.</p>
-
+ 
         <h4>It holds the terminal</h4>
-        <p>A server runs until stopped. <kbd>Ctrl</kbd> and <kbd>C</kbd> stops it. The prompt not coming back is correct.</p>
-
+        <p>A server runs until stopped. You can stop the server by pressing <kbd>Ctrl</kbd> and <kbd>C</kbd>. The prompt not coming back is correct.</p>
+ 
         <h4>It serves, it does not build</h4>
         <p>A dev server hands out whatever is currently in the folder. Generating those files is a separate step that runs first.</p>
-
+ 
         <h4>Different from production</h4>
         <p>A real host serves the built output to the public over HTTPS, from a machine that is not yours. The dev server is a stand-in so you can see the result before that happens.</p>
-
+ 
         <h4>Any of them will do</h4>
         <p>The VS Code Live Server extension, a Node server package, and a server built into a framework all solve this the same way.</p>
       </div>
@@ -131,29 +131,29 @@ const inUseError = `Error: listen EADDRINUSE: address already in use 0.0.0.0:300
     <div class="topic-section">
       <h2>What A Port Number Is</h2>
 
-      <p>One computer has one network address but runs many programs that want to talk over the network. A port number is how the machine knows which program an incoming request belongs to. Think of the address as the building and the port as the apartment number.</p>
-
+      <p>One computer has one network address but runs many programs that want to talk over the network. A port number is how the machine knows which program an incoming request belongs to. You can think of the address as the building and the port as the apartment number.</p>
+ 
       <p class="mt-1">Ports run from 1 to 65535. Some are conventional: 80 for <code>http</code>, 443 for <code>https</code>. Browsers assume those two, which is why a normal web address has no port in it. Development servers pick high numbers that nothing else claims, which is where 3000, 5173, 5500, and 8080 come from. Those four are conventions people copied from each other, and nothing about them is special.</p>
-
+ 
       <div class="analysis-grid analysis-grid--two-col">
         <div class="analysis-point">
           <h3>One program per port</h3>
           <p>Two servers cannot listen on the same port on the same machine. The second one fails to start rather than sharing.</p>
         </div>
-
+ 
         <div class="analysis-point">
           <h3>The error has a name</h3>
           <p><code>EADDRINUSE</code> means the port is already taken, almost always by a server left running in another terminal tab from an earlier attempt.</p>
         </div>
-
+ 
         <div class="analysis-point">
           <h3>The port is part of the origin</h3>
           <p>Port 3000 and port 5500 are different origins to the browser. A project configured to expect one will not be satisfied by the other.</p>
         </div>
-
+ 
         <div class="analysis-point">
           <h3>Changing it is fine</h3>
-          <p>Most servers take a flag for the port. Moving to a free one is a perfectly good answer when something else has yours.</p>
+          <p>Most servers take a flag for the port. A flag on the server command lets you select a free port when another program has yours.</p>
         </div>
       </div>
 
@@ -173,16 +173,16 @@ const inUseError = `Error: listen EADDRINUSE: address already in use 0.0.0.0:300
       <p>The fastest way to make this stick is to watch the same files behave three different ways.</p>
 
       <ol>
-        <li>Serve a project and open it at its <code>localhost</code> address. Everything works.</li>
-        <li>Stop the server and open the same <code>index.html</code> by double-clicking it. Watch the console. Anything that fetched is now failing.</li>
-        <li>Open it with a different server on a different port. It is served, so fetches work again, but anything that hard-coded the first port does not.</li>
+        <li>You can serve a project and open it at its <code>localhost</code> address to verify everything works.</li>
+        <li>If you stop the server and open <code>index.html</code> by double-clicking it, any fetch calls will fail in the console.</li>
+        <li>If you open it with a different server on a different port, the page is served and fetches work again, but anything that hard-coded the first port will fail.</li>
       </ol>
-
+ 
       <p class="mt-1">Nothing in the files changed across those three attempts. Only the delivery changed, and the delivery is part of what decides what the page is allowed to do.</p>
-
+ 
       <h3 class="mt-2">Watching the console, if you have not before</h3>
-
-      <p>Step two says to watch the console, which assumes you already know where it is. Here is HAP opening it and reading the first red line, in about two minutes.</p>
+ 
+      <p>Step two says to watch the console, which assumes you already know where it is. Here is HAP opening the console and reading the first red line. This video runs for about two minutes.</p>
 
       <video class="hap-video" controls preload="metadata" width="800" height="450">
         <source
